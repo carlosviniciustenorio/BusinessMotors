@@ -1,4 +1,4 @@
-resource "aws_ecs_cluster" "ecs-fargate-cluster-ct" {
+resource "aws_ecs_cluster" "ecs_fargate_cluster_ct" {
   name = var.ecs_cluster
 }
 
