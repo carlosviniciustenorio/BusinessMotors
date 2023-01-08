@@ -31,4 +31,5 @@ module "ecr" {
 module "ecs" {
   source = "./ecs_module"
   ecs_cluster = var.ecs_cluster
+  ecr_repository_url = module.ecr.ecr_module_repository_url
 }

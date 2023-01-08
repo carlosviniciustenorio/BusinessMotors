@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "cmanager_task" {
   [
     {
       "name": "cmanager_task",
-      "image": "${aws_ecr_repository.ecr_repo.repository_url}",
+      "image": "${var.ecr_repository_url}",
       "essential": true,
       "portMappings": [
         {
