@@ -1,0 +1,5 @@
+bucket         = "infra-ct"
+key            = "CManager/local/terraform.tfstate"
+region         = "us-east-1"
+profile        = "default"
+dynamodb_table = "infra-ct-tfstate"
