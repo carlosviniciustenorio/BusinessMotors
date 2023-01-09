@@ -55,4 +55,34 @@ resource "aws_ecs_service" "cmanager_ecs_service" {
   task_definition = "${aws_ecs_task_definition.cmanager_task.arn}" 
   launch_type     = "FARGATE"
   desired_count   = 1
+
+  load_balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = "${aws_ecs_task_definition.cmanager_task.family}"
+    container_port   = 3000
+  }
+
+  network_configuration {
+    subnets          = [var.default_subnet_a_id,
+                        var.default_subnet_b_id,
+                        var.default_subnet_c_id]
+    assign_public_ip = true
+    security_groups  = ["${aws_security_group.service_security_group.id}"]
+  }
+}
+
+resource "aws_security_group" "service_security_group" {
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    security_groups = [var.load_balancer_security_group_id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }

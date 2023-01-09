@@ -32,13 +32,18 @@ module "ecs" {
   source = "./ecs_module"
   ecs_cluster = var.ecs_cluster
   ecr_repository_url = module.ecr.ecr_module_repository_url
+  target_group_arn = module.load_balancer.aws_lb_target_group.arn
+  default_subnet_a_id = module.vpc.default_subnet_a.id
+  default_subnet_b_id = module.vpc.default_subnet_b.id
+  default_subnet_c_id = module.vpc.default_subnet_c.id
+  load_balancer_security_group_id = module.load_balancer.load_balancer_security_group.id
 }
 
 module "vpc" {
   source = "./vpc_module"
 }
 
-module "load_balancer_module" {
+module "load_balancer" {
   source = "./load_balancer_module"
   default_vpc_id = module.vpc.default_vpc_id
   default_subnet_a_id = module.vpc.default_subnet_a.id

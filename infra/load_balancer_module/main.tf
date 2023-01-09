@@ -46,3 +46,11 @@ resource "aws_lb_listener" "listener" {
     target_group_arn = "${aws_lb_target_group.target_group.arn}"
   }
 }
+
+output "aws_lb_target_group" {
+  value = aws_lb_target_group.target_group
+}
+
+output "load_balancer_security_group" {
+  value = aws_security_group.load_balancer_security_group
+}
