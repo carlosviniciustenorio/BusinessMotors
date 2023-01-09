@@ -3,7 +3,7 @@ resource "aws_ecs_cluster" "ecs_fargate_cluster_ct" {
 }
 
 resource "aws_ecs_task_definition" "cmanager_task" {
-  family                   = "cmanager_task" # Naming our first task
+  family                   = "cmanager-task" # Naming our first task
   container_definitions    = <<DEFINITION
   [
     {
@@ -12,8 +12,8 @@ resource "aws_ecs_task_definition" "cmanager_task" {
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 3000,
-          "hostPort": 3000
+          "containerPort": 5000,
+          "hostPort": 5000
         }
       ],
       "memory": 512,
@@ -21,10 +21,10 @@ resource "aws_ecs_task_definition" "cmanager_task" {
     }
   ]
   DEFINITION
-  requires_compatibilities = ["FARGATE"] # Stating that we are using ECS Fargate
-  network_mode             = "awsvpc"    # Using awsvpc as our network mode as this is required for Fargate
-  memory                   = 512         # Specifying the memory our container requires
-  cpu                      = 256         # Specifying the CPU our container requires
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"   
+  memory                   = 512        
+  cpu                      = 256        
   execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
 }
 
@@ -47,4 +47,12 @@ data "aws_iam_policy_document" "assume_role_policy" {
 resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
   role       = "${aws_iam_role.ecsTaskExecutionRole.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
+
+resource "aws_ecs_service" "cmanager_ecs_service" {
+  name            = "cmanager-service"                             
+  cluster         = "${aws_ecs_cluster.ecs_fargate_cluster_ct.id}"             
+  task_definition = "${aws_ecs_task_definition.cmanager_task.arn}" 
+  launch_type     = "FARGATE"
+  desired_count   = 1
 }

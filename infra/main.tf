@@ -33,3 +33,7 @@ module "ecs" {
   ecs_cluster = var.ecs_cluster
   ecr_repository_url = module.ecr.ecr_module_repository_url
 }
+
+module "load_balancer_module" {
+  source = "./load_balancer_module"
+}
