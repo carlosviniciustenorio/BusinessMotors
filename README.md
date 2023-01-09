@@ -1,9 +1,22 @@
-# CManager
- 
+<h1> 
+  CManager
+</h1>
+
+## 📌 Overview
 It's a project with many technologies.
-Has a WebAPI to manager a church, developed with .Net 7 and using the best principles of software development.
+Has a WebAPI to manager a church using the best principles of software development.
 
-This application are avability in AWS Cloud, at ECS service and to upload the application i used terraform as IaC.
-The folder Infra contains the modules to apply and destroy the infrastructure.
+## 📑 Demonstrations
+![Example](./docs/example.png)
 
-I used the GitHub Actions to apply CI/CD.
+## 💻 Technologies
+These are all the technologies and patterns used to develop this application
+- .NET 7
+- AWS
+- Terraform
+- MySQL Server
+
+## ⚙️ Executing the Project
+To execute the project, follow the steps below:
+
+...
