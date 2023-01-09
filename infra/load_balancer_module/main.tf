@@ -2,9 +2,9 @@ resource "aws_alb" "application_load_balancer" {
   name               = "lb-tf-cmanager"
   load_balancer_type = "application"
   subnets = [ 
-    "${aws_default_subnet.default_subnet_a.id}",
-    "${aws_default_subnet.default_subnet_b.id}",
-    "${aws_default_subnet.default_subnet_c.id}"
+    var.default_subnet_a_id,
+    var.default_subnet_b_id,
+    var.default_subnet_c_id
   ]
   security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
 }
@@ -30,7 +30,7 @@ resource "aws_lb_target_group" "target_group" {
   port        = 80
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = "${aws_default_vpc.default_vpc.id}"
+  vpc_id      = var.default_vpc_id
   health_check {
     matcher = "200,301,302"
     path = "/"

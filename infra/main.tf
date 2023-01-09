@@ -34,6 +34,14 @@ module "ecs" {
   ecr_repository_url = module.ecr.ecr_module_repository_url
 }
 
+module "vpc" {
+  source = "./vpc_module"
+}
+
 module "load_balancer_module" {
   source = "./load_balancer_module"
+  default_vpc_id = module.vpc.default_vpc_id
+  default_subnet_a_id = module.vpc.default_subnet_a.id
+  default_subnet_b_id = module.vpc.default_subnet_b.id
+  default_subnet_c_id = module.vpc.default_subnet_c.id
 }
