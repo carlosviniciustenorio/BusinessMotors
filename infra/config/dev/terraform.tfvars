@@ -1,5 +1,5 @@
 environment   = "development"
-erc_repo_name = "my-first-ecr-repo"
+erc_repo_name = "ct_tech_repo"
 project = "CManager"
 owner = "AD"
 managed_by = "CT Technology"

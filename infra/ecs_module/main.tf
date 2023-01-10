@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
 }
 
 resource "aws_ecs_service" "cmanager_ecs_service" {
-  name            = "cmanager-service"                             
+  name            = "${aws_ecs_task_definition.cmanager_task.family}"                        
   cluster         = "${aws_ecs_cluster.ecs_fargate_cluster_ct.id}"             
   task_definition = "${aws_ecs_task_definition.cmanager_task.arn}" 
   launch_type     = "FARGATE"
