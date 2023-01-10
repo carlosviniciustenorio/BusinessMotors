@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "cmanager_task" {
   container_definitions    = <<DEFINITION
   [
     {
-      "name": "cmanager_task",
+      "name": "cmanager-task",
       "image": "${var.ecr_repository_url}",
       "essential": true,
       "portMappings": [
