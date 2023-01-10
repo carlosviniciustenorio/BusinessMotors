@@ -6,7 +6,7 @@ on:
       dir:
         description: 'Directory with resources to be destroyed'
         required: true
-        default: 'src'
+        default: 'infra'
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
