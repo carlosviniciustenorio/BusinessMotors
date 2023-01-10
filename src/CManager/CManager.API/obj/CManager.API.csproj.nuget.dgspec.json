@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CManager\\CManager\\src\\CManager\\CManager.API\\CManager.API.csproj": {}
+    "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj": {}
   },
   "projects": {
-    "C:\\CManager\\CManager\\src\\CManager\\CManager.API\\CManager.API.csproj": {
+    "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CManager\\CManager\\src\\CManager\\CManager.API\\CManager.API.csproj",
+        "projectUniqueName": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
         "projectName": "CManager.API",
-        "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.API\\CManager.API.csproj",
+        "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.API\\obj\\",
+        "outputPath": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

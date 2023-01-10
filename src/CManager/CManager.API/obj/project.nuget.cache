@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ddA/fMolI5DrkC/5Al6w3f7LABEEXptbBosikQXnQk8vd9B2ga95P3NQDoexcMgrDd+Enjg5o89g29NFcN0Uzg==",
+  "dgSpecHash": "N+cYGgDCdE3Samie7a6tOm4B/rVprMFTwKFKLgn0OOAHv6Eo5BUl7mpTu8C8khgGPwF2GYGt24caEGfz1Aj1qw==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.API\\CManager.API.csproj",
+  "projectFilePath": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
