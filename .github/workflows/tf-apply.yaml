@@ -46,6 +46,7 @@ jobs:
         run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
 
   build-image:
+    needs: apply-dev
     name: 'Docker build image and push to ECR'
     runs-on: ubuntu-latest 
     env:
