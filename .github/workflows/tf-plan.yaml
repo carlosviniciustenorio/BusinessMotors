@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/**'
       - 'infra/**'
+      - '.github/**'
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
