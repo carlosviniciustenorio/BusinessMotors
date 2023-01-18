@@ -23,11 +23,6 @@ namespace CManager.Infrastructure.HostedServices
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _httpClient.BaseAddress = new Uri("https://api.github.com/");
-            _httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "pplication/vnd.github.v3+json");
-            _httpClient.DefaultRequestHeaders.Add(HeaderNames.UserAgent, "HttpRequestsSample");
-            _httpClient.Timeout = TimeSpan.FromSeconds(15);
-
             var result = await GetCManagerBranchesAsync();
             result?.ToList().ForEach(branch => Console.WriteLine($"Name of branch: {branch.Name}"));
             Console.ReadLine();
