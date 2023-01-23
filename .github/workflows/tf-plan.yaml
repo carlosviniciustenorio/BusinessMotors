@@ -13,7 +13,7 @@ env:
 
 jobs:
   plan-infra-1-dev:
-    name: 'terraform plan dev'
+    name: 'terraform plan infra-1 dev'
     runs-on: ubuntu-latest
     env:
       TF_1_WORKING_DIR: 'infra-1'
@@ -66,7 +66,7 @@ jobs:
               body: output
             })
   plan-infra-2-dev:
-    name: 'terraform plan dev'
+    name: 'terraform plan infra-2 dev'
     runs-on: ubuntu-latest
     env:
       TF_2_WORKING_DIR: 'infra-2'
