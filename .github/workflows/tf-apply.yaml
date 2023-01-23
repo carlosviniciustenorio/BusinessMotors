@@ -47,7 +47,7 @@ jobs:
         run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
 
   build-image:
-    needs: apply-dev
+    needs: apply-infra1-dev
     name: 'Docker build image and push to ECR'
     runs-on: ubuntu-latest 
     env:
@@ -87,6 +87,7 @@ jobs:
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   apply-infra2-dev:
+    needs: build-image
     name: 'terraform infra-2 apply dev'
     runs-on: ubuntu-latest
     env:
