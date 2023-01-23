@@ -34,12 +34,6 @@ variable "managed_by" {
   default     = "CT Technology"
 }
 
-//ECR
-variable "erc_repo_name" {
-  type = string
-  description = "Name of ecr"
-}
-
 //Cluster
 variable "ecs_cluster" {
   type = string
