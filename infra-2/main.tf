@@ -23,9 +23,8 @@ provider "aws" {
   }
 }
 
-module "ecr" {
-  source = "./ecr_module"
-  erc_repo_name = var.erc_repo_name
+data "aws_ecr_repository" "ecr" {
+  name = "ct_tech_repo"
 }
 
 module "vpc" {
@@ -43,7 +42,7 @@ module "load_balancer" {
 module "ecs" {
   source = "./ecs_module"
   ecs_cluster = var.ecs_cluster
-  ecr_repository_url = module.ecr.ecr_module_repository_url
+  ecr_repository_url = data.aws_ecr_repository.ecr.repository_url
   target_group_arn = module.load_balancer.aws_lb_target_group.arn
   default_subnet_a_id = module.vpc.default_subnet_a.id
   default_subnet_b_id = module.vpc.default_subnet_b.id

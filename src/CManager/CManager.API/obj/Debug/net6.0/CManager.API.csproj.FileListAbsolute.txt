@@ -30,3 +30,10 @@ C:\cmanager\cmanager\src\cmanager\cmanager.api\obj\Debug\net6.0\refint\CManager.
 C:\cmanager\cmanager\src\cmanager\cmanager.api\obj\Debug\net6.0\CManager.API.pdb
 C:\cmanager\cmanager\src\cmanager\cmanager.api\obj\Debug\net6.0\CManager.API.genruntimeconfig.cache
 C:\cmanager\cmanager\src\cmanager\cmanager.api\obj\Debug\net6.0\ref\CManager.API.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\CManager.Infrastructure.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\CManager.Infrastructure.pdb
