@@ -12,8 +12,8 @@ resource "aws_ecs_task_definition" "cmanager_task" {
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 5000,
-          "hostPort": 5000
+          "containerPort": 80,
+          "hostPort": 80
         }
       ],
       "memory": 512,
@@ -59,7 +59,7 @@ resource "aws_ecs_service" "cmanager_ecs_service" {
   load_balancer {
     target_group_arn = var.target_group_arn
     container_name   = "${aws_ecs_task_definition.cmanager_task.family}"
-    container_port   = 5000
+    container_port   = 80
   }
 
   network_configuration {
