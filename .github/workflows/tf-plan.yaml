@@ -4,7 +4,8 @@ on:
   pull_request:
     paths:
       - 'src/**'
-      - 'infra/**'
+      - 'infra-1/**'
+      - 'infra-2/**'
       - '.github/**'
 
 env:
