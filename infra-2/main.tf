@@ -24,7 +24,7 @@ provider "aws" {
 }
 
 data "aws_ecr_repository" "ecr" {
-  name = "ct_tech_repo"
+  name = var.erc_repo_name
 }
 
 data "aws_ecr_image" "image" {
