@@ -28,7 +28,7 @@ data "aws_ecr_repository" "ecr" {
 }
 
 data "aws_ecr_image" "image" {
-  repository_name = "my/service"
+  repository_name = var.erc_repo_name
   image_tag       = "latest"
 }
 
