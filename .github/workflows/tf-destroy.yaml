@@ -46,7 +46,7 @@ jobs:
         run: terraform destroy -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
   
   remove-image:
-    needs: apply-infra1-dev
+    needs: destroy-infra-2-dev
     name: 'Docker remove image of ECR'
     runs-on: ubuntu-latest 
     env:
