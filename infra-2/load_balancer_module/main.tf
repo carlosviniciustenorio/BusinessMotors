@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "target_group" {
   vpc_id      = var.default_vpc_id
   health_check {
     matcher = "200,301,302"
-    path = "/"
+    path = "/health"
   }
 }
 
