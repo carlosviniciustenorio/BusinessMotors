@@ -142,4 +142,4 @@ jobs:
             })
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
+        run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false 
