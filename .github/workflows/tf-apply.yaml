@@ -5,7 +5,8 @@ on:
     branches: ["main", "master"]
     paths:
       - 'src/**'
-      - 'infra/**'
+      - 'infra-1/**'
+      - 'infra-2/**'
       - '.github/**'
 
 env:
