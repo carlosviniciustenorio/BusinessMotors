@@ -53,4 +53,4 @@ module "ecs" {
   default_subnet_b_id = module.vpc.default_subnet_b.id
   default_subnet_c_id = module.vpc.default_subnet_c.id
   load_balancer_security_group_id = module.load_balancer.load_balancer_security_group.id
-}
+} 
