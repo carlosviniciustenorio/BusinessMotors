@@ -27,10 +27,6 @@ data "aws_ecr_repository" "ecr" {
   name = var.erc_repo_name
 }
 
-data "aws_ecr_image" "image" {
-  repository_name = var.erc_repo_name
-}
-
 module "vpc" {
   source = "./vpc_module"
 }
@@ -46,7 +42,7 @@ module "load_balancer" {
 module "ecs" {
   source = "./ecs_module"
   ecs_cluster = var.ecs_cluster
-  ecr_repository_url = "${data.aws_ecr_repository.ecr.repository_url}@${data.aws_ecr_image.image.image_tag}"
+  ecr_repository_url = "${data.aws_ecr_repository.ecr.repository_url}:latest"
   target_group_arn = module.load_balancer.aws_lb_target_group.arn
   default_subnet_a_id = module.vpc.default_subnet_a.id
   default_subnet_b_id = module.vpc.default_subnet_b.id
