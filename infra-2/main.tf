@@ -29,7 +29,6 @@ data "aws_ecr_repository" "ecr" {
 
 data "aws_ecr_image" "image" {
   repository_name = var.erc_repo_name
-  image_tag       = "latest"
 }
 
 module "vpc" {
