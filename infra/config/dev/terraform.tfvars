@@ -1,6 +1,0 @@
-environment   = "development"
-erc_repo_name = "my-first-ecr-repo"
-project = "CManager"
-owner = "AD"
-managed_by = "CT Technology"
-ecs_cluster = "ecs_cluster_ct"
