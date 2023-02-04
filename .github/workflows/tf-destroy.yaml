@@ -44,7 +44,7 @@ jobs:
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
-   
+
   destroy-infra-1-dev:
     needs: destroy-infra-2-dev
     name: 'terraform destroy infra-1 dev'
