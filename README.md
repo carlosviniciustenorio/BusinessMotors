@@ -11,10 +11,11 @@ Has a WebAPI to manager a church using the best principles of software developme
 
 ## 💻 Technologies
 These are all the technologies and patterns used to develop this application
-- .NET 7
-- AWS
-- Terraform
-- PostgresSQL
+- Framework: .NET 6
+- Cloud Provider: AWS - Services(ECR, ECS, VPC, ALB, TG, RDS, DynamoDB, S3)
+- IaC: Terraform
+- Container: Docker
+- CI/CD: GitHub Actions
 
 ## ⚙️ Executing the Project
 To execute the project, follow the steps below:
