@@ -37,3 +37,15 @@ C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extens
 C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\CManager.Infrastructure.dll
 C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\CManager.Infrastructure.pdb
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\appsettings.dev.json
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\appsettings.prod.json
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\StackExchange.Redis.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\CManager.Integration.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\CManager.Integration.pdb
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\CManager\CManager\src\CManager\CManager.API\bin\Debug\net6.0\Newtonsoft.Json.dll
