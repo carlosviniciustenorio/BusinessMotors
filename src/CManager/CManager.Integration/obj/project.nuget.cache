@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "NNqCZrEbvZao+xYRhFBS5+UJt5WYrpheX0t/f3MtByx+A33yQ9Zy+U2E2VQplEZMP9BjXuVtCCOwSA1aTakroA==",
+  "dgSpecHash": "QoTyvN/sJupVR23tjC4y+130Kt4dge4cel6QDqHvVDsKB7kDwEfvyUqHTrqz2lkIUGV+ZvSm6t6vivlsF8P+vA==",
   "success": true,
   "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
