@@ -14,6 +14,7 @@ These are all the technologies and patterns used to develop this application
 - Framework: .NET 6
 - Cloud Provider: AWS - Services(ECR, ECS, VPC, ALB, TG, RDS, DynamoDB, S3)
 - IaC: Terraform
+- Cache: Redis
 - Container: Docker
 - CI/CD: GitHub Actions
 
