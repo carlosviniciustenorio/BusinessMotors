@@ -1,6 +1,3 @@
-using CManager.API.Common;
-using CManager.Infrastructure.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 builder.Configuration.SetBasePath(env.ContentRootPath)
@@ -17,8 +14,11 @@ builder.Services.AddStackExchangeRedisCache(redis =>
     redis.Configuration = builder.Configuration.GetSection("ApiSettings:Cache:Configuration").Value;
 });
 
+builder.Services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
 
