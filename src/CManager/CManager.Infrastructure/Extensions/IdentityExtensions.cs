@@ -1,4 +1,7 @@
-﻿namespace CManager.Infrastructure.Extensions
+﻿using CManager.Application.Services;
+using CManager.Infrastructure.Services;
+
+namespace CManager.Infrastructure.Extensions
 {
     public static class IdentityExtensions
     {
@@ -9,7 +12,7 @@
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-            //services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IIdentityService, IdentityService>();
         }
     }
 }

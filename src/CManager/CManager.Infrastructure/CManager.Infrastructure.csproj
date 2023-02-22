@@ -10,6 +10,7 @@
     <None Remove="HostedServices\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
@@ -24,10 +25,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.27.0" />
     <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CManager.Application\CManager.Application.csproj" />
     <ProjectReference Include="..\CManager.Integration\CManager.Integration.csproj" />
   </ItemGroup>
   <ItemGroup>
