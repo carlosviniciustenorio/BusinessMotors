@@ -9,5 +9,6 @@ namespace CManager.Infrastructure.Common
         public SigningCredentials SigningCredentials { get; set; }
         public int AccessTokenExpiration { get; set; }
         public int RefreshTokenExpiration { get; set; }
+        public string SecurityKey { get; set; }
     }
 }

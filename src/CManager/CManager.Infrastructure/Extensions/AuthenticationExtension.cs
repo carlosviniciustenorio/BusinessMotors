@@ -1,24 +1,25 @@
 ﻿using CManager.Infrastructure.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace CManager.Infrastructure.Extensions
 {
     public static class AuthenticationExtension
     {
-        public static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
+        public static void AddAuthentication(this IServiceCollection services, IConfiguration configuration, JwtOptions jwtOptions)
         {
-            var jwtAppSettingOptions = configuration.GetSection(nameof(JwtOptions));
-            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration.GetSection("JwtOptions:SecurityKey").Value));
+            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.SecurityKey));
 
             services.Configure<JwtOptions>(options =>
             {
-                options.Issuer = jwtAppSettingOptions[nameof(JwtOptions.Issuer)];
-                options.Audience = jwtAppSettingOptions[nameof(JwtOptions.Audience)];
+                options.Issuer = jwtOptions.Issuer;
+                options.Audience = jwtOptions.Audience;
                 options.SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
-                options.AccessTokenExpiration = int.Parse(jwtAppSettingOptions[nameof(JwtOptions.AccessTokenExpiration)]);
-                options.RefreshTokenExpiration = int.Parse(jwtAppSettingOptions[nameof(JwtOptions.RefreshTokenExpiration)]);
+                options.AccessTokenExpiration = jwtOptions.AccessTokenExpiration;
+                options.RefreshTokenExpiration = jwtOptions.RefreshTokenExpiration;
             });
 
             services.Configure<IdentityOptions>(options =>
