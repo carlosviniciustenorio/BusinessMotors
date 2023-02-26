@@ -73,9 +73,22 @@ namespace CManager.Infrastructure.Services
             return usuarioLoginResponse;
         }
 
-        public Task<UsuarioLoginResponse> LoginSemSenha(string usuarioId)
+        public async Task<UsuarioLoginResponse> LoginComRefreshToken(string usuarioId)
         {
-            throw new NotImplementedException();
+            var usuarioLoginResponse = new UsuarioLoginResponse();
+            var usuario = await _userManager.FindByIdAsync(usuarioId);
+
+            if (await _userManager.IsLockedOutAsync(usuario))
+                usuarioLoginResponse.AdicionarErro("Conta está bloqueada");
+            else if (!await _userManager.IsEmailConfirmedAsync(usuario))
+                usuarioLoginResponse.AdicionarErro("Confirme o seu e-mail antes de realizar o login");
+
+            if (usuarioLoginResponse.Sucesso)
+                return await GerarCredenciais(usuario.Email);
+
+
+
+            return usuarioLoginResponse;
         }
 
         private async Task<UsuarioLoginResponse> GerarCredenciais(string email)

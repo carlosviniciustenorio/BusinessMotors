@@ -5,6 +5,7 @@ using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CManager.API.Controllers
 {
@@ -20,7 +21,7 @@ namespace CManager.API.Controllers
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [ClaimsAuthorizeAttribute(ClaimTypes.Usuarios, "Create")]
+        [ClaimsAuthorizeAttribute(Infrastructure.Constants.Identity.ClaimTypes.Usuarios, "Create")]
         [HttpPost("cadastro")]
         public async Task<ActionResult<UsuarioCadastroResponse>> Cadastrar([FromBody] UsuarioCadastroRequest usuarioCadastro)
         {
@@ -59,6 +60,21 @@ namespace CManager.API.Controllers
                 return Ok(resultado);
 
             return Unauthorized(resultado);
+        }
+
+        [HttpPost("refresh")]
+        public async Task<ActionResult<UsuarioCadastroResponse>> Refresh()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var usuarioId = identity?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (usuarioId == null)
+                return BadRequest();
+
+            var resultado = await _identityService.LoginComRefreshToken(usuarioId);
+            if (resultado.Sucesso)
+                return Ok(resultado);
+
+            return Unauthorized();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace CManager.Application.Services
     {
         Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest usuarioCadastro);
         Task<UsuarioLoginResponse> Login(UsuarioLoginRequest usuarioLogin);
-        Task<UsuarioLoginResponse> LoginSemSenha(string usuarioId);
         Task CadastrarRole(string role, string email);
+        Task<UsuarioLoginResponse> LoginComRefreshToken(string usuarioId);
     }
 }
