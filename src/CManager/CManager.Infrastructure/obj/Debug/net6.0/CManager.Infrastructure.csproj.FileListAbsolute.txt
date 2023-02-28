@@ -13,3 +13,7 @@ C:\CManager\CManager\src\CManager\CManager.Infrastructure\obj\Debug\net6.0\ref\C
 C:\CManager\CManager\src\CManager\CManager.Infrastructure\bin\Debug\net6.0\CManager.Integration.dll
 C:\CManager\CManager\src\CManager\CManager.Infrastructure\bin\Debug\net6.0\CManager.Integration.pdb
 C:\CManager\CManager\src\CManager\CManager.Infrastructure\obj\Debug\net6.0\CManager.Infrastructure.csproj.CopyComplete
+C:\CManager\CManager\src\CManager\CManager.Infrastructure\bin\Debug\net6.0\CManager.Infrastructure.runtimeconfig.json
+C:\CManager\CManager\src\CManager\CManager.Infrastructure\obj\Debug\net6.0\CManager.Infrastructure.genruntimeconfig.cache
+C:\CManager\CManager\src\CManager\CManager.Infrastructure\bin\Debug\net6.0\CManager.Application.dll
+C:\CManager\CManager\src\CManager\CManager.Infrastructure\bin\Debug\net6.0\CManager.Application.pdb
