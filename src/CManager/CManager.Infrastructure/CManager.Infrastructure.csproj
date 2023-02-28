@@ -31,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CManager.Application\CManager.Application.csproj" />
+    <ProjectReference Include="..\CManager.Domain\CManager.Domain.csproj" />
     <ProjectReference Include="..\CManager.Integration\CManager.Integration.csproj" />
   </ItemGroup>
   <ItemGroup>

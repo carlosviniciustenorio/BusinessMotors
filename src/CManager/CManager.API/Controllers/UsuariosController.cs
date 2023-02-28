@@ -28,7 +28,7 @@ namespace CManager.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var resultado = await _identityService.CadastrarUsuario(usuarioCadastro);
+            UsuarioCadastroResponse resultado = await _identityService.CadastrarUsuario(usuarioCadastro);
             if (resultado.Sucesso)
                 return Ok(resultado);
             else if (resultado.Erros.Count > 0)
@@ -55,7 +55,7 @@ namespace CManager.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var resultado = await _identityService.Login(usuarioLogin);
+            UsuarioLoginResponse resultado = await _identityService.Login(usuarioLogin);
             if (resultado.Sucesso)
                 return Ok(resultado);
 

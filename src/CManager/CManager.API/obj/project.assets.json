@@ -1545,11 +1545,22 @@
           "bin/placeholder/CManager.Application.dll": {}
         }
       },
+      "CManager.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CManager.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CManager.Domain.dll": {}
+        }
+      },
       "CManager.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "CManager.Application": "1.0.0",
+          "CManager.Domain": "1.0.0",
           "CManager.Integration": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.14",
           "Microsoft.AspNetCore.Identity": "2.2.0",
@@ -3844,6 +3855,11 @@
       "type": "project",
       "path": "../CManager.Application/CManager.Application.csproj",
       "msbuildProject": "../CManager.Application/CManager.Application.csproj"
+    },
+    "CManager.Domain/1.0.0": {
+      "type": "project",
+      "path": "../CManager.Domain/CManager.Domain.csproj",
+      "msbuildProject": "../CManager.Domain/CManager.Domain.csproj"
     },
     "CManager.Infrastructure/1.0.0": {
       "type": "project",

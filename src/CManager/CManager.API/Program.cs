@@ -3,10 +3,7 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
-builder.Configuration.SetBasePath(env.ContentRootPath)
-                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                     .AddEnvironmentVariables();
+builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
