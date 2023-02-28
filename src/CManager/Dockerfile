@@ -3,7 +3,7 @@ WORKDIR /app
 EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY "CManager.API/*.csproj" "CManager.API/"
 COPY "CManager.Application/*.csproj" "CManager.Application/"
