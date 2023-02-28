@@ -1,4 +1,5 @@
 using CManager.Infrastructure.Common;
+using CManager.Infrastructure.Context.CManager;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,13 +16,14 @@ var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
 CacheExtensions.AddCacheDependency(builder.Services);
-builder.Services.AddStackExchangeRedisCache(redis =>
-{
-    redis.InstanceName = apiSettings.Cache.InstanceName;
-    redis.Configuration = apiSettings.Cache.Configuration;
-});
+//builder.Services.AddStackExchangeRedisCache(redis =>s
+//{
+//    redis.InstanceName = apiSettings.Cache.InstanceName;
+//    redis.Configuration = apiSettings.Cache.Configuration;
+//});
 
 builder.Services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
+builder.Services.AddDbContext<CManagerDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);

@@ -10,3 +10,6 @@ global using System.Threading.Tasks;
 global using CManager.Integration.Cache;
 global using Microsoft.Extensions.Caching.Distributed;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using CManager.Domain.Models;
