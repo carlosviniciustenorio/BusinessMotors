@@ -2,3 +2,8 @@
 global using CManager.Infrastructure.Context.Identity;
 global using CManager.Infrastructure.Extensions;
 global using Microsoft.EntityFrameworkCore;
+global using CManager.Infrastructure.Common;
+global using Microsoft.Extensions.Options;
+global using MediatR;
+global using CManager.Application.Commands;
+global using CManager.Infrastructure.Context.CManager;

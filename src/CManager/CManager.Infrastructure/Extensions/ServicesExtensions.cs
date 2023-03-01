@@ -1,16 +1,17 @@
 ﻿using CManager.Application.Services;
+using CManager.Infrastructure.Context.CManager;
 using CManager.Infrastructure.Context.Identity;
 using CManager.Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace CManager.Infrastructure.Extensions
 {
     public static class ServicesExtensions
     {
-        public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterDBServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("ECommerceConnection")));
+            services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(configuration.GetSection("ConnectionString").Value));
+            services.AddDbContext<CManagerDBContext>(options => options.UseSqlServer(configuration.GetSection("ConnectionString").Value));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()

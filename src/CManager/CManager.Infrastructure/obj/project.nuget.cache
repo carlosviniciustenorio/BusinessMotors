@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "DlBEy4vHOeIhnXEOyGjiCrGlJphG6WFEOl4vF0BSqTb2tEeI9HdogtBCgTPaJP9Wg9xlKUmW8jLbnM0ez5TwgA==",
+  "dgSpecHash": "+YCLvZXWEbTa/pJkHn20o+aGJ4JODCEN4LDjsIT1fglUUpwvcBMluaVwAjHgdme7daaG1sWNp4z46AhFpE5dcg==",
   "success": true,
   "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
