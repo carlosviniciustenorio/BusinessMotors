@@ -1,10 +1,7 @@
 ﻿using CManager.API.Attributes;
-using CManager.Application.Services;
 using CManager.Infrastructure.Constants.Identity;
 using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace CManager.API.Controllers

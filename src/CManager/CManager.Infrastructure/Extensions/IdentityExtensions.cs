@@ -5,7 +5,7 @@ namespace CManager.Infrastructure.Extensions
 {
     public static class IdentityExtensions
     {
-        public static void AddEntityDependencies(IServiceCollection services)
+        public static IServiceCollection AddEntityDependencies(this IServiceCollection services)
         {
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
@@ -13,6 +13,7 @@ namespace CManager.Infrastructure.Extensions
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IIdentityService, IdentityService>();
+            return services;
         }
     }
 }

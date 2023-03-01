@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "U+MT2+KOwNj9v1Q7izE6gHYto0CSDAReQn2Df6kfQQRxbOZERXzzDaq2vrTYyy3sG9efWnNLipJUOirC1HE75Q==",
+  "dgSpecHash": "m3NF+M6oPODxBNBN8wHGLlG5JxKVPkxFVB/imkrR0u9N1S5WFB/O8NUVanxCSJdFTbhUcpsD3eHS1u9XsASBmg==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.application\\CManager.Application.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\CManager.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    "C:\\Users\\carlo\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

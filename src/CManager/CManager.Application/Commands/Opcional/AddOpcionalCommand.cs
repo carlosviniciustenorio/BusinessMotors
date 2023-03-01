@@ -2,9 +2,9 @@ namespace CManager.Application.Commands
 {
     public static class AddOpcionalCommand
     {
-        public sealed record Command(string descricao) : IRequest<Unit>;
+        public sealed record OpcionalCommand(string descricao) : IRequest<Unit>;
 
-        public sealed class Validator : AbstractValidator<Command>
+        public sealed class Validator : AbstractValidator<OpcionalCommand>
         {
             public Validator()
             {

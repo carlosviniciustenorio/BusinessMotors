@@ -2,9 +2,9 @@ namespace CManager.Application.Commands
 {
     public static class AddTipoCombustivelCommand
     {
-        public sealed record Command(string descricao) : IRequest<Unit>;
+        public sealed record TipoCombustivelCommand(string descricao) : IRequest<Unit>;
 
-        public sealed class Validator : AbstractValidator<Command>
+        public sealed class Validator : AbstractValidator<TipoCombustivelCommand>
         {
             public Validator()
             {

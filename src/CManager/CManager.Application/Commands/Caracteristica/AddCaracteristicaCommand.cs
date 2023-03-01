@@ -2,9 +2,9 @@ namespace CManager.Application.Commands
 {
     public static class AddCaracteristicaCommand
     {
-        public sealed record Command(string descricao) : IRequest<Unit>;
+        public sealed record CaracteristicaCommand(string descricao) : IRequest<Unit>;
 
-        public sealed class Validator : AbstractValidator<Command>
+        public sealed class Validator : AbstractValidator<CaracteristicaCommand>
         {
             public Validator()
             {

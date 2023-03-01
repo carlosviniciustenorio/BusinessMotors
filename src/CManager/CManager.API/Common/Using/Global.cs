@@ -7,3 +7,7 @@ global using Microsoft.Extensions.Options;
 global using MediatR;
 global using CManager.Infrastructure.Context.CManager;
 global using CManager.Domain.Models;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using CManager.Application.Services;
+global using CManager.Application.Commands;

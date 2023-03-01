@@ -1,6 +1,6 @@
 namespace CManager.Application.Handlers
 {
-    public class TipoCombustivelCommandHandler : IRequestHandler<AddTipoCombustivelCommand.Command, Unit>
+    public class TipoCombustivelCommandHandler : IRequestHandler<AddTipoCombustivelCommand.TipoCombustivelCommand, Unit>
     {
         private readonly ITipoCombustivelRepository _tipoCombustivelRepository;
 
@@ -9,7 +9,7 @@ namespace CManager.Application.Handlers
             _tipoCombustivelRepository = tipoCombustivelRepository;
         }
 
-        public async Task<Unit> Handle(AddTipoCombustivelCommand.Command request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddTipoCombustivelCommand.TipoCombustivelCommand request, CancellationToken cancellationToken)
         {
             await _tipoCombustivelRepository.AddAsync(new TipoCombustivel(request.descricao));
             return Unit.Value;
