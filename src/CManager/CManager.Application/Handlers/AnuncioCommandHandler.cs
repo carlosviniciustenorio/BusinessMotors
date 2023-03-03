@@ -25,19 +25,35 @@ namespace CManager.Application.Handlers
         #region Post
         public async Task<Unit> Handle(AddAnuncioCommand.Command request, CancellationToken cancellationToken)
         {
-            List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveis(request);
-            List<Opcional> opcionais = await ValidarRetornarOpcionais(request);
-            List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicas(request);
-            Marca marca = await _marcaRepository.GetByIdAsync(request.idMarca);
-            
             var user = await _userManager.FindByIdAsync(request.usuarioId);
             if(user is null)
                 throw new InvalidOperationException("Usuário informado não localizado");
 
-            Anuncio anuncio = new(request.placa, marca, request.anoModelo, request.anoFabricacao, request.versao, tiposCombustieis, request.portas, request.cambio, request.cor, opcionais, caracteristicas, request.km, request.estado, request.preco, user.Id, request.exibirTelefone, request.exibirEmail);
+            List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveis(request);
+            List<Opcional> opcionais = await ValidarRetornarOpcionais(request);
+            List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicas(request);
+            Marca marca = await _marcaRepository.GetByIdAsync(request.idMarca);
+
+            Anuncio anuncio = new(request.placa,
+                                  marca, 
+                                  request.anoModelo, 
+                                  request.anoFabricacao, 
+                                  request.versao, 
+                                  tiposCombustieis, 
+                                  request.portas, 
+                                  request.cambio, 
+                                  request.cor, 
+                                  opcionais, 
+                                  caracteristicas, 
+                                  request.km, 
+                                  request.estado, 
+                                  request.preco, 
+                                  user.Id, 
+                                  request.exibirTelefone, 
+                                  request.exibirEmail);
+
             await _anuncioRepository.AddAsync(anuncio);
             await _anuncioRepository.SaveChangesAsync();
-            
             return Unit.Value;
         }
         
@@ -48,25 +64,27 @@ namespace CManager.Application.Handlers
         {
             var anuncios = await _anuncioRepository.GetAllAsync();
             List<AnunciosResponse> response = new();
-            anuncios.ForEach(a => response.Add(new AnunciosResponse{
-                Id = a.Id,
-                Placa = a.Placa,
-                Marca = a.Marca,
-                AnoModelo = a.AnoModelo,
-                AnoFabricacao = a.AnoFabricacao,
-                Versao = a.Versao,
-                TiposCombustiveis = a.TiposCombustiveis,
-                Portas = a.Portas,
-                Cambio = a.Cambio,
-                Cor = a.Cor,
-                Caracteristicas = a.Caracteristicas,
-                Km = a.Km,
-                Estado = a.Estado,
-                Preco = a.Preco,
-                UsuarioId = a.UsuarioId,
-                ExibirEmail = a.ExibirEmail,
-                ExibirTelefone = a.ExibirTelefone
-            }));
+
+            if(anuncios.Any())
+                anuncios.ForEach(a => response.Add(new AnunciosResponse{
+                    Id = a.Id,
+                    Placa = a.Placa,
+                    Marca = a.Marca,
+                    AnoModelo = a.AnoModelo,
+                    AnoFabricacao = a.AnoFabricacao,
+                    Versao = a.Versao,
+                    TiposCombustiveis = a.TiposCombustiveis,
+                    Portas = a.Portas,
+                    Cambio = a.Cambio,
+                    Cor = a.Cor,
+                    Caracteristicas = a.Caracteristicas,
+                    Km = a.Km,
+                    Estado = a.Estado,
+                    Preco = a.Preco,
+                    UsuarioId = a.UsuarioId,
+                    ExibirEmail = a.ExibirEmail,
+                    ExibirTelefone = a.ExibirTelefone
+                }));
 
             return response;
         }
