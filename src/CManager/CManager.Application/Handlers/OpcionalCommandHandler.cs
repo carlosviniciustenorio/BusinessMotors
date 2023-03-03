@@ -12,6 +12,7 @@ namespace CManager.Application.Handlers
         public async Task<Unit> Handle(AddOpcionalCommand.OpcionalCommand request, CancellationToken cancellationToken)
         {
             await _opcionalRepository.AddAsync(new Opcional(request.descricao));
+            await _opcionalRepository.SaveChangesAsync();
             return Unit.Value;
         }
     }

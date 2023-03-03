@@ -12,6 +12,7 @@ namespace CManager.Application.Handlers
         public async Task<Unit> Handle(AddCaracteristicaCommand.CaracteristicaCommand request, CancellationToken cancellationToken)
         {
             await _caracteristicaRepository.AddAsync(new Caracteristica(request.descricao));
+            await _caracteristicaRepository.SaveChangesAsync();
             return Unit.Value;
         }
     }

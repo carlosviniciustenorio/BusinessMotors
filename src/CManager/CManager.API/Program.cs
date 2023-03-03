@@ -1,3 +1,6 @@
+using CManager.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 builder.Configuration.AddEnvironmentVariables();
@@ -10,16 +13,23 @@ var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
-CacheExtensions.AddCacheDependency(builder.Services);
+builder.Services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
+builder.Services.AddDbContext<CManagerDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
+
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<IdentityDBContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IIdentityService, IdentityService>();
+
+IoCExtensions.AddIoC(builder.Services, builder.Configuration);
+
 builder.Services.AddStackExchangeRedisCache(redis => 
 {
     redis.InstanceName = apiSettings.Cache.InstanceName;
     redis.Configuration = apiSettings.Cache.Configuration;
 });
-
-ServicesExtensions.RegisterDBServices(builder.Services, builder.Configuration);
-IdentityExtensions.AddEntityDependencies(builder.Services);
-IoCExtensions.AddIoC(builder.Services, builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

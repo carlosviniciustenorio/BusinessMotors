@@ -8,13 +8,16 @@ namespace CManager.Infrastructure.Extensions
     {
         public static IServiceCollection AddIoC(this IServiceCollection services, IConfiguration configursation)
         {
+            CacheExtensions.AddCacheDependency(services);
+            ServicesExtensions.RegisterDBServices(services, configursation);
+            
             services.AddMediatR(Assembly.GetAssembly(typeof(AddCaracteristicaCommand.CaracteristicaCommand)));
 
             #region Repositories
-            services.AddSingleton<IAnuncioRepository, AnuncioRepository>();
-            services.AddSingleton<ICaracteristicaRepository, CaracteristicaRepository>();
-            services.AddSingleton<IOpcionalRepository, OpcionalRepository>();
-            services.AddSingleton<ITipoCombustivelRepository, TipoCombustivelRepository>();
+            services.AddScoped<IAnuncioRepository, AnuncioRepository>();
+            services.AddScoped<ICaracteristicaRepository, CaracteristicaRepository>();
+            services.AddScoped<IOpcionalRepository, OpcionalRepository>();
+            services.AddScoped<ITipoCombustivelRepository, TipoCombustivelRepository>();
             #endregion
 
             return services;

@@ -5,5 +5,6 @@ namespace CManager.Application.Services
         Task AddAsync(TipoCombustivel caracteristica);
         Task<List<TipoCombustivel>> GetListByIdsAsync(List<int> ids);
         Task<TipoCombustivel> GetByIdAsync(int id);
+        Task SaveChangesAsync();
     }
 }

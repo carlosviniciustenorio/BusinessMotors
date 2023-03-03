@@ -5,5 +5,6 @@ namespace CManager.Application.Services
         Task AddAsync(Opcional caracteristica);
         Task<List<Opcional>> GetListByIdsAsync(List<int> ids);
         Task<Opcional> GetByIdAsync(int id);
+        Task SaveChangesAsync();
     }
 }

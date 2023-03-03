@@ -10,15 +10,15 @@ namespace CManager.Infrastructure.Extensions
     {
         public static void RegisterDBServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(configuration.GetSection("ConnectionString").Value));
+            //services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(configuration.GetSection("ConnectionString").Value));
             services.AddDbContext<CManagerDBContext>(options => options.UseSqlServer(configuration.GetSection("ConnectionString").Value));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDBContext>()
-                .AddDefaultTokenProviders();
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<IdentityDBContext>()
+            //    .AddDefaultTokenProviders();
 
-            services.AddScoped<IIdentityService, IdentityService>();
+            //services.AddScoped<IIdentityService, IdentityService>();
         }
     }
 }
