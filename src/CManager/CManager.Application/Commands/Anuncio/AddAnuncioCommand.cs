@@ -5,7 +5,7 @@ namespace CManager.Application.Commands
     {
         public sealed record Command(
             string placa,
-            EMarca marca,
+            int idMarca,
             int anoModelo,
             int anoFabricacao,
             string versao,
@@ -17,7 +17,8 @@ namespace CManager.Application.Commands
             List<int>? idCaracteristicas, 
             string km,
             string estado,
-            Guid usuarioId,
+            string usuarioId,
+            decimal preco,
             bool exibirTelefone,
             bool exibirEmail
         ) : IRequest<Unit>;
@@ -32,13 +33,14 @@ namespace CManager.Application.Commands
                     .Length(7);
 
                 RuleFor(c => c.usuarioId)
+                    .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Usuário não pode ser vazio");
                 
-                RuleFor(c => c.marca)
-                    .IsInEnum()
+                RuleFor(c => c.idMarca)
+                    .NotNull()
                     .NotEmpty()
-                    .WithMessage("Marca não pode ser vazio");
+                    .WithMessage("Id Marca não pode ser vazio");
                 
                 RuleFor(c => c.anoFabricacao).NotEmpty().WithMessage("Ano de fabricação não pode ser vazio")
                            .Must((range, endDate) => endDate > range.anoModelo)

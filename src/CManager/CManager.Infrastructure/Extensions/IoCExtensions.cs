@@ -18,6 +18,7 @@ namespace CManager.Infrastructure.Extensions
             services.AddScoped<ICaracteristicaRepository, CaracteristicaRepository>();
             services.AddScoped<IOpcionalRepository, OpcionalRepository>();
             services.AddScoped<ITipoCombustivelRepository, TipoCombustivelRepository>();
+            services.AddScoped<IMarcaRepository, MarcaRepository>();
             #endregion
 
             return services;

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\CManager.Application.csproj": {}
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {}
   },
   "projects": {
-    "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\CManager.Application.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\CManager.Application.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
         "projectName": "CManager.Application",
-        "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\CManager.Application.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj": {
-                "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
               }
             }
           }
@@ -55,6 +55,18 @@
             "MediatR": {
               "target": "Package",
               "version": "[11.1.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             }
           },
           "imports": [
@@ -77,14 +89,14 @@
         }
       }
     },
-    "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
         "projectName": "CManager.Domain",
-        "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

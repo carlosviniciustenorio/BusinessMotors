@@ -99,7 +99,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Marca")
+                    b.Property<int>("MarcaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Placa")
@@ -112,14 +112,18 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UsuarioId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Versao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MarcaId");
 
                     b.ToTable("Anuncio");
                 });
@@ -140,6 +144,23 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.HasKey("Id");
 
                     b.ToTable("Caracteristica");
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Marca", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Marca");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Opcional", b =>
@@ -221,6 +242,17 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .HasForeignKey("TiposCombustiveisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Anuncio", b =>
+                {
+                    b.HasOne("CManager.Domain.Models.Marca", "Marca")
+                        .WithMany()
+                        .HasForeignKey("MarcaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Marca");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,9 +4,34 @@ namespace CManager.Domain.Models
 {
     public class Anuncio
     {
+        public Anuncio()
+        {
+
+        }
+        public Anuncio(string placa, Marca marca, int anoModelo, int anoFabricacao, string versao, List<TipoCombustivel> tiposCombustiveis, int portas, ECambio cambio, ECor cor, List<Opcional> opcionais, List<Caracteristica> caracteristicas, string km, string estado, decimal preco, string usuarioId, bool exibirTelefone, bool exibirEmail)
+        {
+            Placa = placa;
+            Marca = marca;
+            AnoModelo = anoModelo;
+            AnoFabricacao = anoFabricacao;
+            Versao = versao;
+            TiposCombustiveis = tiposCombustiveis;
+            Portas = portas;
+            Cambio = cambio;
+            Cor = cor;
+            Opcionais = opcionais;
+            Caracteristicas = caracteristicas;
+            Km = km;
+            Estado = estado;
+            Preco = preco;
+            UsuarioId = usuarioId;
+            ExibirTelefone = exibirTelefone;
+            ExibirEmail = exibirEmail;
+        }
+
         public Guid Id { get; init; }
         public string Placa { get; private set; }
-        public EMarca Marca { get; private set; }
+        public Marca Marca { get; private set; }
         public int AnoModelo { get; private set; }
         public int AnoFabricacao { get; private set; }
         public string Versao { get; private set; }
@@ -19,7 +44,7 @@ namespace CManager.Domain.Models
         public string Km { get; private set; }
         public string Estado { get; private set; }
         public decimal Preco { get; private set; }
-        public Guid UsuarioId { get; private set; }
+        public string UsuarioId { get; private set; }
         public bool ExibirTelefone { get; private set; } = false;
         public bool ExibirEmail { get; private set; } = false;
     }
