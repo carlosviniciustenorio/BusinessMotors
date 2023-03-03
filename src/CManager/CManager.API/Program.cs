@@ -25,11 +25,11 @@ builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 IoCExtensions.AddIoC(builder.Services, builder.Configuration);
 
-builder.Services.AddStackExchangeRedisCache(redis => 
-{
-    redis.InstanceName = apiSettings.Cache.InstanceName;
-    redis.Configuration = apiSettings.Cache.Configuration;
-});
+// builder.Services.AddStackExchangeRedisCache(redis => 
+// {
+//     redis.InstanceName = apiSettings.Cache.InstanceName;
+//     redis.Configuration = apiSettings.Cache.Configuration;
+// });
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
