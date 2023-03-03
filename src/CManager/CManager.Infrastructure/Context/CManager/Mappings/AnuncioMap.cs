@@ -11,6 +11,11 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
             entity.HasMany(d => d.Caracteristicas).WithMany();
             entity.HasMany(d => d.Opcionais).WithMany();
             entity.HasMany(d => d.TiposCombustiveis).WithMany();
+            
+            entity.Navigation(n => n.Opcionais).AutoInclude();
+            entity.Navigation(n => n.Caracteristicas).AutoInclude();
+            entity.Navigation(n => n.Marca).AutoInclude();
+            entity.Navigation(n => n.TiposCombustiveis).AutoInclude();
         }
     }
 }

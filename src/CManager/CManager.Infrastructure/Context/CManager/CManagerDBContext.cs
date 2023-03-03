@@ -17,6 +17,10 @@ namespace CManager.Infrastructure.Context.CManager
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnuncioMap).Assembly);
+            modelBuilder.Entity<Anuncio>().Navigation(n => n.Opcionais).AutoInclude();
+            modelBuilder.Entity<Anuncio>().Navigation(n => n.Caracteristicas).AutoInclude();
+            modelBuilder.Entity<Anuncio>().Navigation(n => n.Marca).AutoInclude();
+            modelBuilder.Entity<Anuncio>().Navigation(n => n.TiposCombustiveis).AutoInclude();
         }
     }
 }

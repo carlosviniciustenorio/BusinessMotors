@@ -9,7 +9,7 @@ namespace CManager.Infrastructure.Repositories
         public async Task AddAsync(Anuncio caracteristica) => await _dbSet.AddAsync(caracteristica);        
         public async Task<List<Anuncio>> GetListByIdAsync(List<Guid> ids) => await _dbSet.Where(d => ids.Contains(d.Id)).ToListAsync();
         public async Task<Anuncio> GetByIdAsync(Guid id) => await _dbSet.FindAsync(id);
-
+        public async Task<List<Anuncio>> GetAllAsync() => await _dbSet.ToListAsync();
         public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
     }
 }

@@ -8,3 +8,6 @@ global using System.Threading.Tasks;
 global using CManager.Application.Commands;
 global using CManager.Domain.Models;
 global using CManager.Application.Services;
+global using CManager.Application.DTOs.Responses;
+global using CManager.Application.Queries;
+global using System.Linq.Expressions;

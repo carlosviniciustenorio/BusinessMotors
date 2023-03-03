@@ -1,4 +1,4 @@
-using System.Security.Claims;
+using CManager.Application.DTOs.Responses;
 
 namespace CManager.API.Controllers
 {
@@ -17,8 +17,15 @@ namespace CManager.API.Controllers
         [HttpPost("create")]
         public async Task<Unit> Create([FromBody]AddAnuncioCommand.Command command)
         {
-            var response = await _mediatr.Send(command);    
+            await _mediatr.Send(command);    
             return Unit.Value;
+        } 
+
+        [HttpGet("getAll")]
+        public async Task<List<AnunciosResponse>> Get([FromQuery]GetAnunciosQuery.Anuncios command)
+        {
+            var response = await _mediatr.Send(command);    
+            return response;
         } 
     }
 }

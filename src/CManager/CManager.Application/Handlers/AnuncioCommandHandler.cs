@@ -1,8 +1,9 @@
+using CManager.Application.Queries;
 using Microsoft.AspNetCore.Identity;
 
 namespace CManager.Application.Handlers
 {
-    public class AnuncioCommandHandler : IRequestHandler<AddAnuncioCommand.Command, Unit>
+    public class AnuncioCommandHandler : IRequestHandler<AddAnuncioCommand.Command, Unit>, IRequestHandler<GetAnunciosQuery.Anuncios, List<AnunciosResponse>>
     {
         private readonly IMarcaRepository _marcaRepository;
         private readonly ICaracteristicaRepository _caracteristicaRepository;
@@ -21,6 +22,7 @@ namespace CManager.Application.Handlers
             _userManager = userManager;
         }
 
+        #region Post
         public async Task<Unit> Handle(AddAnuncioCommand.Command request, CancellationToken cancellationToken)
         {
             List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveis(request);
@@ -39,6 +41,39 @@ namespace CManager.Application.Handlers
             return Unit.Value;
         }
         
+        #endregion
+
+        #region GET
+        public async Task<List<AnunciosResponse>> Handle(GetAnunciosQuery.Anuncios request, CancellationToken cancellationToken)
+        {
+            var anuncios = await _anuncioRepository.GetAllAsync();
+            List<AnunciosResponse> response = new();
+            anuncios.ForEach(a => response.Add(new AnunciosResponse{
+                Id = a.Id,
+                Placa = a.Placa,
+                Marca = a.Marca,
+                AnoModelo = a.AnoModelo,
+                AnoFabricacao = a.AnoFabricacao,
+                Versao = a.Versao,
+                TiposCombustiveis = a.TiposCombustiveis,
+                Portas = a.Portas,
+                Cambio = a.Cambio,
+                Cor = a.Cor,
+                Caracteristicas = a.Caracteristicas,
+                Km = a.Km,
+                Estado = a.Estado,
+                Preco = a.Preco,
+                UsuarioId = a.UsuarioId,
+                ExibirEmail = a.ExibirEmail,
+                ExibirTelefone = a.ExibirTelefone
+            }));
+
+            return response;
+        }
+        
+        #endregion
+
+        #region Métodos
         public async Task<List<Opcional>> ValidarRetornarOpcionais(AddAnuncioCommand.Command request)
         {
             List<Opcional> opcionais = new();
@@ -83,5 +118,7 @@ namespace CManager.Application.Handlers
 
             return tiposCombustieis;
         }
+
+        #endregion
     }
 }
