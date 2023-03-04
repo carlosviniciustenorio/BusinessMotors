@@ -95,9 +95,9 @@ namespace CManager.Application.Handlers
         public async Task<List<Opcional>> ValidarRetornarOpcionais(AddAnuncioCommand.Command request)
         {
             List<Opcional> opcionais = new();
-            if(request.idCaracteristicas != null && request.idCaracteristicas.Any())
+            if(request.idOpcionais != null && request.idOpcionais.Any())
             {
-                foreach (var item in request.idCaracteristicas)
+                foreach (var item in request.idOpcionais)
                 {
                     var opcional = await _opcionalRepository.GetByIdAsync(item);
                     opcionais.Add(opcional);
