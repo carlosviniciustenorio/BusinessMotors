@@ -74,6 +74,7 @@ namespace CManager.Application.Handlers
                     AnoFabricacao = a.AnoFabricacao,
                     Versao = a.Versao,
                     TiposCombustiveis = a.TiposCombustiveis,
+                    Opcionais = a.Opcionais,
                     Portas = a.Portas,
                     Cambio = a.Cambio,
                     Cor = a.Cor,
