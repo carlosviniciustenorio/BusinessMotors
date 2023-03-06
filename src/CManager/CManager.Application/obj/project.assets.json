@@ -2200,8 +2200,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
-              "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
+            "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj": {
+              "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj"
             }
           }
         }

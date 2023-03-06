@@ -10,9 +10,11 @@ namespace CManager.Application.Handlers
         private readonly IOpcionalRepository _opcionalRepository;
         private readonly ITipoCombustivelRepository _tipoCombustivelRepository;
         private readonly IAnuncioRepository _anuncioRepository;
+        private readonly IModeloRepository _modeloRepository;
+        private readonly IVersaoRepository _versaoRepository;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AnuncioCommandHandler(IMarcaRepository marcaRepository, ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager)
+        public AnuncioCommandHandler(IMarcaRepository marcaRepository, ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
         {
             _marcaRepository = marcaRepository;
             _caracteristicaRepository = caracteristicaRepository;
@@ -20,6 +22,8 @@ namespace CManager.Application.Handlers
             _tipoCombustivelRepository = tipoCombustivelRepository;
             _anuncioRepository = anuncioRepository;
             _userManager = userManager;
+            _modeloRepository = modeloRepository;
+            _versaoRepository = versaoRepository;
         }
 
         #region Post
@@ -29,16 +33,16 @@ namespace CManager.Application.Handlers
             if(user is null)
                 throw new InvalidOperationException("Usuário informado não localizado");
 
-            List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveis(request);
-            List<Opcional> opcionais = await ValidarRetornarOpcionais(request);
-            List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicas(request);
-            Marca marca = await _marcaRepository.GetByIdAsync(request.idMarca);
+            List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveisAsync(request);
+            List<Opcional> opcionais = await ValidarRetornarOpcionaisAsync(request);
+            List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicasAsync(request);
+            Marca marca = await ValidarRetornarMarcaAsync(request);
+            Modelo modelo = await ValidarRetornarModeloASync(request);
+            Versao versao = await ValidarRetornarVersaoASync(request);
 
             Anuncio anuncio = new(request.placa,
                                   marca, 
-                                  request.anoModelo, 
-                                  request.anoFabricacao, 
-                                  request.versao, 
+                                  modelo,
                                   tiposCombustieis, 
                                   request.portas, 
                                   request.cambio, 
@@ -70,9 +74,7 @@ namespace CManager.Application.Handlers
                     Id = a.Id,
                     Placa = a.Placa,
                     Marca = a.Marca,
-                    AnoModelo = a.AnoModelo,
-                    AnoFabricacao = a.AnoFabricacao,
-                    Versao = a.Versao,
+                    Modelo = a.Modelo,
                     TiposCombustiveis = a.TiposCombustiveis,
                     Opcionais = a.Opcionais,
                     Portas = a.Portas,
@@ -93,7 +95,7 @@ namespace CManager.Application.Handlers
         #endregion
 
         #region Métodos
-        public async Task<List<Opcional>> ValidarRetornarOpcionais(AddAnuncioCommand.Command request)
+        public async Task<List<Opcional>> ValidarRetornarOpcionaisAsync(AddAnuncioCommand.Command request)
         {
             List<Opcional> opcionais = new();
             if(request.idOpcionais != null && request.idOpcionais.Any())
@@ -108,7 +110,7 @@ namespace CManager.Application.Handlers
             return opcionais;
         }
 
-        public async Task<List<Caracteristica>> ValidarRetornarCaracteristicas(AddAnuncioCommand.Command request)
+        public async Task<List<Caracteristica>> ValidarRetornarCaracteristicasAsync(AddAnuncioCommand.Command request)
         {
             List<Caracteristica> caracteristicas = new();
             if(request.idCaracteristicas != null && request.idCaracteristicas.Any())
@@ -123,7 +125,7 @@ namespace CManager.Application.Handlers
             return caracteristicas;
         }
 
-        public async Task<List<TipoCombustivel>> ValidarRetornarTiposCombustiveis(AddAnuncioCommand.Command request)
+        public async Task<List<TipoCombustivel>> ValidarRetornarTiposCombustiveisAsync(AddAnuncioCommand.Command request)
         {
             List<TipoCombustivel> tiposCombustieis = new();
             if(request.idTiposCombustiveis != null && request.idTiposCombustiveis.Any())
@@ -137,6 +139,10 @@ namespace CManager.Application.Handlers
 
             return tiposCombustieis;
         }
+
+        public async Task<Marca> ValidarRetornarMarcaAsync(AddAnuncioCommand.Command request) => await _marcaRepository.GetByIdAsync(request.idMarca) ?? throw new InvalidOperationException("Marca informado não localizada");
+        public async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
+        public async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
 
         #endregion
     }

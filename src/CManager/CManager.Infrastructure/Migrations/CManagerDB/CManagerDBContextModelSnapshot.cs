@@ -73,12 +73,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AnoFabricacao")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnoModelo")
-                        .HasColumnType("int");
-
                     b.Property<int>("Cambio")
                         .HasColumnType("int");
 
@@ -102,6 +96,9 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.Property<int>("MarcaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ModeloId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Placa")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -117,13 +114,11 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Versao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MarcaId");
+
+                    b.HasIndex("ModeloId");
 
                     b.ToTable("Anuncio");
                 });
@@ -163,6 +158,34 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.ToTable("Marca");
                 });
 
+            modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AnoFabricacao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnoModelo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VersaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VersaoId");
+
+                    b.ToTable("Modelo");
+                });
+
             modelBuilder.Entity("CManager.Domain.Models.Opcional", b =>
                 {
                     b.Property<int>("Id")
@@ -197,6 +220,23 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.HasKey("Id");
 
                     b.ToTable("TipoCombustivel");
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Versao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Versao");
                 });
 
             modelBuilder.Entity("AnuncioCaracteristica", b =>
@@ -252,7 +292,26 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CManager.Domain.Models.Modelo", "Modelo")
+                        .WithMany()
+                        .HasForeignKey("ModeloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Marca");
+
+                    b.Navigation("Modelo");
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
+                {
+                    b.HasOne("CManager.Domain.Models.Versao", "Versao")
+                        .WithMany()
+                        .HasForeignKey("VersaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Versao");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,8 +10,7 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
         public void Configure(EntityTypeBuilder<Caracteristica> entity)
         {
             entity.HasKey(d => d.Id);
-            entity.Property(d => d.Descricao).IsRequired();
-            entity.Property(d => d.Descricao).HasMaxLength(100);
+            entity.Property(d => d.Descricao).IsRequired().HasMaxLength(100);
         }
     }
 }

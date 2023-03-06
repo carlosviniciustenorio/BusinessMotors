@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yU+YHx6se1gbvcT3jjSnZddl4V5uLVKl9tC7CGH3zNUyzUGrSIO7b28jsKK3+t44TWgEmKvVi/uWbxA8g9KmnA==",
+  "dgSpecHash": "HZLXqqnB2gz7ljojmRfI9D/rFPYXSTZ0DfW998+jcX8C4S1ElYXzn4Oozx/MdiAS2GVtaHC6Nv8kIvkgpfzlAg==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"

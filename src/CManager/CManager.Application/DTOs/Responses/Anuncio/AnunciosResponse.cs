@@ -5,9 +5,7 @@ namespace CManager.Application.DTOs.Responses
         public Guid Id { get; set; }
         public string Placa { get; set; }
         public Marca Marca { get; set; }
-        public int AnoModelo { get; set; }
-        public int AnoFabricacao { get; set; }
-        public string Versao { get; set; }
+        public Modelo Modelo { get; set; }
         public List<TipoCombustivel> TiposCombustiveis { get; set; }
         public int Portas { get; set; }
         public ECambio Cambio { get; set; }

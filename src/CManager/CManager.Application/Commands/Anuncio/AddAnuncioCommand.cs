@@ -6,9 +6,8 @@ namespace CManager.Application.Commands
         public sealed record Command(
             string placa,
             int idMarca,
-            int anoModelo,
-            int anoFabricacao,
-            string versao,
+            int idModelo,
+            int idVersao,
             List<int>? idTiposCombustiveis,
             int portas,
             ECambio cambio,
@@ -41,10 +40,6 @@ namespace CManager.Application.Commands
                     .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Marca não pode ser vazio");
-                
-                RuleFor(c => c.anoFabricacao).NotEmpty().WithMessage("Ano de fabricação não pode ser vazio")
-                           .Must((range, endDate) => endDate > range.anoModelo)
-                           .WithMessage("Ano de fabricação não pode ser superior ao ano do modelo");
             }
         }
     }

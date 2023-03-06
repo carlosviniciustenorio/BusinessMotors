@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rEdcsb7EXjG0fjDe+/vJYwZhatq+3XbshDd4QN85G7vYPQMgAnHxPYI6jSZcE9n5CSJHWy/p36Fq/eJmFnpjOg==",
+  "dgSpecHash": "OWt6wJpY1VklRGOl511ch0dpWTGs+bVMv16dZ5n9v4MfW/0LKhUqoOei7Xztp/T1l1CuH9Q9MLWmiPox50b72Q==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Application\\CManager.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
