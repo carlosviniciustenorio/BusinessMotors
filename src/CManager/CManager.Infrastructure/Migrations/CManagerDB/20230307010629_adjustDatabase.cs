@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CManager.Infrastructure.Migrations.CManagerDB
 {
     /// <inheritdoc />
-    public partial class initModels : Migration
+    public partial class adjustDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,21 +38,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                 });
 
             migrationBuilder.CreateTable(
-                name: "Modelo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnoModelo = table.Column<int>(type: "int", nullable: false),
-                    AnoFabricacao = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Modelo", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Opcional",
                 columns: table => new
                 {
@@ -76,6 +61,28 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoCombustivel", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Modelo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AnoModelo = table.Column<int>(type: "int", nullable: false),
+                    AnoFabricacao = table.Column<int>(type: "int", nullable: false),
+                    MarcaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modelo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Modelo_Marca_MarcaId",
+                        column: x => x.MarcaId,
+                        principalTable: "Marca",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,8 +137,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         name: "FK_Anuncio_Modelo_ModeloId",
                         column: x => x.ModeloId,
                         principalTable: "Modelo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Anuncio_Versao_VersaoId",
                         column: x => x.VersaoId,
@@ -242,6 +248,11 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                 column: "TiposCombustiveisId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Modelo_MarcaId",
+                table: "Modelo",
+                column: "MarcaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Versao_ModeloId",
                 table: "Versao",
                 column: "ModeloId");
@@ -272,13 +283,13 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                 name: "TipoCombustivel");
 
             migrationBuilder.DropTable(
-                name: "Marca");
-
-            migrationBuilder.DropTable(
                 name: "Versao");
 
             migrationBuilder.DropTable(
                 name: "Modelo");
+
+            migrationBuilder.DropTable(
+                name: "Marca");
         }
     }
 }

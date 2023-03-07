@@ -8,10 +8,9 @@ namespace CManager.Domain.Models
         {
 
         }
-        public Anuncio(string placa, Marca marca, Modelo modelo, Versao versao, List<TipoCombustivel> tiposCombustiveis, int portas, ECambio cambio, ECor cor, List<Opcional> opcionais, List<Caracteristica> caracteristicas, string km, string estado, decimal preco, string usuarioId, bool exibirTelefone, bool exibirEmail)
+        public Anuncio(string placa, Modelo modelo, Versao versao, List<TipoCombustivel> tiposCombustiveis, int portas, ECambio cambio, ECor cor, List<Opcional> opcionais, List<Caracteristica> caracteristicas, string km, string estado, decimal preco, string usuarioId, bool exibirTelefone, bool exibirEmail)
         {
             Placa = placa;
-            Marca = marca;
             Modelo = modelo;
             Versao = versao;
             TiposCombustiveis = tiposCombustiveis;

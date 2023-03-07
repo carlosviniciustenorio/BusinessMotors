@@ -6,5 +6,6 @@ namespace CManager.Domain.Models
 
         public int Id { get; init; }
         public string Descricao { get; private set; }
+        public List<Modelo> Modelos { get; set; }
     }
 }

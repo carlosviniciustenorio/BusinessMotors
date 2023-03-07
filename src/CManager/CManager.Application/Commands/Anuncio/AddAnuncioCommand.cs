@@ -5,7 +5,6 @@ namespace CManager.Application.Commands
     {
         public sealed record Command(
             string placa,
-            int idMarca,
             int idModelo,
             int idVersao,
             List<int>? idTiposCombustiveis,
@@ -35,11 +34,6 @@ namespace CManager.Application.Commands
                     .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Usuário não pode ser vazio");
-
-                RuleFor(c => c.idMarca)
-                    .NotNull()
-                    .NotEmpty()
-                    .WithMessage("Id Marca não pode ser vazio");
 
                 RuleFor(c => c.idModelo)
                     .NotNull()

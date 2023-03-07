@@ -36,12 +36,10 @@ namespace CManager.Application.Handlers
             List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveisAsync(request);
             List<Opcional> opcionais = await ValidarRetornarOpcionaisAsync(request);
             List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicasAsync(request);
-            Marca marca = await ValidarRetornarMarcaAsync(request);
             Versao versao = await ValidarRetornarVersaoASync(request);
             Modelo modelo = await ValidarRetornarModeloASync(request);
 
             Anuncio anuncio = new(request.placa,
-                                  marca, 
                                   modelo,
                                   versao,
                                   tiposCombustieis, 
@@ -141,7 +139,6 @@ namespace CManager.Application.Handlers
             return tiposCombustieis;
         }
 
-        public async Task<Marca> ValidarRetornarMarcaAsync(AddAnuncioCommand.Command request) => await _marcaRepository.GetByIdAsync(request.idMarca) ?? throw new InvalidOperationException("Marca informado não localizada");
         public async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
         public async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
 

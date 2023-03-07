@@ -181,7 +181,12 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MarcaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("MarcaId");
 
                     b.ToTable("Modelo");
                 });
@@ -300,7 +305,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.HasOne("CManager.Domain.Models.Modelo", "Modelo")
                         .WithMany()
                         .HasForeignKey("ModeloId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("CManager.Domain.Models.Versao", "Versao")
@@ -316,6 +321,17 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.Navigation("Versao");
                 });
 
+            modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
+                {
+                    b.HasOne("CManager.Domain.Models.Marca", "Marca")
+                        .WithMany("Modelos")
+                        .HasForeignKey("MarcaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Marca");
+                });
+
             modelBuilder.Entity("CManager.Domain.Models.Versao", b =>
                 {
                     b.HasOne("CManager.Domain.Models.Modelo", "Modelo")
@@ -325,6 +341,11 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired();
 
                     b.Navigation("Modelo");
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Marca", b =>
+                {
+                    b.Navigation("Modelos");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
