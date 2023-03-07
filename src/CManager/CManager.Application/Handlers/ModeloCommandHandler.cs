@@ -18,6 +18,7 @@ namespace CManager.Application.Handlers
                 throw new InvalidOperationException("Marca informada não localizada");
 
             await _modeloRepository.AddAsync(new(request.descricao, request.anoModelo, request.anoFabricacao, marca));
+            await _modeloRepository.SaveChangesAsync();
             return Unit.Value;
         }
     }

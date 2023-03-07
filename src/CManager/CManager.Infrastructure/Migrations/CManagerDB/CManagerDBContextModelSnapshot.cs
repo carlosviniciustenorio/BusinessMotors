@@ -93,9 +93,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MarcaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ModeloId")
                         .HasColumnType("int");
 
@@ -118,8 +115,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MarcaId");
 
                     b.HasIndex("ModeloId");
 
@@ -296,12 +291,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
             modelBuilder.Entity("CManager.Domain.Models.Anuncio", b =>
                 {
-                    b.HasOne("CManager.Domain.Models.Marca", "Marca")
-                        .WithMany()
-                        .HasForeignKey("MarcaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CManager.Domain.Models.Modelo", "Modelo")
                         .WithMany()
                         .HasForeignKey("ModeloId")
@@ -313,8 +302,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .HasForeignKey("VersaoId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Marca");
 
                     b.Navigation("Modelo");
 

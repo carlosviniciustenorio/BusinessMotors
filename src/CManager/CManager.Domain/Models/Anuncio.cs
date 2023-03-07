@@ -29,7 +29,6 @@ namespace CManager.Domain.Models
 
         public Guid Id { get; init; }
         public string Placa { get; private set; }
-        public Marca Marca { get; private set; }
         public Modelo Modelo { get; private set; }
         public Versao Versao { get; private set; }
         public List<TipoCombustivel> TiposCombustiveis { get; private set; }

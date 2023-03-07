@@ -1,5 +1,7 @@
 using CManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography.Xml;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
@@ -31,7 +33,9 @@ IoCExtensions.AddIoC(builder.Services, builder.Configuration);
 //     redis.Configuration = apiSettings.Cache.Configuration;
 // });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => {
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddSwaggerGen();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LX9bbHxsADOY2XN1+JaZtp5shfx9C6YPL9SizRvgm1uj/Af9cSxKzitKAgZeMFsxX14CeYW8CWQCFbJKvzN3lA==",
+  "dgSpecHash": "152MsAvT5Rc3P+P5rHryoSc+1rjpgfdFlHD4/MAsrJsifh4FlFmQ/5khBx1iy7kKKEnlilZ8A5SYMXX3Z1OkLw==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

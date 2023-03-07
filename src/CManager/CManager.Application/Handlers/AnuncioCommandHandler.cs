@@ -72,7 +72,6 @@ namespace CManager.Application.Handlers
                 anuncios.ForEach(a => response.Add(new AnunciosResponse{
                     Id = a.Id,
                     Placa = a.Placa,
-                    Marca = a.Marca,
                     Modelo = a.Modelo,
                     TiposCombustiveis = a.TiposCombustiveis,
                     Opcionais = a.Opcionais,

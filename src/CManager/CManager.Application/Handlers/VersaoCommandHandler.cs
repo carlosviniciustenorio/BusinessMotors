@@ -18,6 +18,7 @@ namespace CManager.Application.Handlers
                 throw new InvalidOperationException("Modelo informado não localizado");
 
             await _versaoRepository.AddAsync(new(request.descricao, modelo));
+            await _versaoRepository.SaveChangesAsync();
             return Unit.Value;
         }
     }
