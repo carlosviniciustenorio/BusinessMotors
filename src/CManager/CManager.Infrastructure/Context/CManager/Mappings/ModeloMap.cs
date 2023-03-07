@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace CManager.Infrastructure.Context.CManager.Mappings
 {
     public class ModeloMap
@@ -11,7 +6,7 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
         {
             entity.HasKey(d => d.Id);
             entity.Property(d => d.Descricao).IsRequired().HasMaxLength(100);
-            entity.HasOne(d => d.Versao).WithMany();
+            entity.Navigation(d => d.Versoes);
         }
     }
 }

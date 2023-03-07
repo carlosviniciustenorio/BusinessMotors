@@ -11,11 +11,14 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
             entity.HasMany(d => d.Caracteristicas).WithMany();
             entity.HasMany(d => d.Opcionais).WithMany();
             entity.HasMany(d => d.TiposCombustiveis).WithMany();
+            entity.HasOne(d => d.Versao).WithMany().OnDelete(DeleteBehavior.NoAction);
             
             entity.Navigation(n => n.Opcionais).AutoInclude();
             entity.Navigation(n => n.Caracteristicas).AutoInclude();
             entity.Navigation(n => n.Marca).AutoInclude();
             entity.Navigation(n => n.TiposCombustiveis).AutoInclude();
+            entity.Navigation(n => n.Modelo).AutoInclude();
+            entity.Navigation(n => n.Versao).AutoInclude();
         }
     }
 }

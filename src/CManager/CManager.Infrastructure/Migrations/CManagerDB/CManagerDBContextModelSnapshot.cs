@@ -114,11 +114,16 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("VersaoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MarcaId");
 
                     b.HasIndex("ModeloId");
+
+                    b.HasIndex("VersaoId");
 
                     b.ToTable("Anuncio");
                 });
@@ -176,12 +181,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VersaoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("VersaoId");
 
                     b.ToTable("Modelo");
                 });
@@ -234,7 +234,12 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ModeloId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ModeloId");
 
                     b.ToTable("Versao");
                 });
@@ -298,20 +303,33 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CManager.Domain.Models.Versao", "Versao")
+                        .WithMany()
+                        .HasForeignKey("VersaoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Marca");
+
+                    b.Navigation("Modelo");
+
+                    b.Navigation("Versao");
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Versao", b =>
+                {
+                    b.HasOne("CManager.Domain.Models.Modelo", "Modelo")
+                        .WithMany("Versoes")
+                        .HasForeignKey("ModeloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Modelo");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
                 {
-                    b.HasOne("CManager.Domain.Models.Versao", "Versao")
-                        .WithMany()
-                        .HasForeignKey("VersaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Versao");
+                    b.Navigation("Versoes");
                 });
 #pragma warning restore 612, 618
         }

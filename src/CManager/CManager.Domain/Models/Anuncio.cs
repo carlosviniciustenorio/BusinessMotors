@@ -8,11 +8,12 @@ namespace CManager.Domain.Models
         {
 
         }
-        public Anuncio(string placa, Marca marca, Modelo modelo, List<TipoCombustivel> tiposCombustiveis, int portas, ECambio cambio, ECor cor, List<Opcional> opcionais, List<Caracteristica> caracteristicas, string km, string estado, decimal preco, string usuarioId, bool exibirTelefone, bool exibirEmail)
+        public Anuncio(string placa, Marca marca, Modelo modelo, Versao versao, List<TipoCombustivel> tiposCombustiveis, int portas, ECambio cambio, ECor cor, List<Opcional> opcionais, List<Caracteristica> caracteristicas, string km, string estado, decimal preco, string usuarioId, bool exibirTelefone, bool exibirEmail)
         {
             Placa = placa;
             Marca = marca;
             Modelo = modelo;
+            Versao = versao;
             TiposCombustiveis = tiposCombustiveis;
             Portas = portas;
             Cambio = cambio;
@@ -30,7 +31,8 @@ namespace CManager.Domain.Models
         public Guid Id { get; init; }
         public string Placa { get; private set; }
         public Marca Marca { get; private set; }
-        public Modelo Modelo { get; set; }
+        public Modelo Modelo { get; private set; }
+        public Versao Versao { get; private set; }
         public List<TipoCombustivel> TiposCombustiveis { get; private set; }
         public int Portas { get; private set; }
         public ECambio Cambio { get; private set; }

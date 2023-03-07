@@ -38,5 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\Identity\" />
+    <Folder Include="Migrations\CManagerDB\" />
   </ItemGroup>
 </Project>

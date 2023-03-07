@@ -37,12 +37,13 @@ namespace CManager.Application.Handlers
             List<Opcional> opcionais = await ValidarRetornarOpcionaisAsync(request);
             List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicasAsync(request);
             Marca marca = await ValidarRetornarMarcaAsync(request);
-            Modelo modelo = await ValidarRetornarModeloASync(request);
             Versao versao = await ValidarRetornarVersaoASync(request);
+            Modelo modelo = await ValidarRetornarModeloASync(request);
 
             Anuncio anuncio = new(request.placa,
                                   marca, 
                                   modelo,
+                                  versao,
                                   tiposCombustieis, 
                                   request.portas, 
                                   request.cambio, 

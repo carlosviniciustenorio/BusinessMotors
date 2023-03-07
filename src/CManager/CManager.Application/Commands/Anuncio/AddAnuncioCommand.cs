@@ -12,8 +12,8 @@ namespace CManager.Application.Commands
             int portas,
             ECambio cambio,
             ECor cor,
-            List<int>? idOpcionais, 
-            List<int>? idCaracteristicas, 
+            List<int>? idOpcionais,
+            List<int>? idCaracteristicas,
             string km,
             string estado,
             string usuarioId,
@@ -35,11 +35,21 @@ namespace CManager.Application.Commands
                     .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Usuário não pode ser vazio");
-                
+
                 RuleFor(c => c.idMarca)
                     .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Marca não pode ser vazio");
+
+                RuleFor(c => c.idModelo)
+                    .NotNull()
+                    .NotEmpty()
+                    .WithMessage("Id Modelo não pode ser vazio");
+
+                RuleFor(c => c.idVersao)
+                    .NotNull()
+                    .NotEmpty()
+                    .WithMessage("Id Versão não pode ser vazio");
             }
         }
     }
