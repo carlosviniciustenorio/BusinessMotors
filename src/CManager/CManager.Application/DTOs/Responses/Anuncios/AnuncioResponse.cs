@@ -1,10 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace CManager.Application.DTOs.Responses
 {
-    public class AnunciosResponse
+    public class AnuncioResponse
     {
         public Guid Id { get; set; }
         public string Placa { get; set; }
-        public Modelo Modelo { get; set; }
+        public ModeloResponse Modelo { get; set; }
         public List<TipoCombustivel> TiposCombustiveis { get; set; }
         public int Portas { get; set; }
         public ECambio Cambio { get; set; }

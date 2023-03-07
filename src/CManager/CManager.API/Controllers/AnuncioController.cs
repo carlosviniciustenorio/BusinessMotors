@@ -22,7 +22,14 @@ namespace CManager.API.Controllers
         } 
 
         [HttpGet("getAll")]
-        public async Task<List<AnunciosResponse>> Get([FromQuery]GetAnunciosQuery.Anuncios command)
+        public async Task<List<AnunciosResponse>> GetAll([FromQuery]GetAnunciosQuery.Anuncios command)
+        {
+            var response = await _mediatr.Send(command);    
+            return response;
+        } 
+
+        [HttpGet]
+        public async Task<AnuncioResponse> GetById([FromQuery]GetAnuncioQuery.Anuncio command)
         {
             var response = await _mediatr.Send(command);    
             return response;

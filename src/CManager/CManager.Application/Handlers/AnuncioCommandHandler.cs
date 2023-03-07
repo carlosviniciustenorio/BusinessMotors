@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CManager.Application.Handlers
 {
-    public class AnuncioCommandHandler : IRequestHandler<AddAnuncioCommand.Command, Unit>, IRequestHandler<GetAnunciosQuery.Anuncios, List<AnunciosResponse>>
+    public class AnuncioCommandHandler : IRequestHandler<AddAnuncioCommand.Command, Unit>, 
+                                         IRequestHandler<GetAnunciosQuery.Anuncios, List<AnunciosResponse>>,
+                                         IRequestHandler<GetAnuncioQuery.Anuncio, AnuncioResponse>
     {
         private readonly IMarcaRepository _marcaRepository;
         private readonly ICaracteristicaRepository _caracteristicaRepository;
@@ -71,14 +73,9 @@ namespace CManager.Application.Handlers
             if(anuncios.Any())
                 anuncios.ForEach(a => response.Add(new AnunciosResponse{
                     Id = a.Id,
-                    Placa = a.Placa,
-                    Modelo = a.Modelo,
-                    TiposCombustiveis = a.TiposCombustiveis,
-                    Opcionais = a.Opcionais,
-                    Portas = a.Portas,
+                    Modelo = new(a.Modelo, a.Versao),
                     Cambio = a.Cambio,
                     Cor = a.Cor,
-                    Caracteristicas = a.Caracteristicas,
                     Km = a.Km,
                     Estado = a.Estado,
                     Preco = a.Preco,
@@ -89,7 +86,34 @@ namespace CManager.Application.Handlers
 
             return response;
         }
-        
+
+        public async Task<AnuncioResponse> Handle(GetAnuncioQuery.Anuncio request, CancellationToken cancellationToken)
+        {
+            var anuncio = await _anuncioRepository.GetByIdAsync(request.id);
+            if(anuncio is null)
+                throw new InvalidOperationException("Anúncio informado não localizado");
+
+            var response = new AnuncioResponse{
+                                                Id = anuncio.Id,
+                                                Placa = anuncio.Placa,
+                                                Modelo = new(anuncio.Modelo, anuncio.Versao),
+                                                TiposCombustiveis = anuncio.TiposCombustiveis,
+                                                Opcionais = anuncio.Opcionais,
+                                                Portas = anuncio.Portas,
+                                                Cambio = anuncio.Cambio,
+                                                Cor = anuncio.Cor,
+                                                Caracteristicas = anuncio.Caracteristicas,
+                                                Km = anuncio.Km,
+                                                Estado = anuncio.Estado,
+                                                Preco = anuncio.Preco,
+                                                UsuarioId = anuncio.UsuarioId,
+                                                ExibirEmail = anuncio.ExibirEmail,
+                                                ExibirTelefone = anuncio.ExibirTelefone
+                                            };
+
+            return response;
+        }
+
         #endregion
 
         #region Métodos
@@ -140,7 +164,7 @@ namespace CManager.Application.Handlers
 
         public async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
         public async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
-
+        
         #endregion
     }
 }
