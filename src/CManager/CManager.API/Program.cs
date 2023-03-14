@@ -1,6 +1,5 @@
 using CManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Cryptography.Xml;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

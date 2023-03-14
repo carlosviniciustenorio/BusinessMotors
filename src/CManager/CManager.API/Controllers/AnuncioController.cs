@@ -15,8 +15,14 @@ namespace CManager.API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<Unit> Create([FromBody]AddAnuncioCommand.Command command)
+        public async Task<Unit> Create([FromForm]AddAnuncioCommand.Command command)
         {
+            if (string.IsNullOrEmpty(command.usuarioId))
+            {
+                var userId = User.Claims.FirstOrDefault(d => d.Type.Contains("nameidentifier")).Value;
+                command.usuarioId = userId;
+            }
+
             await _mediatr.Send(command);    
             return Unit.Value;
         } 

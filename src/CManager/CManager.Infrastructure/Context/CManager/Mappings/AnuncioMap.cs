@@ -10,6 +10,7 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
             entity.HasMany(d => d.Caracteristicas).WithMany();
             entity.HasMany(d => d.Opcionais).WithMany();
             entity.HasMany(d => d.TiposCombustiveis).WithMany();
+            entity.HasMany(d => d.ImagensS3).WithOne();
             entity.HasOne(d => d.Modelo).WithMany().OnDelete(DeleteBehavior.NoAction);
             entity.HasOne(d => d.Versao).WithMany().OnDelete(DeleteBehavior.NoAction);
             

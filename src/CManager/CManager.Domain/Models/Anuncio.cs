@@ -4,29 +4,6 @@ namespace CManager.Domain.Models
 {
     public class Anuncio
     {
-        public Anuncio()
-        {
-
-        }
-        public Anuncio(string placa, Modelo modelo, Versao versao, List<TipoCombustivel> tiposCombustiveis, int portas, ECambio cambio, ECor cor, List<Opcional> opcionais, List<Caracteristica> caracteristicas, string km, string estado, decimal preco, string usuarioId, bool exibirTelefone, bool exibirEmail)
-        {
-            Placa = placa;
-            Modelo = modelo;
-            Versao = versao;
-            TiposCombustiveis = tiposCombustiveis;
-            Portas = portas;
-            Cambio = cambio;
-            Cor = cor;
-            Opcionais = opcionais;
-            Caracteristicas = caracteristicas;
-            Km = km;
-            Estado = estado;
-            Preco = preco;
-            UsuarioId = usuarioId;
-            ExibirTelefone = exibirTelefone;
-            ExibirEmail = exibirEmail;
-        }
-
         public Guid Id { get; init; }
         public string Placa { get; private set; }
         public Modelo Modelo { get; private set; }
@@ -43,5 +20,45 @@ namespace CManager.Domain.Models
         public string UsuarioId { get; private set; }
         public bool ExibirTelefone { get; private set; } = false;
         public bool ExibirEmail { get; private set; } = false;
+        public List<Imagem> ImagensS3 { get; private set; }
+        public Anuncio()
+        {
+
+        }
+        public Anuncio(string placa, 
+                       Modelo modelo, 
+                       Versao versao, 
+                       List<TipoCombustivel> tiposCombustiveis, 
+                       int portas, 
+                       ECambio cambio, 
+                       ECor cor, 
+                       List<Opcional> opcionais, 
+                       List<Caracteristica> caracteristicas, 
+                       string km, 
+                       string estado, 
+                       decimal preco, 
+                       string usuarioId, 
+                       bool exibirTelefone, 
+                       bool exibirEmail,
+                       List<Imagem> imagens)
+        {
+            Placa = placa;
+            Modelo = modelo;
+            Versao = versao;
+            TiposCombustiveis = tiposCombustiveis;
+            Portas = portas;
+            Cambio = cambio;
+            Cor = cor;
+            Opcionais = opcionais;
+            Caracteristicas = caracteristicas;
+            Km = km;
+            Estado = estado;
+            Preco = preco;
+            UsuarioId = usuarioId;
+            ExibirTelefone = exibirTelefone;
+            ExibirEmail = exibirEmail;
+            ImagensS3 = imagens;
+        }
+
     }
 }

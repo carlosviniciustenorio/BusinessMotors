@@ -141,6 +141,28 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.ToTable("Caracteristica");
                 });
 
+            modelBuilder.Entity("CManager.Domain.Models.Imagem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid?>("AnuncioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UrlS3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnuncioId");
+
+                    b.ToTable("Imagem");
+                });
+
             modelBuilder.Entity("CManager.Domain.Models.Marca", b =>
                 {
                     b.Property<int>("Id")
@@ -308,6 +330,13 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.Navigation("Versao");
                 });
 
+            modelBuilder.Entity("CManager.Domain.Models.Imagem", b =>
+                {
+                    b.HasOne("CManager.Domain.Models.Anuncio", null)
+                        .WithMany("ImagensS3")
+                        .HasForeignKey("AnuncioId");
+                });
+
             modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
                 {
                     b.HasOne("CManager.Domain.Models.Marca", "Marca")
@@ -328,6 +357,11 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .IsRequired();
 
                     b.Navigation("Modelo");
+                });
+
+            modelBuilder.Entity("CManager.Domain.Models.Anuncio", b =>
+                {
+                    b.Navigation("ImagensS3");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Marca", b =>

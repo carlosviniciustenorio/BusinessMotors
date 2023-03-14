@@ -1,4 +1,5 @@
 using CManager.Application.Queries;
+using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
 
 namespace CManager.Application.Handlers
@@ -41,6 +42,13 @@ namespace CManager.Application.Handlers
             Versao versao = await ValidarRetornarVersaoASync(request);
             Modelo modelo = await ValidarRetornarModeloASync(request);
 
+            List<Imagem> imagens = new List<Imagem>();
+            foreach (var item in request.files)
+            {
+                var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                imagens.Add(new Imagem(imagem));
+            }
+
             Anuncio anuncio = new(request.placa,
                                   modelo,
                                   versao,
@@ -55,7 +63,8 @@ namespace CManager.Application.Handlers
                                   request.preco, 
                                   user.Id, 
                                   request.exibirTelefone, 
-                                  request.exibirEmail);
+                                  request.exibirEmail,
+                                  imagens);
 
             await _anuncioRepository.AddAsync(anuncio);
             await _anuncioRepository.SaveChangesAsync();
