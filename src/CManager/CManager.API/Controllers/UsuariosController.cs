@@ -1,10 +1,7 @@
 ﻿using CManager.API.Attributes;
-using CManager.Application.Services;
 using CManager.Infrastructure.Constants.Identity;
 using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace CManager.API.Controllers
@@ -28,7 +25,7 @@ namespace CManager.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var resultado = await _identityService.CadastrarUsuario(usuarioCadastro);
+            UsuarioCadastroResponse resultado = await _identityService.CadastrarUsuario(usuarioCadastro);
             if (resultado.Sucesso)
                 return Ok(resultado);
             else if (resultado.Erros.Count > 0)
@@ -55,7 +52,7 @@ namespace CManager.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var resultado = await _identityService.Login(usuarioLogin);
+            UsuarioLoginResponse resultado = await _identityService.Login(usuarioLogin);
             if (resultado.Sucesso)
                 return Ok(resultado);
 

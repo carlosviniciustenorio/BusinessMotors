@@ -10,6 +10,8 @@
     <None Remove="HostedServices\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.3" />
@@ -31,9 +33,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CManager.Application\CManager.Application.csproj" />
+    <ProjectReference Include="..\CManager.Domain\CManager.Domain.csproj" />
     <ProjectReference Include="..\CManager.Integration\CManager.Integration.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\Identity\" />
+    <Folder Include="Migrations\CManagerDB\" />
   </ItemGroup>
 </Project>

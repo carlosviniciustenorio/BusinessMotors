@@ -44,6 +44,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.103.26, )"
+            },
+            "Amazon.S3": {
+              "target": "Package",
+              "version": "[0.29.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.Extensions.Caching.Abstractions": {
               "target": "Package",
               "version": "[7.0.0, )"
