@@ -1,4 +1,5 @@
 using CManager.Application.DTOs.Responses;
+using Sentry;
 
 namespace CManager.API.Controllers
 {

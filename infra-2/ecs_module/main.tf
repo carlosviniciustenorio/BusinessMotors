@@ -16,6 +16,11 @@ resource "aws_ecs_task_definition" "cmanager_task" {
           "hostPort": 80
         }
       ],
+      "environment": [
+        {        
+          "ASPNETCORE_ENVIRONMENT":"${var.environment}"
+        } 
+      ]
       "memory": 512,
       "cpu": 256
     }
