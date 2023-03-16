@@ -15,11 +15,13 @@ namespace CManager.Infrastructure.Repositories
                                                                         .Include(d => d.Modelo)
                                                                             .ThenInclude(d => d.Marca)
                                                                         .Include(d => d.Versao)
+                                                                        .Include(d => d.ImagensS3)
                                                                         .FirstOrDefaultAsync(d => d.Id == id);
         public async Task<List<Anuncio>> GetAllAsync() => await _dbSet.IgnoreAutoIncludes()
                                                                       .Include(d => d.Modelo)
                                                                         .ThenInclude(d => d.Marca)
                                                                       .Include(d => d.Versao)
+                                                                      .Include(d => d.ImagensS3)
                                                                       .ToListAsync();
         public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
     }

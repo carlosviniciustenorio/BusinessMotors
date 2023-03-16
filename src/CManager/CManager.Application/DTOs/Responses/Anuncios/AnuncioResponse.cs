@@ -22,5 +22,6 @@ namespace CManager.Application.DTOs.Responses
         public string UsuarioId { get; set; }
         public bool ExibirTelefone { get; set; } = false;
         public bool ExibirEmail { get; set; } = false;
+        public List<ImagemResponse> Imagens { get; set; }
     }
 }

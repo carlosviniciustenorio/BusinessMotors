@@ -19,6 +19,7 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
             entity.Navigation(n => n.TiposCombustiveis).AutoInclude();
             entity.Navigation(n => n.Modelo).AutoInclude();
             entity.Navigation(n => n.Versao).AutoInclude();
+            entity.Navigation(n => n.ImagensS3).AutoInclude();
         }
     }
 }
