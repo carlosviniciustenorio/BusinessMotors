@@ -17,9 +17,10 @@ resource "aws_ecs_task_definition" "cmanager_task" {
         }
       ],
       "environment": [
-        {        
-          "ASPNETCORE_ENVIRONMENT":"development"
-        } 
+        {
+          "name": "ASPNETCORE_ENVIRONMENT",
+          "value": "Development"
+        }
       ],
       "memory": 512,
       "cpu": 256
