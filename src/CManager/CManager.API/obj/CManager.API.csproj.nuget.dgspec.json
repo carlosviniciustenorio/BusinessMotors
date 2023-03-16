@@ -81,13 +81,25 @@
               "target": "Package",
               "version": "[13.0.2, )"
             },
+            "Sentry": {
+              "target": "Package",
+              "version": "[3.29.1, )"
+            },
+            "Sentry.AspNetCore": {
+              "target": "Package",
+              "version": "[3.29.1, )"
+            },
+            "Sentry.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.29.1, )"
+            },
             "StackExchange.Redis": {
               "target": "Package",
               "version": "[2.6.96, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.5.0, )"
+              "version": "[6.2.3, )"
             }
           },
           "imports": [

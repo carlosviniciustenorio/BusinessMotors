@@ -1,5 +1,11 @@
+using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Sentry;
+using Sentry.Extensions.Logging.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +19,8 @@ builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<JwtOptions>>().Val
 var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
+Console.WriteLine($"apiSettings na Program: {JsonConvert.SerializeObject(apiSettings)}");
+Console.WriteLine($"jwtOptions na Program: {JsonConvert.SerializeObject(jwtOptions)}");
 
 builder.Services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
 builder.Services.AddDbContext<CManagerDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
@@ -23,6 +31,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IIdentityService, IdentityService>();
+builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
 
 IoCExtensions.AddIoC(builder.Services, builder.Configuration);
 
@@ -41,6 +50,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
 builder.Services.RegisterDBServices(builder.Configuration);
 builder.Services.AddHealthChecks();
+builder.Services.AddTransient<ExceptionLoggingMiddleware>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -49,7 +59,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/Error");
+}
 
+app.UseMiddleware<ExceptionLoggingMiddleware>();
+app.UseSentryTracing();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseRouting();
