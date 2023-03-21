@@ -1,4 +1,3 @@
-using CManager.Application.Queries;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
 
