@@ -76,7 +76,7 @@ namespace CManager.Application.Handlers
         #region GET
         public async Task<List<AnunciosResponse>> Handle(GetAnunciosQuery.Anuncios request, CancellationToken cancellationToken)
         {
-            var anuncios = await _anuncioRepository.GetAllAsync();
+            var anuncios = await _anuncioRepository.GetAllAsync(request.skip, request.take);
             List<AnunciosResponse> response = new();
 
             if(anuncios.Any())
