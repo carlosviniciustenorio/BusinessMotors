@@ -34,7 +34,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("CaracteristicasId");
 
-                    b.ToTable("AnuncioCaracteristica");
+                    b.ToTable("AnuncioCaracteristica", (string)null);
                 });
 
             modelBuilder.Entity("AnuncioOpcional", b =>
@@ -49,7 +49,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("OpcionaisId");
 
-                    b.ToTable("AnuncioOpcional");
+                    b.ToTable("AnuncioOpcional", (string)null);
                 });
 
             modelBuilder.Entity("AnuncioTipoCombustivel", b =>
@@ -64,7 +64,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("TiposCombustiveisId");
 
-                    b.ToTable("AnuncioTipoCombustivel");
+                    b.ToTable("AnuncioTipoCombustivel", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Anuncio", b =>
@@ -120,7 +120,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("VersaoId");
 
-                    b.ToTable("Anuncio");
+                    b.ToTable("Anuncio", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Caracteristica", b =>
@@ -138,7 +138,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasKey("Id");
 
-                    b.ToTable("Caracteristica");
+                    b.ToTable("Caracteristica", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Imagem", b =>
@@ -160,7 +160,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("AnuncioId");
 
-                    b.ToTable("Imagem");
+                    b.ToTable("Imagem", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Marca", b =>
@@ -177,7 +177,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasKey("Id");
 
-                    b.ToTable("Marca");
+                    b.ToTable("Marca", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
@@ -205,7 +205,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("MarcaId");
 
-                    b.ToTable("Modelo");
+                    b.ToTable("Modelo", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Opcional", b =>
@@ -223,7 +223,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasKey("Id");
 
-                    b.ToTable("Opcional");
+                    b.ToTable("Opcional", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.TipoCombustivel", b =>
@@ -241,7 +241,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoCombustivel");
+                    b.ToTable("TipoCombustivel", (string)null);
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Versao", b =>
@@ -263,7 +263,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("ModeloId");
 
-                    b.ToTable("Versao");
+                    b.ToTable("Versao", (string)null);
                 });
 
             modelBuilder.Entity("AnuncioCaracteristica", b =>

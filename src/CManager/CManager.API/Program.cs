@@ -35,11 +35,11 @@ builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
 
 IoCExtensions.AddIoC(builder.Services, builder.Configuration);
 
-// builder.Services.AddStackExchangeRedisCache(redis => 
-// {
-//     redis.InstanceName = apiSettings.Cache.InstanceName;
-//     redis.Configuration = apiSettings.Cache.Configuration;
-// });
+builder.Services.AddStackExchangeRedisCache(redis => 
+{
+    redis.InstanceName = apiSettings.Cache.InstanceName;
+    redis.Configuration = apiSettings.Cache.Configuration;
+});
 
 builder.Services.AddControllers().AddJsonOptions(options => {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
