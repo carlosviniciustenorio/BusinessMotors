@@ -1,10 +1,7 @@
 using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Sentry;
 using Sentry.Extensions.Logging.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
