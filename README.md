@@ -15,3 +15,4 @@ These are all the technologies and patterns used to develop this application
 - Cache: Redis
 - ORM: Entity Framework
 - CI/CD: GitHub Actions
+- Observability: Sentry
