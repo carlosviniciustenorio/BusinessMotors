@@ -9,7 +9,6 @@ namespace CManager.Infrastructure.Extensions
         public static IServiceCollection AddIoC(this IServiceCollection services, IConfiguration configursation)
         {
             CacheExtensions.AddCacheDependency(services);
-            ServicesExtensions.RegisterDBServices(services, configursation);
             
             services.AddMediatR(Assembly.GetAssembly(typeof(AddCaracteristicaCommand.CaracteristicaCommand)));
 

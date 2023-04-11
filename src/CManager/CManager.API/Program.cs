@@ -1,10 +1,7 @@
 using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Sentry;
 using Sentry.Extensions.Logging.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
@@ -35,11 +32,11 @@ builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
 
 IoCExtensions.AddIoC(builder.Services, builder.Configuration);
 
-// builder.Services.AddStackExchangeRedisCache(redis => 
-// {
-//     redis.InstanceName = apiSettings.Cache.InstanceName;
-//     redis.Configuration = apiSettings.Cache.Configuration;
-// });
+builder.Services.AddStackExchangeRedisCache(redis => 
+{
+    redis.InstanceName = apiSettings.Cache.InstanceName;
+    redis.Configuration = apiSettings.Cache.Configuration;
+});
 
 builder.Services.AddControllers().AddJsonOptions(options => {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -48,7 +45,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
-builder.Services.RegisterDBServices(builder.Configuration);
 builder.Services.AddHealthChecks();
 builder.Services.AddTransient<ExceptionLoggingMiddleware>();
 
