@@ -7,6 +7,7 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
             entity.HasKey(d => d.Id);
             entity.Property(d => d.Placa).IsRequired();
             entity.Property(d => d.UsuarioId).IsRequired().HasMaxLength(100);
+            entity.Property(d => d.Preco).IsRequired().HasPrecision(18,2);
             entity.HasMany(d => d.Caracteristicas).WithMany();
             entity.HasMany(d => d.Opcionais).WithMany();
             entity.HasMany(d => d.TiposCombustiveis).WithMany();
@@ -19,6 +20,7 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
             entity.Navigation(n => n.TiposCombustiveis).AutoInclude();
             entity.Navigation(n => n.Modelo).AutoInclude();
             entity.Navigation(n => n.Versao).AutoInclude();
+            entity.Navigation(n => n.ImagensS3).AutoInclude();
         }
     }
 }

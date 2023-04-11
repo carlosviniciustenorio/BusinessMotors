@@ -32,3 +32,8 @@ variable "load_balancer_security_group_id" {
   type = string
   description = "Identity Load Balancer SG"
 }
+
+variable "environment" {
+  type = string
+  description = "Environment name"
+}

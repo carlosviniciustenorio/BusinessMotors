@@ -1,4 +1,3 @@
-using CManager.Application.Queries;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
 
@@ -76,7 +75,7 @@ namespace CManager.Application.Handlers
         #region GET
         public async Task<List<AnunciosResponse>> Handle(GetAnunciosQuery.Anuncios request, CancellationToken cancellationToken)
         {
-            var anuncios = await _anuncioRepository.GetAllAsync();
+            var anuncios = await _anuncioRepository.GetAllAsync(request.skip, request.take);
             List<AnunciosResponse> response = new();
 
             if(anuncios.Any())
@@ -90,7 +89,8 @@ namespace CManager.Application.Handlers
                     Preco = a.Preco,
                     UsuarioId = a.UsuarioId,
                     ExibirEmail = a.ExibirEmail,
-                    ExibirTelefone = a.ExibirTelefone
+                    ExibirTelefone = a.ExibirTelefone,
+                    Imagem = a.ImagensS3 != null && a.ImagensS3.Any() ? new ImagemResponse(a.ImagensS3.FirstOrDefault()) : null
                 }));
 
             return response;
@@ -117,8 +117,12 @@ namespace CManager.Application.Handlers
                                                 Preco = anuncio.Preco,
                                                 UsuarioId = anuncio.UsuarioId,
                                                 ExibirEmail = anuncio.ExibirEmail,
-                                                ExibirTelefone = anuncio.ExibirTelefone
+                                                ExibirTelefone = anuncio.ExibirTelefone,
+                                                Imagens = new List<ImagemResponse>()
                                             };
+
+            if(anuncio.ImagensS3 != null && anuncio.ImagensS3.Any())
+                anuncio.ImagensS3.ForEach(d => response.Imagens.Add(new ImagemResponse(d)));
 
             return response;
         }
