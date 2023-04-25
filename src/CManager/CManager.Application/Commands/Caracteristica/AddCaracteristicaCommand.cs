@@ -6,7 +6,7 @@ namespace CManager.Application.Commands
 
         public sealed class Validator : AbstractValidator<CaracteristicaCommand>
         {
-            public Validator()
+            public Validator()  
             {
                 RuleFor(c => c.descricao)
                     .NotEmpty().WithMessage("Descrição não pode ser vazio");

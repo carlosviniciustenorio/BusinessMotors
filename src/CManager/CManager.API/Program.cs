@@ -1,5 +1,6 @@
 using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Sentry.Extensions.Logging.Extensions.DependencyInjection;
@@ -32,7 +33,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 builder.Services.AddScoped<IIdentityService, IdentityService>();
 builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
 
-IoCExtensions.AddIoC(builder.Services, builder.Configuration);
+IoCExtensions.AddIoC(builder.Services);
 
 builder.Services.AddStackExchangeRedisCache(redis => 
 {
@@ -40,9 +41,10 @@ builder.Services.AddStackExchangeRedisCache(redis =>
     redis.Configuration = apiSettings.Cache.Configuration;
 });
 
-builder.Services.AddControllers().AddJsonOptions(options => {
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-});
+builder.Services.AddControllers()
+                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;})
+                .AddFluentValidation(options => { options.RegisterValidatorsFromAssemblyContaining<GetAnunciosQuery.Anuncios>();});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddSwaggerGen();

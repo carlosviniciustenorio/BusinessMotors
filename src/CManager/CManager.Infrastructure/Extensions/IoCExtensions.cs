@@ -1,12 +1,13 @@
 using System.Reflection;
 using CManager.Application.Commands;
+using CManager.Application.Queries;
 using MediatR;
 
 namespace CManager.Infrastructure.Extensions
 {
     public static class IoCExtensions
     {
-        public static IServiceCollection AddIoC(this IServiceCollection services, IConfiguration configursation)
+        public static IServiceCollection AddIoC(this IServiceCollection services)
         {
             CacheExtensions.AddCacheDependency(services);
             
