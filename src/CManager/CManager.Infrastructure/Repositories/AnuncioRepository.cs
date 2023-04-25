@@ -16,12 +16,15 @@ namespace CManager.Infrastructure.Repositories
                                                                         .Include(d => d.Modelo)
                                                                             .ThenInclude(d => d.Marca)
                                                                         .Include(d => d.Versao)
+                                                                        .Include(d => d.ImagensS3)
                                                                         .FirstOrDefaultAsync(d => d.Id == id);
         public async Task<List<Anuncio>> GetAllAsync(GetAnunciosQuery.Anuncios querie) => 
                                                     await _dbSet.IgnoreAutoIncludes()
                                                                 .Include(d => d.Modelo)
-                                                                .ThenInclude(d => d.Marca)
+                                                                    .ThenInclude(d => d.Marca)
                                                                 .Include(d => d.Versao)
+                                                                .Include(d => d.ImagensS3)
+                                                                .OrderByDescending(d => d.Modelo.AnoModelo)
                                                                 .Where(d => 
                                                                         (string.IsNullOrEmpty(querie.estado) || d.Estado.Equals(querie.estado)) && 
                                                                         (!querie.precoInicio.HasValue || d.Preco >= querie.precoInicio) &&
@@ -34,6 +37,8 @@ namespace CManager.Infrastructure.Repositories
                                                                         (!querie.idMarca.HasValue || d.Modelo.Marca.Id == querie.idMarca) &&
                                                                         (!querie.idVersao.HasValue || d.Modelo.Versoes.Any(d => d.Id == querie.idVersao))
                                                                       )
+                                                                .Skip(querie.skip)
+                                                                .Take(querie.take)
                                                                 .ToListAsync();
     }
 }

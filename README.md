@@ -4,10 +4,7 @@
 
 ## 📌 Overview
 It's a project with many technologies.
-Has a WebAPI to manager a church using the best principles of software development.
-
-## 📑 Demonstrations
-...
+Has a WebAPI to sale cars using the best principles of software development.
 
 ## 💻 Technologies
 These are all the technologies and patterns used to develop this application
@@ -18,8 +15,4 @@ These are all the technologies and patterns used to develop this application
 - Cache: Redis
 - ORM: Entity Framework
 - CI/CD: GitHub Actions
-
-## ⚙️ Executing the Project
-To execute the project, follow the steps below:
-
-...
+- Observability: Sentry
