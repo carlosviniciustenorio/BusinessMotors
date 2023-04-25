@@ -1,6 +1,5 @@
 using System.Reflection;
 using CManager.Application.Commands;
-using CManager.Application.Queries;
 using MediatR;
 
 namespace CManager.Infrastructure.Extensions
