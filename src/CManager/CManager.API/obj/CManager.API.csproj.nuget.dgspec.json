@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj": {}
+    "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj": {}
   },
   "projects": {
-    "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
         "projectName": "CManager.API",
-        "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj"
               },
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
               }
             }
           }
@@ -54,6 +54,10 @@
             "AWSSDK.Core": {
               "target": "Package",
               "version": "[3.7.105.18, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
             },
             "MediatR": {
               "target": "Package",
@@ -125,14 +129,14 @@
         }
       }
     },
-    "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
         "projectName": "CManager.Application",
-        "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Application\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -153,11 +157,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
               },
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
               }
             }
           }
@@ -213,14 +217,14 @@
         }
       }
     },
-    "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
         "projectName": "CManager.Domain",
-        "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -272,14 +276,14 @@
         }
       }
     },
-    "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
         "projectName": "CManager.Infrastructure",
-        "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Infrastructure\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -300,14 +304,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj"
               },
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
               },
-              "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
-                "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
               }
             }
           }
@@ -403,14 +407,14 @@
         }
       }
     },
-    "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
         "projectName": "CManager.Integration",
-        "projectPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\cmanager\\cmanager\\src\\cmanager\\CManager.Integration\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

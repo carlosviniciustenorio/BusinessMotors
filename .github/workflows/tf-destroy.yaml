@@ -1,4 +1,4 @@
-name: Destroy terraform resources on the given folder
+name: Destroy infra-2, infra-1
 
 on:
   workflow_dispatch:

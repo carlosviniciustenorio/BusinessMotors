@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fx/W8cDPa+bJXoOjP8QL2jEiPO4QjbNq8L40ZW8ME8NZLs0XIlaMHYMayN3hi8fmZbZmS/ux3tQE2vlT0Bwx/w==",
+  "dgSpecHash": "9hVA9BIa+FSuOrVzSbqgkqwWMK11CfdnwE5olaiIC+gpZJmr18t0Mlk5jdBFMc+12LPbDJkW572e1ccigl/90A==",
   "success": true,
-  "projectFilePath": "C:\\cmanager\\cmanager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.core\\0.29.0\\amazon.core.0.29.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.s3\\0.29.0\\amazon.s3.0.29.0.nupkg.sha512",
@@ -12,6 +12,8 @@
     "C:\\Users\\carlo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\carbon.storage\\3.13.0\\carbon.storage.3.13.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

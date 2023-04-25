@@ -1,4 +1,4 @@
-name: Apply terraform resources on folder src with dev config
+name: Apply Terraform Plan - SRC/Infra-1/Infra-2/GitHub
 
 on:
   push:
@@ -89,7 +89,7 @@ jobs:
 
   apply-infra2-dev:
     needs: build-image
-    name: 'terraform infra-2 apply dev'
+    name: 'terraform infra-2 plan and apply dev'
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra-2'
