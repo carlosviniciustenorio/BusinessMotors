@@ -45,8 +45,15 @@ namespace CManager.Application.Handlers
             List<Imagem> imagens = new List<Imagem>();
             foreach (var item in request.files)
             {
-                var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
-                imagens.Add(new Imagem(imagem));
+                try
+                {
+                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                    imagens.Add(new Imagem(imagem));
+                }
+                catch (System.Exception ex)
+                {
+                    throw ex;
+                }
             }
 
             Anuncio anuncio = new(request.placa,
@@ -76,7 +83,8 @@ namespace CManager.Application.Handlers
         #region GET
         public async Task<List<AnunciosResponse>> Handle(GetAnunciosQuery.Anuncios request, CancellationToken cancellationToken)
         {
-            var anuncios = await _anuncioRepository.GetAllAsync();
+            var anuncios = await _anuncioRepository.GetAllAsync(request);
+
             List<AnunciosResponse> response = new();
 
             if(anuncios.Any())
@@ -133,8 +141,7 @@ namespace CManager.Application.Handlers
             {
                 foreach (var item in request.idOpcionais)
                 {
-                    var opcional = await _opcionalRepository.GetByIdAsync(item);
-                    opcionais.Add(opcional);
+                    opcionais.Add(await _opcionalRepository.GetByIdAsync(item) ?? throw new InvalidOperationException($"Opcional informado não localizado, id: {item}"));
                 }
             }
 
@@ -148,8 +155,7 @@ namespace CManager.Application.Handlers
             {
                 foreach (var item in request.idCaracteristicas)
                 {
-                    var caracteristica = await _caracteristicaRepository.GetByIdAsync(item);
-                    caracteristicas.Add(caracteristica);
+                    caracteristicas.Add(await _caracteristicaRepository.GetByIdAsync(item) ?? throw new InvalidOperationException($"Característica informada não localizada, id: {item}"));
                 }
             }
 
@@ -163,8 +169,7 @@ namespace CManager.Application.Handlers
             {
                 foreach (var item in request.idTiposCombustiveis)
                 {
-                    var tipoCombustivel = await _tipoCombustivelRepository.GetByIdAsync(item);
-                    tiposCombustieis.Add(tipoCombustivel);
+                    tiposCombustieis.Add(await _tipoCombustivelRepository.GetByIdAsync(item) ?? throw new InvalidOperationException($"Tipo combustível informado não localizado, id: {item}"));
                 }
             }
 

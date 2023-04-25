@@ -13,9 +13,11 @@ builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSet
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<ApiSettings>>().Value);
 builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<JwtOptions>>().Value);
+
 var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
+
 Console.WriteLine($"apiSettings na Program: {JsonConvert.SerializeObject(apiSettings)}");
 Console.WriteLine($"jwtOptions na Program: {JsonConvert.SerializeObject(jwtOptions)}");
 

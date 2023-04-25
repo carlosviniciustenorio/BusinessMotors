@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {}
+    "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {}
   },
   "projects": {
-    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+    "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
         "projectName": "CManager.Integration",
-        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
