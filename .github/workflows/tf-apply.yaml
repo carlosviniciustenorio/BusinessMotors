@@ -1,4 +1,4 @@
-name: Apply Terraform Plan - SRC/Infra-1/Infra-2/GitHub
+name: Apply Terraform - main - master
 
 on:
   push:
