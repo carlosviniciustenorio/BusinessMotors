@@ -1,4 +1,4 @@
-name: Apply Terraform - Infra-DB - main-db
+name: Apply  Terraform - Infra-DB - main-db
 
 on:
   push:
