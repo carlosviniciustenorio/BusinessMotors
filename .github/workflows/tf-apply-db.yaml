@@ -13,7 +13,6 @@ env:
  
 jobs:
   apply:
-    needs: build-image
     name: 'terraform infra-db plan and apply dev'
     runs-on: ubuntu-latest
     env:
