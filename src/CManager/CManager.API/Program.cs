@@ -2,7 +2,6 @@ using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
 using Sentry.Extensions.Logging.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
@@ -19,11 +18,12 @@ var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
-Console.WriteLine($"apiSettings na Program: {JsonConvert.SerializeObject(apiSettings)}");
-Console.WriteLine($"jwtOptions na Program: {JsonConvert.SerializeObject(jwtOptions)}");
+var connectionString = builder.Configuration.GetSection("ConnectionString").Value;
+builder.Services.AddDbContext<IdentityDBContext>(options =>
+        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-builder.Services.AddDbContext<IdentityDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
-builder.Services.AddDbContext<CManagerDBContext>(options => options.UseSqlServer(builder.Configuration.GetSection("ConnectionString").Value));
+builder.Services.AddDbContext<CManagerDBContext>(options =>
+        options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
