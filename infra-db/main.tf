@@ -29,6 +29,6 @@ resource "aws_db_instance" "database" {
   instance_class       = "db.t2.micro"
   name                 = "cmanager"
   username             = "cmanagerapplication"
-  password             = "C@rlos2626"
+  password             = "Carlos2626"
   parameter_group_name = "default.mysql5.7"
 }
