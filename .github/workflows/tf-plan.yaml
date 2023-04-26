@@ -1,4 +1,4 @@
-name: Terraform Plan - SRC/Infra-1/Infra-2/GitHub
+name: Terraform Plan
 
 on:
   pull_request:
