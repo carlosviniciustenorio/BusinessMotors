@@ -1,4 +1,4 @@
-name: Apply Terraform Plan - SRC/Infra-1/Infra-2/GitHub
+name: Apply Terraform - Infra-DB - main-db
 
 on:
   push:
@@ -10,11 +10,9 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: ct_tech_repo   
- 
+  
 jobs:
   apply:
-    needs: build-image
     name: 'terraform infra-db plan and apply dev'
     runs-on: ubuntu-latest
     env:
