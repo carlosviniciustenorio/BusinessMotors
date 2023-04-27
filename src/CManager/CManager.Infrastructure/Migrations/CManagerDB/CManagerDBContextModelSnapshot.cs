@@ -3,7 +3,6 @@ using System;
 using CManager.Infrastructure.Context.CManager;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -17,15 +16,13 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("AnuncioCaracteristica", b =>
                 {
                     b.Property<Guid>("AnuncioId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("CaracteristicasId")
                         .HasColumnType("int");
@@ -34,13 +31,13 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("CaracteristicasId");
 
-                    b.ToTable("AnuncioCaracteristica", (string)null);
+                    b.ToTable("AnuncioCaracteristica");
                 });
 
             modelBuilder.Entity("AnuncioOpcional", b =>
                 {
                     b.Property<Guid>("AnuncioId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("OpcionaisId")
                         .HasColumnType("int");
@@ -49,13 +46,13 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("OpcionaisId");
 
-                    b.ToTable("AnuncioOpcional", (string)null);
+                    b.ToTable("AnuncioOpcional");
                 });
 
             modelBuilder.Entity("AnuncioTipoCombustivel", b =>
                 {
                     b.Property<Guid>("AnuncioId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("TiposCombustiveisId")
                         .HasColumnType("int");
@@ -64,14 +61,14 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("TiposCombustiveisId");
 
-                    b.ToTable("AnuncioTipoCombustivel", (string)null);
+                    b.ToTable("AnuncioTipoCombustivel");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Anuncio", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<int>("Cambio")
                         .HasColumnType("int");
@@ -81,35 +78,36 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("ExibirEmail")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("ExibirTelefone")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Km")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("ModeloId")
                         .HasColumnType("int");
 
                     b.Property<string>("Placa")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Portas")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Preco")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UsuarioId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("VersaoId")
                         .HasColumnType("int");
@@ -120,7 +118,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("VersaoId");
 
-                    b.ToTable("Anuncio", (string)null);
+                    b.ToTable("Anuncio");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Caracteristica", b =>
@@ -129,16 +127,14 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Caracteristica", (string)null);
+                    b.ToTable("Caracteristica");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Imagem", b =>
@@ -147,20 +143,18 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<Guid?>("AnuncioId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("UrlS3")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AnuncioId");
 
-                    b.ToTable("Imagem", (string)null);
+                    b.ToTable("Imagem");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Marca", b =>
@@ -169,15 +163,13 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Marca", (string)null);
+                    b.ToTable("Marca");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Modelo", b =>
@@ -185,8 +177,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AnoFabricacao")
                         .HasColumnType("int");
@@ -196,7 +186,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("MarcaId")
                         .HasColumnType("int");
@@ -205,7 +195,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("MarcaId");
 
-                    b.ToTable("Modelo", (string)null);
+                    b.ToTable("Modelo");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Opcional", b =>
@@ -214,16 +204,14 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Opcional", (string)null);
+                    b.ToTable("Opcional");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.TipoCombustivel", b =>
@@ -232,16 +220,14 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoCombustivel", (string)null);
+                    b.ToTable("TipoCombustivel");
                 });
 
             modelBuilder.Entity("CManager.Domain.Models.Versao", b =>
@@ -250,11 +236,9 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("ModeloId")
                         .HasColumnType("int");
@@ -263,7 +247,7 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
 
                     b.HasIndex("ModeloId");
 
-                    b.ToTable("Versao", (string)null);
+                    b.ToTable("Versao");
                 });
 
             modelBuilder.Entity("AnuncioCaracteristica", b =>
