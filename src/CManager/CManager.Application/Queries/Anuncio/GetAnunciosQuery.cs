@@ -10,7 +10,7 @@ namespace CManager.Application.Queries
         {
             public Validator()
             {
-                RuleFor(d => d.take).NotNull().NotEmpty().GreaterThanOrEqualTo(1).WithMessage("Take deve ser maior ou igual a 1");
+                RuleFor(d => d.take).NotNull().NotEmpty().GreaterThanOrEqualTo(1).LessThanOrEqualTo(10).WithMessage("Take deve ser maior ou igual a 1 e menor ou igual a 10");
                 
                 When(x => x.precoInicio.HasValue && x.precoFim.HasValue, () => {
                     RuleFor(x => x.precoInicio).NotNull().LessThanOrEqualTo(x => x.precoFim).WithMessage("precoInicio deve ser menor ou igual ao precoFim");
