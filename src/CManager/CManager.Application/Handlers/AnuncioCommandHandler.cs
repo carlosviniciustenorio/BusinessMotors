@@ -99,7 +99,7 @@ namespace CManager.Application.Handlers
                     UsuarioId = a.UsuarioId,
                     ExibirEmail = a.ExibirEmail,
                     ExibirTelefone = a.ExibirTelefone,
-                    Imagem = a.ImagensS3 != null && a.ImagensS3.Any() ? new ImagemResponse(a.ImagensS3.FirstOrDefault()) : null
+                    Imagem = new ImagemResponse(a.ImagensS3.First())
                 }));
 
             return response;
