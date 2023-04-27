@@ -1,4 +1,4 @@
-bucket         = "infra-ecr-ct"
+bucket         = "infra-ecr"
 key            = "CManager/local/terraform.tfstate"
 region         = "us-east-1"
 profile        = "default"
