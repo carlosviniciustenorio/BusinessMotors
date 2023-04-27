@@ -47,7 +47,7 @@ namespace CManager.Application.Handlers
             {
                 try
                 {
-                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                    var imagem = await S3Service.UploadImage(item, "salescarct", "us-east-1");
                     imagens.Add(new Imagem(imagem));
                 }
                 catch (System.Exception ex)
