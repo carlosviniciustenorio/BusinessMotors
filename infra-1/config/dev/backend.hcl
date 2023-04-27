@@ -1,4 +1,4 @@
-bucket         = "infra1-ct"
+bucket         = "infra-ecr-ct"
 key            = "CManager/dev/terraform.tfstate"
 region         = "us-east-1"
 dynamodb_table = "infra1-ct-tfstate"
