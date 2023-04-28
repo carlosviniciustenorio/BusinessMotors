@@ -24,7 +24,7 @@
           "lib/net7.0/Amazon.S3.dll": {}
         }
       },
-      "AWSSDK.Core/3.7.105.18": {
+      "AWSSDK.Core/3.7.106.28": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.1/AWSSDK.Core.dll": {
@@ -2966,6 +2966,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "AWSSDK.Core": "3.7.106.28",
           "AWSSDK.S3": "3.7.103.26",
           "Amazon.S3": "0.29.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
@@ -3005,15 +3006,15 @@
         "lib/net7.0/Amazon.S3.dll"
       ]
     },
-    "AWSSDK.Core/3.7.105.18": {
-      "sha512": "RitnqWZ7PWW29emAGHcXNpMnNQaqtamBnPgDeiomp0ORJ2cSTSPxlAoYhM4ahTM6Z/CPGA2fph7EOT20pTqrzA==",
+    "AWSSDK.Core/3.7.106.28": {
+      "sha512": "XQzrj6CcdJodjsIy4a/U1cLdrS97ekL33b+C3KRAWPYpe9J8ELLXSuVTyYk/wphJ2fk+rjoE0e5RIOsXvrLmog==",
       "type": "package",
-      "path": "awssdk.core/3.7.105.18",
+      "path": "awssdk.core/3.7.106.28",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.7.105.18.nupkg.sha512",
+        "awssdk.core.3.7.106.28.nupkg.sha512",
         "awssdk.core.nuspec",
         "lib/net35/AWSSDK.Core.dll",
         "lib/net35/AWSSDK.Core.pdb",
@@ -8590,7 +8591,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "AWSSDK.Core >= 3.7.105.18",
+      "AWSSDK.Core >= 3.7.106.28",
       "CManager.Infrastructure >= 1.0.0",
       "CManager.Integration >= 1.0.0",
       "FluentValidation.AspNetCore >= 11.3.0",
@@ -8660,7 +8661,7 @@
         "dependencies": {
           "AWSSDK.Core": {
             "target": "Package",
-            "version": "[3.7.105.18, )"
+            "version": "[3.7.106.28, )"
           },
           "FluentValidation.AspNetCore": {
             "target": "Package",
