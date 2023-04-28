@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "57t0CY4e5aQ4vuwTE0kz09YSz0B/csAM7YUTZZaWFgblLO/W3AkJFYBrxt+t0vqtz+0ds5XrCz5f/HHKUAVnVA==",
+  "dgSpecHash": "Su2+xRdPygvMkKUzq1ndFIN8E4xj4x8iS1pjPIppgLmV4wh2qfAXqjxTLnlLDy16D/al3nV1CCkKDL3ie4OTlw==",
   "success": true,
   "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.core\\0.29.0\\amazon.core.0.29.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.s3\\0.29.0\\amazon.s3.0.29.0.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\awssdk.core\\3.7.105.18\\awssdk.core.3.7.105.18.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\awssdk.core\\3.7.106.28\\awssdk.core.3.7.106.28.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\awssdk.s3\\3.7.103.26\\awssdk.s3.3.7.103.26.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\carbon.storage\\3.13.0\\carbon.storage.3.13.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
