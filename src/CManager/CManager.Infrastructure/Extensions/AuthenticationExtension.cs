@@ -45,22 +45,22 @@ namespace CManager.Infrastructure.Extensions
                 ClockSkew = TimeSpan.Zero
             };
 
-            var tokenValidationParametersGoogle = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidIssuer = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Issuer)}").Value,
+            // var tokenValidationParametersGoogle = new TokenValidationParameters
+            // {
+            //     ValidateIssuer = true,
+            //     ValidIssuer = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Issuer)}").Value,
 
-                ValidateAudience = true,
-                ValidAudience = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Audience)}").Value,
+            //     ValidateAudience = true,
+            //     ValidAudience = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Audience)}").Value,
 
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = securityKey,
+            //     ValidateIssuerSigningKey = true,
+            //     IssuerSigningKey = securityKey,
 
-                RequireExpirationTime = true,
-                ValidateLifetime = true,
+            //     RequireExpirationTime = true,
+            //     ValidateLifetime = true,
 
-                ClockSkew = TimeSpan.Zero
-            };
+            //     ClockSkew = TimeSpan.Zero
+            // };
 
             services.AddAuthentication(options =>
             {
