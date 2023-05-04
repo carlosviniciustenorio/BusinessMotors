@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[11.3.0, )"
             },
+            "Kralizek.Extensions.Configuration.AWSSecretsManager": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[11.1.0, )"
