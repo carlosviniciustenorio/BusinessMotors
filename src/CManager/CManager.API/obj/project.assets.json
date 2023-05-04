@@ -53,6 +53,22 @@
           }
         }
       },
+      "AWSSDK.SecretsManager/3.3.103": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.107.23, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.SecretsManager.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.SecretsManager.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Carbon.Storage/3.13.0": {
         "type": "package",
         "compile": {
@@ -122,6 +138,24 @@
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
             "related": ".xml"
+          }
+        }
+      },
+      "Kralizek.Extensions.Configuration.AWSSecretsManager/1.7.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.SecretsManager": "3.3.103",
+          "Microsoft.Extensions.Configuration": "2.0.1",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Kralizek.Extensions.Configuration.AWSSecretsManager.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Kralizek.Extensions.Configuration.AWSSecretsManager.dll": {
+            "related": ".pdb"
           }
         }
       },
@@ -3058,6 +3092,46 @@
         "tools/uninstall.ps1"
       ]
     },
+    "AWSSDK.SecretsManager/3.3.103": {
+      "sha512": "C1QLLawbAJuOBTiDhTDteJ4ox7zAg/n2UmKBj2+I83Zy/k/9CxFUeRplML/FqUXQPqIsN7om9VCWbFd/A3sLVw==",
+      "type": "package",
+      "path": "awssdk.secretsmanager/3.3.103",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.SecretsManager.CodeAnalysis.dll",
+        "awssdk.secretsmanager.3.3.103.nupkg.sha512",
+        "awssdk.secretsmanager.nuspec",
+        "lib/MonoAndroid10/AWSSDK.SecretsManager.XML",
+        "lib/MonoAndroid10/AWSSDK.SecretsManager.dll",
+        "lib/MonoTouch10/AWSSDK.SecretsManager.XML",
+        "lib/MonoTouch10/AWSSDK.SecretsManager.dll",
+        "lib/MonoTouch10/AWSSDK.SecretsManager.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.SecretsManager.XML",
+        "lib/Xamarin.iOS10/AWSSDK.SecretsManager.dll",
+        "lib/net35/AWSSDK.SecretsManager.dll",
+        "lib/net35/AWSSDK.SecretsManager.pdb",
+        "lib/net35/AWSSDK.SecretsManager.xml",
+        "lib/net45/AWSSDK.SecretsManager.dll",
+        "lib/net45/AWSSDK.SecretsManager.pdb",
+        "lib/net45/AWSSDK.SecretsManager.xml",
+        "lib/netstandard1.3/AWSSDK.SecretsManager.dll",
+        "lib/netstandard1.3/AWSSDK.SecretsManager.pdb",
+        "lib/netstandard1.3/AWSSDK.SecretsManager.xml",
+        "lib/netstandard2.0/AWSSDK.SecretsManager.dll",
+        "lib/netstandard2.0/AWSSDK.SecretsManager.pdb",
+        "lib/netstandard2.0/AWSSDK.SecretsManager.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SecretsManager.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SecretsManager.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.SecretsManager.pdb",
+        "lib/uap/AWSSDK.SecretsManager.XML",
+        "lib/uap/AWSSDK.SecretsManager.dll",
+        "lib/uap/AWSSDK.SecretsManager.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Carbon.Storage/3.13.0": {
       "sha512": "1ibkFBTFzkRXbklVRO8Uf1MtRkxcW+gG1XY7Yb0EXE9HZG5Ri0JzkV19BvLbr4a25sgPQ8CgZhNXT98yc/+YOA==",
       "type": "package",
@@ -3145,6 +3219,19 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Kralizek.Extensions.Configuration.AWSSecretsManager/1.7.0": {
+      "sha512": "orZ2JIhTq0oarR4zLw8uRkhG3840DAIS1yY/b6BIwx9XjvN91FI/ZRGlR1Tk6uvDvJnfcs/G1i0Y7bcD7u7RSw==",
+      "type": "package",
+      "path": "kralizek.extensions.configuration.awssecretsmanager/1.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "kralizek.extensions.configuration.awssecretsmanager.1.7.0.nupkg.sha512",
+        "kralizek.extensions.configuration.awssecretsmanager.nuspec",
+        "lib/netstandard2.0/Kralizek.Extensions.Configuration.AWSSecretsManager.dll",
+        "lib/netstandard2.0/Kralizek.Extensions.Configuration.AWSSecretsManager.pdb"
       ]
     },
     "MediatR/11.1.0": {
@@ -8595,6 +8682,7 @@
       "CManager.Infrastructure >= 1.0.0",
       "CManager.Integration >= 1.0.0",
       "FluentValidation.AspNetCore >= 11.3.0",
+      "Kralizek.Extensions.Configuration.AWSSecretsManager >= 1.7.0",
       "MediatR >= 11.1.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
       "Microsoft.Extensions.Caching.StackExchangeRedis >= 7.0.3",
@@ -8667,6 +8755,10 @@
             "target": "Package",
             "version": "[11.3.0, )"
           },
+          "Kralizek.Extensions.Configuration.AWSSecretsManager": {
+            "target": "Package",
+            "version": "[1.7.0, )"
+          },
           "MediatR": {
             "target": "Package",
             "version": "[11.1.0, )"
@@ -8736,5 +8828,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Versão detectada do pacote fora da restrição de dependência: AWSSDK.SecretsManager 3.3.103 requer AWSSDK.Core (>= 3.3.107.23 && < 3.4.0), mas a versão AWSSDK.Core 3.7.106.28 foi resolvida.",
+      "libraryId": "AWSSDK.Core",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

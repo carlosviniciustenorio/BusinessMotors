@@ -25,6 +25,7 @@
     <PkgSentry Condition=" '$(PkgSentry)' == '' ">C:\Users\carlo\.nuget\packages\sentry\3.29.1</PkgSentry>
     <PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets Condition=" '$(PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets)' == '' ">C:\Users\carlo\.nuget\packages\microsoft.visualstudio.azure.containers.tools.targets\1.17.0</PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets>
     <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\carlo\.nuget\packages\awssdk.core\3.7.106.28</PkgAWSSDK_Core>
+    <PkgAWSSDK_SecretsManager Condition=" '$(PkgAWSSDK_SecretsManager)' == '' ">C:\Users\carlo\.nuget\packages\awssdk.secretsmanager\3.3.103</PkgAWSSDK_SecretsManager>
     <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">C:\Users\carlo\.nuget\packages\awssdk.s3\3.7.103.26</PkgAWSSDK_S3>
   </PropertyGroup>
 </Project>

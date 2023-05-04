@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Su2+xRdPygvMkKUzq1ndFIN8E4xj4x8iS1pjPIppgLmV4wh2qfAXqjxTLnlLDy16D/al3nV1CCkKDL3ie4OTlw==",
+  "dgSpecHash": "6HJ99DBs082JFhAe8ViUJVvKA5Rz1f09WToGUc3GaxBK7HtdXQRKgrKZSucOi/k67mGz41RIFP7YNtx7nrI1Mw==",
   "success": true,
   "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
   "expectedPackageFiles": [
@@ -8,11 +8,13 @@
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.s3\\0.29.0\\amazon.s3.0.29.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\awssdk.core\\3.7.106.28\\awssdk.core.3.7.106.28.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\awssdk.s3\\3.7.103.26\\awssdk.s3.3.7.103.26.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\awssdk.secretsmanager\\3.3.103\\awssdk.secretsmanager.3.3.103.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\carbon.storage\\3.13.0\\carbon.storage.3.13.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\kralizek.extensions.configuration.awssecretsmanager\\1.7.0\\kralizek.extensions.configuration.awssecretsmanager.1.7.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
@@ -175,5 +177,16 @@
     "C:\\Users\\carlo\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Versão detectada do pacote fora da restrição de dependência: AWSSDK.SecretsManager 3.3.103 requer AWSSDK.Core (>= 3.3.107.23 && < 3.4.0), mas a versão AWSSDK.Core 3.7.106.28 foi resolvida.",
+      "libraryId": "AWSSDK.Core",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
