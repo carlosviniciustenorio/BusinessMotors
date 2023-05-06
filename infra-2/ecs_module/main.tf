@@ -73,8 +73,8 @@ resource "aws_ecs_task_definition" "cmanager_task" {
   network_mode             = "awsvpc"   
   memory                   = 512        
   cpu                      = 256        
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-  task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
+  execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
+  task_role_arn            = aws_iam_role.ecsTaskExecutionRole.arn
 }
 
 resource "aws_ecs_service" "cmanager_ecs_service" {
