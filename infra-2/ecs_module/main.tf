@@ -2,6 +2,48 @@ resource "aws_ecs_cluster" "ecs_fargate_cluster_ct" {
   name = var.ecs_cluster
 }
 
+resource "aws_iam_policy" "secrets_manager_policy" {
+  name = "secrets_manager_policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid = "AllowSecretsManagerAccess"
+        Effect = "Allow"
+        Action = [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+
+resource "aws_iam_role" "ecsTaskExecutionRole" {
+  name               = "ecsTaskExecutionRole"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+
+resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
+  role       = aws_iam_role.ecsTaskExecutionRole.name
+  policy_arn = aws_iam_role.ecsTaskExecutionRole.arn
+}
+
 resource "aws_ecs_task_definition" "cmanager_task" {
   family                   = "cmanager-task" # Naming our first task
   container_definitions    = <<DEFINITION
@@ -31,28 +73,8 @@ resource "aws_ecs_task_definition" "cmanager_task" {
   network_mode             = "awsvpc"   
   memory                   = 512        
   cpu                      = 256        
-  execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
-}
-
-resource "aws_iam_role" "ecsTaskExecutionRole" {
-  name               = "ecsTaskExecutionRole"
-  assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
-}
-
-data "aws_iam_policy_document" "assume_role_policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["ecs-tasks.amazonaws.com"]
-    }
-  }
-}
-
-resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
-  role       = "${aws_iam_role.ecsTaskExecutionRole.name}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
 }
 
 resource "aws_ecs_service" "cmanager_ecs_service" {

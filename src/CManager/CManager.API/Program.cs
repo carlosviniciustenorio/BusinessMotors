@@ -1,15 +1,18 @@
+using Amazon.Runtime;
 using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Sentry.Extensions.Logging.Extensions.DependencyInjection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 builder.Configuration.AddEnvironmentVariables();
 
-builder.Configuration.AddSecretsManager(region: Amazon.RegionEndpoint.USEast1, configurator: options => {
+var credentials = new BasicAWSCredentials("AKIAXZ75UTGUTYWAYWYM", "O2Ocn6MxMx2jLb0SkIJt0u+3wo9N+ovbzh5p6crR");
+builder.Configuration.AddSecretsManager(credentials: credentials, region: Amazon.RegionEndpoint.USEast1, configurator: options => {
     options.PollingInterval = TimeSpan.FromMinutes(5);
 });
 
@@ -21,6 +24,7 @@ builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<JwtOptions>>().Val
 var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
+Console.WriteLine($"{JsonSerializer.Serialize(apiSettings)}");
 
 var connectionString = apiSettings?.ConnectionStringDB;
 builder.Services.AddDbContext<IdentityDBContext>(options =>
