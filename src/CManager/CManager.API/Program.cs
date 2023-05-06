@@ -1,3 +1,4 @@
+using Amazon.Runtime;
 using CManager.API.Middlewares;
 using CManager.Infrastructure.Services;
 using FluentValidation.AspNetCore;
@@ -10,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 builder.Configuration.AddEnvironmentVariables();
 
-builder.Configuration.AddSecretsManager(region: Amazon.RegionEndpoint.USEast1, configurator: options => {
+var credentials = new BasicAWSCredentials("AKIAXZ75UTGUTYWAYWYM", "O2Ocn6MxMx2jLb0SkIJt0u+3wo9N+ovbzh5p6crR");
+builder.Configuration.AddSecretsManager(credentials: credentials, region: Amazon.RegionEndpoint.USEast1, configurator: options => {
     options.PollingInterval = TimeSpan.FromMinutes(5);
 });
 
