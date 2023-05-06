@@ -3,6 +3,7 @@ using CManager.Infrastructure.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Sentry.Extensions.Logging.Extensions.DependencyInjection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<JwtOptions>>().Val
 var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
+Console.WriteLine($"{JsonSerializer.Serialize(apiSettings)}");
 
 var connectionString = apiSettings?.ConnectionStringDB;
 builder.Services.AddDbContext<IdentityDBContext>(options =>
