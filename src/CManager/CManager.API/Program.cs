@@ -11,9 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 builder.Configuration.AddEnvironmentVariables();
 
-var credentials = new BasicAWSCredentials("AKIAXZ75UTGUTYWAYWYM", "O2Ocn6MxMx2jLb0SkIJt0u+3wo9N+ovbzh5p6crR");
-builder.Configuration.AddSecretsManager(credentials: credentials, region: Amazon.RegionEndpoint.USEast1, configurator: options => {
-    options.PollingInterval = TimeSpan.FromMinutes(5);
+builder.Configuration.AddSecretsManager(
+    region: Amazon.RegionEndpoint.USEast1, 
+    configurator: options => {
+        options.PollingInterval = TimeSpan.FromMinutes(5);
 });
 
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
