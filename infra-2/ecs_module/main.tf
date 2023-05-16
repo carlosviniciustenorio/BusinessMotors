@@ -18,19 +18,34 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
   })
 }
 
-resource "aws_iam_policy" "policy_with_secretsmanager" {
+resource "aws_iam_policy" "policies" {
   name        = "example-rds-fargate-policy"
   description = "Policy to allow RDS Fargate to access Secrets Manager"
 
   policy = jsonencode({
-    Version = "2012-10-17"
+    Version   = "2012-10-17"
     Statement = [
       {
-        Sid = "AllowSecretsManagerAccess"
-        Effect = "Allow"
-        Action = [
+        Sid     = "AllowSecretsManagerAccess"
+        Effect  = "Allow"
+        Action  = [
           "secretsmanager:GetSecretValue",
           "secretsmanager:DescribeSecret"
+        ]
+        Resource = "*"
+      },
+      {
+        Sid     = "AllowECRAccess"
+        Effect  = "Allow"
+        Action  = [
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:GetRepositoryPolicy",
+          "ecr:DescribeRepositories",
+          "ecr:ListImages",
+          "ecr:DescribeImages",
+          "ecr:BatchGetImage"
         ]
         Resource = "*"
       }
@@ -40,7 +55,7 @@ resource "aws_iam_policy" "policy_with_secretsmanager" {
 
 resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
   role       = aws_iam_role.ecsTaskExecutionRole.name
-  policy_arn = aws_iam_policy.policy_with_secretsmanager.arn
+  policy_arn = aws_iam_policy.policies.arn
 }
 
 resource "aws_ecs_task_definition" "cmanager_task" {
