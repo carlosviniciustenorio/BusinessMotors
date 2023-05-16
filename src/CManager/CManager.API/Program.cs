@@ -11,13 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 builder.Configuration.AddEnvironmentVariables();
 
+builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
 builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
     configurator: options => {
         options.PollingInterval = TimeSpan.FromMinutes(5);
 });
 
-builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<ApiSettings>>().Value);
