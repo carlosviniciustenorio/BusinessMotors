@@ -2,46 +2,49 @@ resource "aws_ecs_cluster" "ecs_fargate_cluster_ct" {
   name = var.ecs_cluster
 }
 
-resource "aws_iam_policy" "secrets_manager_policy" {
-  name = "secrets_manager_policy"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid = "AllowSecretsManagerAccess"
-        Effect = "Allow"
-        Action = [
-          "secretsmanager:GetSecretValue",
-          "secretsmanager:DescribeSecret"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
-}
-
-
 resource "aws_iam_role" "ecsTaskExecutionRole" {
   name               = "ecsTaskExecutionRole"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "ecs-tasks.amazonaws.com"
-        }
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "rds.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
 }
 
+resource "aws_iam_policy" "policy_with_secretsmanager" {
+  name        = "example-rds-fargate-policy"
+  description = "Policy to allow RDS Fargate to access Secrets Manager"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowSecretsManagerAccess",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
 
 resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
   role       = aws_iam_role.ecsTaskExecutionRole.name
-  policy_arn = aws_iam_role.ecsTaskExecutionRole.arn
+  policy_arn = aws_iam_policy.policy_with_secretsmanager.arn
 }
 
 resource "aws_ecs_task_definition" "cmanager_task" {
@@ -73,8 +76,7 @@ resource "aws_ecs_task_definition" "cmanager_task" {
   network_mode             = "awsvpc"   
   memory                   = 512        
   cpu                      = 256        
-  execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
-  task_role_arn            = aws_iam_role.ecsTaskExecutionRole.arn
+  execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
 }
 
 resource "aws_ecs_service" "cmanager_ecs_service" {
