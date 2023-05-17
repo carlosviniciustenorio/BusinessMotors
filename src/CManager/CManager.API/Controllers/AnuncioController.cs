@@ -1,3 +1,5 @@
+using Sentry;
+
 namespace CManager.API.Controllers
 {
     [ApiController]
@@ -6,10 +8,12 @@ namespace CManager.API.Controllers
     public class AnuncioController : ControllerBase
     {
         private readonly IMediator _mediatr;
+        private readonly ISentryClient _sentryClient;
 
-        public AnuncioController(IMediator mediatr)
+        public AnuncioController(IMediator mediatr, ISentryClient sentryClient)
         {
             _mediatr = mediatr;
+            _sentryClient = sentryClient;
         }
 
         [HttpPost("create")]

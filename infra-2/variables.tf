@@ -13,13 +13,13 @@ variable "aws_profile" {
 variable "environment" {
   type        = string
   description = "The environment to deploy to"
-  default     = "development"
+  default     = "dev"
 }
 
 variable "project" {
   type        = string
   description = "Project Tag"
-  default     = "development"
+  default     = "CarSales"
 }
 
 variable "owner" {

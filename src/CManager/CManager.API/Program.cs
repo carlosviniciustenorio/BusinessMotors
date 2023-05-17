@@ -9,14 +9,16 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
-builder.Configuration.AddEnvironmentVariables();
 
-builder.Logging.AddSentry(builder.Configuration["Sentry:Dsn"]);
-builder.Configuration.AddSecretsManager(
+builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
+
+if(env.EnvironmentName != Environments.Development){
+    builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
     configurator: options => {
         options.PollingInterval = TimeSpan.FromMinutes(5);
-});
+    });
+}
 
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
