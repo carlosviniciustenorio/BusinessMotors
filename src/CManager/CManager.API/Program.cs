@@ -26,7 +26,6 @@ builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<JwtOptions>>().Val
 var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
-Console.WriteLine($"{JsonSerializer.Serialize(apiSettings)}");
 
 var connectionString = config["ConnectionStringDB"];
 builder.Services.AddDbContext<IdentityDBContext>(options =>
@@ -44,11 +43,11 @@ builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 IoCExtensions.AddIoC(builder.Services);
 
-// builder.Services.AddStackExchangeRedisCache(redis => 
-// {
-//     redis.InstanceName = apiSettings.Cache.InstanceName;
-//     redis.Configuration = apiSettings.Cache.Configuration;
-// });
+builder.Services.AddStackExchangeRedisCache(redis => 
+{
+    redis.InstanceName = apiSettings?.Cache.InstanceName;
+    redis.Configuration = apiSettings?.Cache.Configuration;
+});
 
 builder.Services.AddControllers()
                 .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;})
