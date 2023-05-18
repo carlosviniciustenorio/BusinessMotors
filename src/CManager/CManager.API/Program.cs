@@ -12,6 +12,7 @@ var acceptedARNs = new[]
 if(env.EnvironmentName != Environments.Development){
     builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
+    credentials: new BasicAWSCredentials("AKIAXZ75UTGUTYWAYWYM", "O2Ocn6MxMx2jLb0SkIJt0u+3wo9N+ovbzh5p6crR"),
     configurator: options => {
         options.PollingInterval = TimeSpan.FromMinutes(5);
         options.SecretFilter = entry => acceptedARNs.Contains(entry.ARN);
@@ -26,7 +27,6 @@ builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<JwtOptions>>().Val
 var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
-Console.WriteLine($"{JsonSerializer.Serialize(apiSettings)}");
 
 var connectionString = config["ConnectionStringDB"];
 builder.Services.AddDbContext<IdentityDBContext>(options =>
@@ -44,11 +44,11 @@ builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 IoCExtensions.AddIoC(builder.Services);
 
-// builder.Services.AddStackExchangeRedisCache(redis => 
-// {
-//     redis.InstanceName = apiSettings.Cache.InstanceName;
-//     redis.Configuration = apiSettings.Cache.Configuration;
-// });
+builder.Services.AddStackExchangeRedisCache(redis => 
+{
+    redis.InstanceName = apiSettings?.Cache.InstanceName;
+    redis.Configuration = apiSettings?.Cache.Configuration;
+});
 
 builder.Services.AddControllers()
                 .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;})
