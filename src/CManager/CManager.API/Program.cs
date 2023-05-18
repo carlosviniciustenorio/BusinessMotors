@@ -1,22 +1,20 @@
-using Amazon.Runtime;
-using CManager.API.Middlewares;
-using CManager.Infrastructure.Services;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Identity;
-using Sentry.Extensions.Logging.Extensions.DependencyInjection;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
+var config = builder.Configuration;
 
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
+
+var acceptedARNs = new[]
+{
+    "arn:aws:secretsmanager:us-east-1:536865970601:secret:ConnectionStringDB-dYUcap"
+};
 
 if(env.EnvironmentName != Environments.Development){
     builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
     configurator: options => {
         options.PollingInterval = TimeSpan.FromMinutes(5);
+        options.SecretFilter = entry => acceptedARNs.Contains(entry.ARN);
     });
 }
 
@@ -30,7 +28,7 @@ var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 Console.WriteLine($"{JsonSerializer.Serialize(apiSettings)}");
 
-var connectionString = apiSettings?.ConnectionStringDB;
+var connectionString = config["ConnectionStringDB"];
 builder.Services.AddDbContext<IdentityDBContext>(options =>
         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
