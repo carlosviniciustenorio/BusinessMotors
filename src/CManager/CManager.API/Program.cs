@@ -12,6 +12,7 @@ var acceptedARNs = new[]
 if(env.EnvironmentName != Environments.Development){
     builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
+    credentials: new BasicAWSCredentials("AKIAXZ75UTGUTYWAYWYM", "O2Ocn6MxMx2jLb0SkIJt0u+3wo9N+ovbzh5p6crR"),
     configurator: options => {
         options.PollingInterval = TimeSpan.FromMinutes(5);
         options.SecretFilter = entry => acceptedARNs.Contains(entry.ARN);
