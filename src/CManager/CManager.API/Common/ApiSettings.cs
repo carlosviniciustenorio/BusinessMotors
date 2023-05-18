@@ -3,5 +3,6 @@
     public class ApiSettings
     {
         public Cache Cache { get; set; }
+        public string ConnectionStringDB { get; set; }
     }
 }

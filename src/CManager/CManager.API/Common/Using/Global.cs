@@ -20,3 +20,4 @@ global using Sentry.Extensions.Logging.Extensions.DependencyInjection;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using Amazon.Runtime;
+global using Newtonsoft.Json;
