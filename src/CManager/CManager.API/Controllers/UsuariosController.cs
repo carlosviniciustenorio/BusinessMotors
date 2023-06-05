@@ -1,5 +1,6 @@
 ﻿using CManager.API.Attributes;
 using CManager.Infrastructure.Constants.Identity;
+using CManager.Integration.Cache;
 using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 using System.Security.Claims;
@@ -11,7 +12,6 @@ namespace CManager.API.Controllers
     public class UsuariosController : ApiControllerBase
     {
         private readonly IIdentityService _identityService;
-
         public UsuariosController(IIdentityService identityService)
         {
             _identityService = identityService;

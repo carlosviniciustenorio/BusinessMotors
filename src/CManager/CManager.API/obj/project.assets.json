@@ -3004,7 +3004,8 @@
           "AWSSDK.S3": "3.7.103.26",
           "Amazon.S3": "0.29.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
-          "Microsoft.Extensions.Caching.Abstractions": "7.0.0"
+          "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
+          "StackExchange.Redis": "2.6.96"
         },
         "compile": {
           "bin/placeholder/CManager.Integration.dll": {}
