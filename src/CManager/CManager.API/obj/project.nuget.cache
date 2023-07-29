@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "f02Ars8K4z+4i6GrN3Iur5cXJr8bRvcIeuwMPWviPsuopzuf5Ju16rCTOIj2HXfWgGlzOuqfZ3k7XWXtkw6V6w==",
+  "dgSpecHash": "OkUFgsOTT8I3mQalSaS7Y8RrshXc4DzJ36RmFrPSlfnCtl5YW2u8Zd/sxO4KL8a1vbuIepc1Y0hcvM8Qx3pAAw==",
   "success": true,
   "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\cmanager.api\\CManager.API.csproj",
   "expectedPackageFiles": [
@@ -110,8 +110,8 @@
     "C:\\Users\\carlo\\.nuget\\packages\\sentry.extensions.logging\\3.29.1\\sentry.extensions.logging.3.29.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\stackexchange.redis\\2.6.96\\stackexchange.redis.2.6.96.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
