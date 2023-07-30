@@ -8026,11 +8026,11 @@
             "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj": {
               "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Application\\CManager.Application.csproj"
             },
-            "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj": {
-              "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj"
+            "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
+              "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
             },
-            "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
-              "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
+            "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {
+              "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj"
             }
           }
         }

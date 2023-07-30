@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj": {}
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {}
   },
   "projects": {
-    "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
         "projectName": "CManager.Domain",
-        "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

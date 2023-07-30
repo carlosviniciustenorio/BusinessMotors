@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rspvyP2Ou8ZQSqI1k5/8A2p+Q7ONDdaMRwwa2gyG2APs8bzF58La0H4+XDxTSTGW36uNoS+D8HIDE/e2yard7g==",
+  "dgSpecHash": "bL8uwjUtSS0wGd+7wbYBNRuhr/rm9mPpz8/DUxlr79wbUvhxE039ihXpQfztd23mv1XOURxhs3Sm3/q+iHeS5w==",
   "success": true,
-  "projectFilePath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

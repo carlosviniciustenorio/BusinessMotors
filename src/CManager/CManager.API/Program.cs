@@ -1,4 +1,6 @@
 using System.Reflection;
+using CManager.API.Extensions;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ if(env.EnvironmentName != Environments.Development){
     });
 }
 
+builder.Services.AddApiProblemDetails();
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<ApiSettings>>().Value);
@@ -118,6 +121,7 @@ else
     app.UseExceptionHandler("/Error");
 }
 
+app.UseProblemDetails();
 app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseSentryTracing();
 app.UseHttpsRedirection();
