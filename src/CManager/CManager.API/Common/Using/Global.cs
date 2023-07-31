@@ -21,3 +21,7 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using Amazon.Runtime;
 global using Newtonsoft.Json;
+global using System.Reflection;
+global using CManager.API.Extensions;
+global using Hellang.Middleware.ProblemDetails;
+global using Microsoft.OpenApi.Models;

@@ -17,7 +17,7 @@ namespace CManager.API.Controllers
         }
 
         /// <summary>
-        /// Cadastra um usuário
+        /// Cadastra um anúncio
         /// </summary>
         /// <remarks>
         /// </remarks>

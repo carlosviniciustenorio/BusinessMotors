@@ -1,12 +1,15 @@
-using System.Reflection;
-using CManager.API.Extensions;
-using Hellang.Middleware.ProblemDetails;
-using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 var config = builder.Configuration;
 
+Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(config)
+            .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(dispose: true);
+builder.Host.UseSerilog(Log.Logger);
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
 if(env.EnvironmentName != Environments.Development){
@@ -121,6 +124,7 @@ else
     app.UseExceptionHandler("/Error");
 }
 
+app.UseSerilogRequestLogging();
 app.UseProblemDetails();
 app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseSentryTracing();

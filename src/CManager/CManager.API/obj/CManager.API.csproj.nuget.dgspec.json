@@ -35,8 +35,8 @@
               "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj": {
                 "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj"
               },
-              "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {
-                "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
               }
             }
           }
@@ -105,6 +105,18 @@
               "target": "Package",
               "version": "[3.29.1, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Serilog.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "StackExchange.Redis": {
               "target": "Package",
               "version": "[2.6.96, )"
@@ -168,8 +180,8 @@
               "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
                 "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
               },
-              "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {
-                "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
               }
             }
           }
@@ -322,8 +334,8 @@
               "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj": {
                 "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Domain\\CManager.Domain.csproj"
               },
-              "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {
-                "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj"
+              "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
+                "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj"
               }
             }
           }
@@ -417,14 +429,14 @@
         }
       }
     },
-    "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj": {
+    "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
+        "projectUniqueName": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
         "projectName": "CManager.Integration",
-        "projectPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
+        "projectPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\CManager.Integration.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\obj\\",
+        "outputPath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Integration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

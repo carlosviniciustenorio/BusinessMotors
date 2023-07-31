@@ -14,9 +14,11 @@ namespace CManager.API.Controllers
     public class UsuariosController : ApiControllerBase
     {
         private readonly IIdentityService _identityService;
-        public UsuariosController(IIdentityService identityService)
+        private readonly ILogger<UsuariosController> _logger;
+        public UsuariosController(IIdentityService identityService, ILogger<UsuariosController> logger)
         {
             _identityService = identityService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -37,13 +39,14 @@ namespace CManager.API.Controllers
         [HttpPost("cadastro")]
         public async Task<ActionResult<UsuarioCadastroResponse>> Cadastrar([FromBody] UsuarioCadastroRequest usuarioCadastro)
         {
+            _logger.LogInformation($"Tentativa de cadastro de usuário, request: {JsonConvert.SerializeObject(usuarioCadastro)}");
             if (!ModelState.IsValid)
                 return BadRequest();
-
+        
             UsuarioCadastroResponse resultado = await _identityService.CadastrarUsuario(usuarioCadastro);
             if (resultado.Sucesso)
                 return Ok(resultado);
-            else if (resultado.Erros.Count > 0)
+            else if (resultado.Erros.Any())
                 return BadRequest(new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: resultado.Erros));
 
             return StatusCode(StatusCodes.Status500InternalServerError);
