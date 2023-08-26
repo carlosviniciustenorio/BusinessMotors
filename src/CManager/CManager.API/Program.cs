@@ -131,6 +131,7 @@ app.UseSentryTracing();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseRouting();
+app.UseHttpMetrics();
 app.UseAuthorization();
 app.UseCors(builder => builder
             .SetIsOriginAllowed(orign => true)
@@ -141,6 +142,7 @@ app.MapControllers();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHealthChecks("/health");
+    endpoints.MapMetrics();
 });
 
 app.Run();

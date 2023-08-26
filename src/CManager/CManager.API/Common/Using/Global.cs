@@ -25,3 +25,6 @@ global using System.Reflection;
 global using CManager.API.Extensions;
 global using Hellang.Middleware.ProblemDetails;
 global using Microsoft.OpenApi.Models;
+global using Prometheus;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.AspNetCore.Hosting;
