@@ -11,8 +11,10 @@ These are all the technologies and patterns used to develop this application
 - Framework: .NET 6
 - Cloud Provider: AWS - Services(ECR, ECS, VPC, ALB, TG, RDS, DynamoDB, S3)
 - IaC: Terraform
-- Container: Docker
+- Container: Docker, Docker Compose
+- Orchestration: Kubernetes
+- Observability: Grafana, Sentry
+- Metrics: Prometheus
 - Cache: Redis
 - ORM: Entity Framework
 - CI/CD: GitHub Actions
-- Observability: Sentry
