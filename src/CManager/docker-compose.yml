@@ -28,3 +28,8 @@ services:
       - "3001:3000"   
     depends_on:
       - prometheus
+
+networks:
+  my_network:
+    external:
+      name: my_network

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y6Ct+rcfDhhaygIG+TsgCceAmNOKWak/wvfdelUGXgerc1pOidQubkU8Pj/Jlr/ElKmyc5naq6CY3Y4CNS1l0w==",
+  "dgSpecHash": "XI53SdaIkB5qnxcDhXD3Ll4Nj6Co/Y/K3ev2z/Sr/lBXkXN35pNb0qgA6JKZiIESbXpf4OYuAiTi99dt/HlIew==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
+  "projectFilePath": "C:\\CManager\\CManager\\src\\cmanager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.core\\0.29.0\\amazon.core.0.29.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.s3\\0.29.0\\amazon.s3.0.29.0.nupkg.sha512",
