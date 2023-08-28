@@ -10,6 +10,8 @@ services:
     volumes:
         - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
         - ${HOME}/.aspnet/https:/root/.aspnet/https/
+    networks:
+      - my_network
 
   prometheus:
     build: 
