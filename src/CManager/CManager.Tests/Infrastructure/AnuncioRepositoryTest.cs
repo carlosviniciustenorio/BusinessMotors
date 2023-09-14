@@ -16,9 +16,9 @@ namespace CManager.Tests.Infrastructure
             var optionsBuilder = new DbContextOptionsBuilder<CManagerDBContext>().UseInMemoryDatabase(Guid.NewGuid().ToString());
             var context = new CManagerDBContext(optionsBuilder.Options);
 
-            context.Opcionais.Add(new ("teste"));
+            context.Opcional.Add(new ("teste"));
             context.SaveChanges();
-            Assert.Single(context.Opcionais);
+            Assert.Single(context.Opcional);
         }
     }
 }

@@ -32,6 +32,8 @@ var serviceProvider = builder.Services.BuildServiceProvider();
 var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
+Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
+
 builder.Services.AddDbContext<IdentityDBContext>(options =>
         options.UseMySql(apiSettings.ConnectionStringDB, ServerVersion.AutoDetect(apiSettings.ConnectionStringDB)));
 
@@ -111,6 +113,16 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
 builder.Services.AddHealthChecks();
 builder.Services.AddTransient<ExceptionLoggingMiddleware>();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -124,6 +136,7 @@ else
     app.UseExceptionHandler("/Error");
 }
 
+app.UseCors();
 app.UseSerilogRequestLogging();
 app.UseProblemDetails();
 app.UseMiddleware<ExceptionLoggingMiddleware>();
@@ -133,11 +146,6 @@ app.UseAuthentication();
 app.UseRouting();
 app.UseHttpMetrics();
 app.UseAuthorization();
-app.UseCors(builder => builder
-            .SetIsOriginAllowed(orign => true)
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials());
 app.MapControllers();
 app.UseEndpoints(endpoints =>
 {
