@@ -33,17 +33,8 @@ resource "aws_iam_policy" "policies" {
       },
       {
         Sid     = "AllowECRAccess"
+        Action  = "ecr:*"
         Effect  = "Allow"
-        Action  = [
-          "ecr:GetAuthorizationToken",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:GetRepositoryPolicy",
-          "ecr:DescribeRepositories",
-          "ecr:ListImages",
-          "ecr:DescribeImages",
-          "ecr:BatchGetImage"
-        ]
         Resource = "*"
       }
     ]

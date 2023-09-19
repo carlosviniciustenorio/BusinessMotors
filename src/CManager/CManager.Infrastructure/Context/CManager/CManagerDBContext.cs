@@ -11,8 +11,9 @@ namespace CManager.Infrastructure.Context.CManager
     public class CManagerDBContext : DbContext
     {
         public DbSet<Anuncio> Anuncio { get; set; }
-        
-         public CManagerDBContext(DbContextOptions<CManagerDBContext> options) : base(options) {}
+        public DbSet<Opcional> Opcional { get; set; }
+
+        public CManagerDBContext(DbContextOptions<CManagerDBContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

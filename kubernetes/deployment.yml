@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-cmanager
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cmanager
+  template:
+    metadata:
+      labels:
+        app: cmanager
+    spec:
+      containers:
+        - name: cmanager-container
+          image: cmanager:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"  

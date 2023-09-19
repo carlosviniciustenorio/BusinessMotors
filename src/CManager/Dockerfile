@@ -10,6 +10,7 @@ COPY "CManager.Application/*.csproj" "CManager.Application/"
 COPY "CManager.Domain/*.csproj" "CManager.Domain/"
 COPY "CManager.Infrastructure/*.csproj" "CManager.Infrastructure/"
 COPY "CManager.Integration/*.csproj" "CManager.Integration/"
+COPY "CManager.Tests/*.csproj" "CManager.Tests/"
 COPY "CManager.sln" "./"
 
 RUN dotnet restore
