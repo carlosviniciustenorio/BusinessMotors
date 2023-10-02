@@ -3,7 +3,6 @@ using Sentry;
 namespace CManager.API.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
     public class AnuncioController : ControllerBase
     {
@@ -27,6 +26,7 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpPost("create")]
+        [Authorize]
         public async Task<Unit> Create([FromForm]AddAnuncioCommand.Command command)
         {
             if (string.IsNullOrEmpty(command.usuarioId))
