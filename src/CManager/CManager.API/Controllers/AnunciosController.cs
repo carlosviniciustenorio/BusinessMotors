@@ -6,13 +6,13 @@ namespace CManager.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AnuncioController : ControllerBase
+    public class AnunciosController : ControllerBase
     {
         private readonly IMediator _mediatr;
         private readonly ISentryClient _sentryClient;
         private readonly ICatalogService _catalogService;
 
-        public AnuncioController(IMediator mediatr, ISentryClient sentryClient, ICatalogService catalogService)
+        public AnunciosController(IMediator mediatr, ISentryClient sentryClient, ICatalogService catalogService)
         {
             _mediatr = mediatr;
             _sentryClient = sentryClient;
