@@ -9,7 +9,7 @@ Log.Logger = new LoggerConfiguration()
             .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(dispose: true);
-builder.Host.UseSerilog(Log.Logger);
+builder.Host.UseSerilog(Log.Logger); 
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
 if(env.EnvironmentName != Environments.Development){
@@ -48,6 +48,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 IoCExtensions.AddIoC(builder.Services);
+PollyExtensions.AddPolly(builder.Services);
 
 builder.Services.AddStackExchangeRedisCache(redis => 
 {

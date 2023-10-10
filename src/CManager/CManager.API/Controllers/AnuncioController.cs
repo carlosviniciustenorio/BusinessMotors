@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+using CManager.Integration.Clients;
 using Sentry;
 
 namespace CManager.API.Controllers
@@ -8,11 +10,13 @@ namespace CManager.API.Controllers
     {
         private readonly IMediator _mediatr;
         private readonly ISentryClient _sentryClient;
+        private readonly ICatalogService _catalogService;
 
-        public AnuncioController(IMediator mediatr, ISentryClient sentryClient)
+        public AnuncioController(IMediator mediatr, ISentryClient sentryClient, ICatalogService catalogService)
         {
             _mediatr = mediatr;
             _sentryClient = sentryClient;
+            _catalogService = catalogService;
         }
 
         /// <summary>
@@ -49,6 +53,7 @@ namespace CManager.API.Controllers
         [HttpGet]
         public async Task<AnuncioResponse> GetById([FromQuery]GetAnuncioQuery.Anuncio command)
         {
+            await _catalogService.GetCatalogItems(1, 10);
             var response = await _mediatr.Send(command);    
             return response;
         } 

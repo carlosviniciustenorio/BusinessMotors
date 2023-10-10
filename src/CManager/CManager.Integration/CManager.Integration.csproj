@@ -5,11 +5,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Amazon.S3" Version="0.29.0"/>
-    <PackageReference Include="AWSSDK.S3" Version="3.7.103.26"/>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0"/>
-    <PackageReference Include="AWSSDK.Core" Version="3.7.106.28"/>
-    <PackageReference Include="StackExchange.Redis" Version="2.6.96"/>
+    <PackageReference Include="Amazon.S3" Version="0.29.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.103.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.106.28" />
+    <PackageReference Include="Polly" Version="8.0.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.96" />
   </ItemGroup>
 </Project>
