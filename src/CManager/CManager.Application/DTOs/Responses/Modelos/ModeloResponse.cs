@@ -4,8 +4,6 @@ namespace CManager.Application.DTOs.Responses
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public int AnoModelo { get; set; }
-        public int AnoFabricacao { get; set; }
         public MarcaResponse Marca { get; set; }
         public VersaoResponse Versao { get; set; }
 
@@ -13,8 +11,6 @@ namespace CManager.Application.DTOs.Responses
         {
             Id = model.Id;
             Descricao = model.Descricao;
-            AnoModelo = model.AnoModelo;
-            AnoFabricacao = model.AnoFabricacao;
             Versao = new(versao);
             Marca = new(model.Marca);
         }

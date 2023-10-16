@@ -70,11 +70,26 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<int>("AnoFabricacao")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnoVeiculo")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
+
                     b.Property<int>("Cambio")
                         .HasColumnType("int");
 
                     b.Property<int>("Cor")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("DataAtualizacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DataCriacao")
+                        .IsRequired()
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -176,12 +191,6 @@ namespace CManager.Infrastructure.Migrations.CManagerDB
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnoFabricacao")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnoModelo")
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")

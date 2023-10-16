@@ -24,15 +24,15 @@ namespace CManager.Infrastructure.Repositories
                                                                     .ThenInclude(d => d.Marca)
                                                                 .Include(d => d.Versao)
                                                                 .Include(d => d.ImagensS3)
-                                                                .OrderByDescending(d => d.Modelo.AnoModelo)
+                                                                .OrderByDescending(d => d.DataCriacao)
                                                                 .Where(d => 
                                                                         (string.IsNullOrEmpty(querie.estado) || d.Estado.Equals(querie.estado)) && 
                                                                         (!querie.precoInicio.HasValue || d.Preco >= querie.precoInicio) &&
                                                                         (!querie.precoFim.HasValue || d.Preco <= querie.precoFim) &&
                                                                         (!querie.kmInicio.HasValue || Convert.ToInt32(d.Km) >= querie.kmInicio) &&
                                                                         (!querie.kmFim.HasValue || Convert.ToInt32(d.Km) <= querie.kmFim) &&
-                                                                        (!querie.anoModeloInicio.HasValue || d.Modelo.AnoModelo >= querie.anoModeloInicio) &&
-                                                                        (!querie.anoModeloFim.HasValue || d.Modelo.AnoModelo <= querie.anoModeloFim) &&
+                                                                        (!querie.anoModeloInicio.HasValue || d.AnoVeiculo >= querie.anoModeloInicio) &&
+                                                                        (!querie.anoModeloFim.HasValue || d.AnoVeiculo <= querie.anoModeloFim) &&
                                                                         (!querie.idModelo.HasValue || d.Modelo.Id >= querie.idModelo) &&
                                                                         (!querie.idMarca.HasValue || d.Modelo.Marca.Id == querie.idMarca) &&
                                                                         (!querie.idVersao.HasValue || d.Modelo.Versoes.Any(d => d.Id == querie.idVersao))

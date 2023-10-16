@@ -53,7 +53,6 @@ namespace CManager.API.Controllers
         [HttpGet]
         public async Task<AnuncioResponse> GetById([FromQuery]GetAnuncioQuery.Anuncio command)
         {
-            await _catalogService.GetCatalogItems(1, 10);
             var response = await _mediatr.Send(command);    
             return response;
         } 

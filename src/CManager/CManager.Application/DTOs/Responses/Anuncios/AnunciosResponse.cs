@@ -13,5 +13,7 @@ namespace CManager.Application.DTOs.Responses
         public bool ExibirTelefone { get; set; } = false;
         public bool ExibirEmail { get; set; } = false;
         public ImagemResponse Imagem { get; set; }
+        public int AnoFabricacao { get; set; }
+        public int AnoVeiculo { get; set; }
     }
 }
