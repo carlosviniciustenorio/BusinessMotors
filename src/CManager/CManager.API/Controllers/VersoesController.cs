@@ -12,7 +12,7 @@ namespace CManager.API.Controllers
             _mediatr = mediatr;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<Unit> Create([FromBody]AddVersaoCommand.VersaoCommand command) => await _mediatr.Send(command);
     }
 }

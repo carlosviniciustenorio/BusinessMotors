@@ -8,8 +8,8 @@ namespace CManager.Application.Services
     public interface IMarcaRepository
     {
         Task AddAsync(Marca caracteristica);
-        Task<List<Marca>> GetListByIdAsync(List<int> ids);
-        Task<Marca> GetByIdAsync(int id);  
+        Task<List<Marca>> GetListByByQueryAsync(GetMarcasQuery.Marcas query);
+        Task<Marca> GetByQueryAsync(GetMarcaQuery.Marca query);  
         Task SaveChangesAsync();
     }
 }

@@ -1,5 +1,6 @@
 using Hellang.Middleware.ProblemDetails;
 using Hellang.Middleware.ProblemDetails.Mvc;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CManager.API.Extensions;
 public static class ProblemDetailsSetup
@@ -17,6 +18,7 @@ public static class ProblemDetailsSetup
             options.MapExceptionToStatusCodeWithMessage<UnauthorizedAccessException>(StatusCodes.Status401Unauthorized);
             options.MapExceptionToStatusCodeWithMessage<ArgumentException>(StatusCodes.Status400BadRequest);
             options.MapExceptionToStatusCodeWithMessage<ArgumentNullException>(StatusCodes.Status400BadRequest);
+            options.MapExceptionToStatusCodeWithMessage<InvalidDataException>(StatusCodes.Status404NotFound);
             options.MapToStatusCode<NotImplementedException>(StatusCodes.Status501NotImplemented);
             options.MapToStatusCode<HttpRequestException>(StatusCodes.Status503ServiceUnavailable);
             options.MapToStatusCode<Exception>(StatusCodes.Status500InternalServerError);

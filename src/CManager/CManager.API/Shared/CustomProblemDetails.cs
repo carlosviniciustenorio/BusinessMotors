@@ -16,6 +16,7 @@ namespace CManager.API.Shared
             {
                 HttpStatusCode.BadRequest => "One or more validation errors occurred.",
                 HttpStatusCode.InternalServerError => "Internal server error.",
+                HttpStatusCode.NotFound => "Object not found",
                 _ => "An error has occurred."
             };
             

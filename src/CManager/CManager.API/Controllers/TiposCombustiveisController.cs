@@ -12,7 +12,7 @@ namespace CManager.API.Controllers
             _mediatr = mediatr;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<Unit> Create([FromBody]AddTipoCombustivelCommand.TipoCombustivelCommand command) => await _mediatr.Send(command);
     }
 }

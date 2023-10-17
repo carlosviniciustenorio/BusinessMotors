@@ -14,3 +14,4 @@ global using Microsoft.Extensions.Configuration;
 global using CManager.Infrastructure.Context.CManager;
 global using CManager.Application.Services;
 global using CManager.Infrastructure.Repositories;
+global using CManager.Application.Queries;

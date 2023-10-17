@@ -29,7 +29,7 @@ namespace CManager.API.Controllers
         /// <response code="500">Retorna erros caso ocorram</response>
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpPost("create")]
+        [HttpPost]
         [Authorize]
         public async Task<Unit> Create([FromForm]AddAnuncioCommand.Command command)
         {
