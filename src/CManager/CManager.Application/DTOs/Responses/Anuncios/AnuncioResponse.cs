@@ -5,12 +5,12 @@ namespace CManager.Application.DTOs.Responses
         public Guid Id { get; set; }
         public string Placa { get; set; }
         public ModeloResponse Modelo { get; set; }
-        public List<TipoCombustivel> TiposCombustiveis { get; set; }
+        public List<TipoCombustivelResponse> TiposCombustiveis { get; set; }
         public int Portas { get; set; }
         public ECambio Cambio { get; set; }
         public ECor Cor { get; set; }
         public List<OpcionalResponse> Opcionais { get; set; }
-        public List<Caracteristica> Caracteristicas {get; set;}
+        public List<CaracteristicaResponse> Caracteristicas {get; set;}
         public string Km { get; set; }
         public string Estado { get; set; }
         public decimal Preco { get; set; }

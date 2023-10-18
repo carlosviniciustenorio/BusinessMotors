@@ -7,7 +7,6 @@ namespace CManager.Application.Handlers
                                          IRequestHandler<GetAnunciosQuery.Anuncios, List<AnunciosResponse>>,
                                          IRequestHandler<GetAnuncioQuery.Anuncio, AnuncioResponse>
     {
-        private readonly IMarcaRepository _marcaRepository;
         private readonly ICaracteristicaRepository _caracteristicaRepository;
         private readonly IOpcionalRepository _opcionalRepository;
         private readonly ITipoCombustivelRepository _tipoCombustivelRepository;
@@ -16,9 +15,8 @@ namespace CManager.Application.Handlers
         private readonly IVersaoRepository _versaoRepository;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AnuncioCommandHandler(IMarcaRepository marcaRepository, ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
+        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
         {
-            _marcaRepository = marcaRepository;
             _caracteristicaRepository = caracteristicaRepository;
             _opcionalRepository = opcionalRepository;
             _tipoCombustivelRepository = tipoCombustivelRepository;
@@ -119,12 +117,12 @@ namespace CManager.Application.Handlers
                                                 Id = anuncio.Id,
                                                 Placa = anuncio.Placa,
                                                 Modelo = new(anuncio.Modelo),
-                                                TiposCombustiveis = anuncio.TiposCombustiveis,
+                                                TiposCombustiveis = anuncio.TiposCombustiveis?.Select(d => new TipoCombustivelResponse(d)).ToList() ?? new List<TipoCombustivelResponse>(),
                                                 Opcionais = anuncio.Opcionais?.Select(d => new OpcionalResponse(d)).ToList() ?? new List<OpcionalResponse>(),
                                                 Portas = anuncio.Portas,
                                                 Cambio = anuncio.Cambio,
                                                 Cor = anuncio.Cor,
-                                                Caracteristicas = anuncio.Caracteristicas,
+                                                Caracteristicas = anuncio.Caracteristicas?.Select(d => new CaracteristicaResponse(d)).ToList() ?? new List<CaracteristicaResponse>(),
                                                 Km = anuncio.Km,
                                                 Estado = anuncio.Estado,
                                                 Preco = anuncio.Preco,
