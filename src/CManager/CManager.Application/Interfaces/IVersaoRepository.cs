@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CManager.Application.Services
+namespace CManager.Application.Interfaces
 {
     public interface IVersaoRepository
     {

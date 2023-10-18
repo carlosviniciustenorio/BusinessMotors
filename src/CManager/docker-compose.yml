@@ -1,19 +1,6 @@
 version: "3.1"
 
 services:
-  # appdynamics:
-  #   image: appdynamics/cluster-agent
-  #   environment:
-  #     - APPDYNAMICS_AGENT_APPLICATION_NAME=CManager
-  #     - APPDYNAMICS_AGENT_TIER_NAME=CManager
-  #     - APPDYNAMICS_AGENT_NODE_NAME=CManager
-  #   ports:
-  #     - "8090:8090"
-  #   volumes:
-  #     - shared_volume:/app/agent-files
-  #   networks:
-  #     - my_network
-
   web:
     build: .
     ports:
@@ -23,11 +10,8 @@ services:
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
-      - shared_volume:/app/agent-files
     networks:
       - my_network
-    # depends_on:
-    #   - appdynamics
 
   prometheus:
     build:
@@ -38,8 +22,6 @@ services:
     configs:
       - source: prometheus_config
         target: /etc/prometheus/prometheus.yml
-    depends_on:
-      - appdynamics
 
   grafana:
     image: grafana/grafana-enterprise
@@ -52,6 +34,3 @@ networks:
   my_network:
     external:
       name: my_network
-
-# volumes:
-#   shared_volume:  

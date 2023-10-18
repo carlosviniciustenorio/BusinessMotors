@@ -8,7 +8,7 @@ global using MediatR;
 global using CManager.Infrastructure.Context.CManager;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
-global using CManager.Application.Services;
+global using CManager.Application.Interfaces;
 global using CManager.Application.Commands;
 global using CManager.Application.Queries;
 global using CManager.Application.DTOs.Responses;

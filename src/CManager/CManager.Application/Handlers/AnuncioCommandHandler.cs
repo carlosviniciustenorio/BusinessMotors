@@ -1,5 +1,4 @@
 using CManager.Integration.AWS.S3;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 
 namespace CManager.Application.Handlers
@@ -8,7 +7,6 @@ namespace CManager.Application.Handlers
                                          IRequestHandler<GetAnunciosQuery.Anuncios, List<AnunciosResponse>>,
                                          IRequestHandler<GetAnuncioQuery.Anuncio, AnuncioResponse>
     {
-        private readonly IMarcaRepository _marcaRepository;
         private readonly ICaracteristicaRepository _caracteristicaRepository;
         private readonly IOpcionalRepository _opcionalRepository;
         private readonly ITipoCombustivelRepository _tipoCombustivelRepository;
@@ -17,9 +15,8 @@ namespace CManager.Application.Handlers
         private readonly IVersaoRepository _versaoRepository;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AnuncioCommandHandler(IMarcaRepository marcaRepository, ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
+        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
         {
-            _marcaRepository = marcaRepository;
             _caracteristicaRepository = caracteristicaRepository;
             _opcionalRepository = opcionalRepository;
             _tipoCombustivelRepository = tipoCombustivelRepository;
@@ -50,7 +47,7 @@ namespace CManager.Application.Handlers
                     var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
                     imagens.Add(new Imagem(imagem));
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
                     throw ex;
                 }
@@ -71,7 +68,10 @@ namespace CManager.Application.Handlers
                                   user.Id, 
                                   request.exibirTelefone, 
                                   request.exibirEmail,
-                                  imagens);
+                                  imagens,
+                                  request.anoFabricacao,
+                                  request.anoVeiculo,
+                                  null);
 
             await _anuncioRepository.AddAsync(anuncio);
             await _anuncioRepository.SaveChangesAsync();
@@ -88,18 +88,20 @@ namespace CManager.Application.Handlers
             List<AnunciosResponse> response = new();
 
             if(anuncios.Any())
-                anuncios.ForEach(a => response.Add(new AnunciosResponse{
-                    Id = a.Id,
-                    Modelo = new(a.Modelo, a.Versao),
-                    Cambio = a.Cambio,
-                    Cor = a.Cor,
-                    Km = a.Km,
-                    Estado = a.Estado,
-                    Preco = a.Preco,
-                    UsuarioId = a.UsuarioId,
-                    ExibirEmail = a.ExibirEmail,
-                    ExibirTelefone = a.ExibirTelefone,
-                    Imagem = new ImagemResponse(a.ImagensS3.First())
+                anuncios.ForEach(anuncio => response.Add(new AnunciosResponse{
+                    Id = anuncio.Id,
+                    Modelo = new(anuncio.Modelo),
+                    Cambio = anuncio.Cambio,
+                    Cor = anuncio.Cor,
+                    Km = anuncio.Km,
+                    Estado = anuncio.Estado,
+                    Preco = anuncio.Preco,
+                    // UsuarioId = anuncio.UsuarioId,
+                    ExibirEmail = anuncio.ExibirEmail,
+                    ExibirTelefone = anuncio.ExibirTelefone,
+                    AnoVeiculo = anuncio.AnoVeiculo,
+                    AnoFabricacao = anuncio.AnoFabricacao,
+                    Imagem = new ImagemResponse(anuncio.ImagensS3.First())
                 }));
 
             return response;
@@ -114,19 +116,21 @@ namespace CManager.Application.Handlers
             var response = new AnuncioResponse{
                                                 Id = anuncio.Id,
                                                 Placa = anuncio.Placa,
-                                                Modelo = new(anuncio.Modelo, anuncio.Versao),
-                                                TiposCombustiveis = anuncio.TiposCombustiveis,
-                                                Opcionais = anuncio.Opcionais,
+                                                Modelo = new(anuncio.Modelo),
+                                                TiposCombustiveis = anuncio.TiposCombustiveis?.Select(d => new TipoCombustivelResponse(d)).ToList() ?? new List<TipoCombustivelResponse>(),
+                                                Opcionais = anuncio.Opcionais?.Select(d => new OpcionalResponse(d)).ToList() ?? new List<OpcionalResponse>(),
                                                 Portas = anuncio.Portas,
                                                 Cambio = anuncio.Cambio,
                                                 Cor = anuncio.Cor,
-                                                Caracteristicas = anuncio.Caracteristicas,
+                                                Caracteristicas = anuncio.Caracteristicas?.Select(d => new CaracteristicaResponse(d)).ToList() ?? new List<CaracteristicaResponse>(),
                                                 Km = anuncio.Km,
                                                 Estado = anuncio.Estado,
                                                 Preco = anuncio.Preco,
-                                                UsuarioId = anuncio.UsuarioId,
+                                                // UsuarioId = anuncio.UsuarioId,
                                                 ExibirEmail = anuncio.ExibirEmail,
                                                 ExibirTelefone = anuncio.ExibirTelefone,
+                                                AnoVeiculo = anuncio.AnoVeiculo,
+                                                AnoFabricacao = anuncio.AnoFabricacao,
                                                 Imagens = new List<ImagemResponse>()
                                             };
 

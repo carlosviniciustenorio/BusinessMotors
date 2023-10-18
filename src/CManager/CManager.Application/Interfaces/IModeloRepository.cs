@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CManager.Application.Services
+namespace CManager.Application.Interfaces
 {
     public interface IModeloRepository
     {
         Task AddAsync(Modelo caracteristica);
         Task<List<Modelo>> GetListByIdsAsync(List<int> ids);
         Task<Modelo> GetByIdAsync(int id);
+        Task<List<Modelo>> GetListByQueryAsync(GetModelosQuery.Modelos query);
+        Task<Modelo> GetByQueryAsync(GetModeloQuery.Modelo query);
         Task SaveChangesAsync();
     }
 }

@@ -1,19 +1,22 @@
+using System.Collections.ObjectModel;
+using CManager.Integration.Clients;
 using Sentry;
 
 namespace CManager.API.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
-    public class AnuncioController : ControllerBase
+    public class AnunciosController : ControllerBase
     {
         private readonly IMediator _mediatr;
         private readonly ISentryClient _sentryClient;
+        private readonly ICatalogService _catalogService;
 
-        public AnuncioController(IMediator mediatr, ISentryClient sentryClient)
+        public AnunciosController(IMediator mediatr, ISentryClient sentryClient, ICatalogService catalogService)
         {
             _mediatr = mediatr;
             _sentryClient = sentryClient;
+            _catalogService = catalogService;
         }
 
         /// <summary>
@@ -26,7 +29,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Retorna erros caso ocorram</response>
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpPost("create")]
+        [HttpPost]
+        [Authorize]
         public async Task<Unit> Create([FromForm]AddAnuncioCommand.Command command)
         {
             if (string.IsNullOrEmpty(command.usuarioId))

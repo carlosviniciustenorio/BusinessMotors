@@ -6,8 +6,12 @@ namespace CManager.Infrastructure.Context.CManager.Mappings
         {
             entity.HasKey(d => d.Id);
             entity.Property(d => d.Placa).IsRequired();
+            entity.Property(d => d.AnoVeiculo).IsRequired().HasMaxLength(4);
+            entity.Property(d => d.AnoFabricacao).IsRequired().HasMaxLength(4);
             entity.Property(d => d.UsuarioId).IsRequired().HasMaxLength(100);
             entity.Property(d => d.Preco).IsRequired().HasPrecision(18,2);
+            entity.Property(d => d.DataCriacao).IsRequired();
+            entity.Property(d => d.DataAtualizacao).IsRequired(false);
             entity.HasMany(d => d.Caracteristicas).WithMany();
             entity.HasMany(d => d.Opcionais).WithMany();
             entity.HasMany(d => d.TiposCombustiveis).WithMany();

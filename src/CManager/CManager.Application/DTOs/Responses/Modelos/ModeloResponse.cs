@@ -4,18 +4,14 @@ namespace CManager.Application.DTOs.Responses
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public int AnoModelo { get; set; }
-        public int AnoFabricacao { get; set; }
         public MarcaResponse Marca { get; set; }
-        public VersaoResponse Versao { get; set; }
+        public List<VersaoResponse> Versoes { get; set; }
 
-        public ModeloResponse(Modelo model, Versao versao)
+        public ModeloResponse(Modelo model)
         {
             Id = model.Id;
             Descricao = model.Descricao;
-            AnoModelo = model.AnoModelo;
-            AnoFabricacao = model.AnoFabricacao;
-            Versao = new(versao);
+            Versoes = model.Versoes?.Select(d => new VersaoResponse(d)).ToList() ?? new List<VersaoResponse>();
             Marca = new(model.Marca);
         }
 

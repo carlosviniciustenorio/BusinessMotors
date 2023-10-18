@@ -12,7 +12,13 @@ namespace CManager.API.Controllers
             _mediatr = mediatr;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<Unit> Create([FromBody]AddMarcaCommand.MarcaCommand command) => await _mediatr.Send(command);
+
+        [HttpGet("getAll")]
+        public async Task<List<MarcaResponse>> GetAll([FromQuery] GetMarcasQuery.Marcas query) => await _mediatr.Send(query);
+
+        [HttpGet]
+        public async Task<MarcaResponse> Get([FromQuery] GetMarcaQuery.Marca query) => await _mediatr.Send(query);
     }
 }

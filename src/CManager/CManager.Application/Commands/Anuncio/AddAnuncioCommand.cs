@@ -22,6 +22,8 @@ namespace CManager.Application.Commands
             public decimal preco {get; set;}
             public bool exibirTelefone {get; set;}
             public bool exibirEmail {get; set;}
+            public int anoFabricacao { get; set; }
+            public int anoVeiculo { get; set; }
             public List<IFormFile> files {get; set;}
         }
 
@@ -35,14 +37,21 @@ namespace CManager.Application.Commands
                     .Length(7);
 
                 RuleFor(c => c.idModelo)
-                    .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Modelo não pode ser vazio");
 
                 RuleFor(c => c.idVersao)
-                    .NotNull()
                     .NotEmpty()
                     .WithMessage("Id Versão não pode ser vazio");
+
+                RuleFor(c => c.anoVeiculo)
+                    .NotEmpty()
+                    .GreaterThanOrEqualTo(c => c.anoFabricacao)
+                    .WithMessage("Ano modelo não pode ser vazio e deve ser igual ou maior que ano de fabricação");
+
+                RuleFor(c => c.anoFabricacao)
+                    .NotEmpty()
+                    .WithMessage("Ano fabricação não pode ser vazio");
             }
         }
     }

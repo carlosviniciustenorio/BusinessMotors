@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace CManager.Application.DTOs.Responses
 {
     public class AnuncioResponse
@@ -10,18 +5,19 @@ namespace CManager.Application.DTOs.Responses
         public Guid Id { get; set; }
         public string Placa { get; set; }
         public ModeloResponse Modelo { get; set; }
-        public List<TipoCombustivel> TiposCombustiveis { get; set; }
+        public List<TipoCombustivelResponse> TiposCombustiveis { get; set; }
         public int Portas { get; set; }
         public ECambio Cambio { get; set; }
         public ECor Cor { get; set; }
-        public List<Opcional> Opcionais { get; set; }
-        public List<Caracteristica> Caracteristicas {get; set;}
+        public List<OpcionalResponse> Opcionais { get; set; }
+        public List<CaracteristicaResponse> Caracteristicas {get; set;}
         public string Km { get; set; }
         public string Estado { get; set; }
         public decimal Preco { get; set; }
-        public string UsuarioId { get; set; }
         public bool ExibirTelefone { get; set; } = false;
         public bool ExibirEmail { get; set; } = false;
         public List<ImagemResponse> Imagens { get; set; }
+        public int AnoFabricacao { get; set; }
+        public int AnoVeiculo { get; set; }
     }
 }
