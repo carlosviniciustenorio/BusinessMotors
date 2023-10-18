@@ -9,7 +9,7 @@ namespace CManager.Application.DTOs.Responses
         public int Portas { get; set; }
         public ECambio Cambio { get; set; }
         public ECor Cor { get; set; }
-        public List<Opcional> Opcionais { get; set; }
+        public List<OpcionalResponse> Opcionais { get; set; }
         public List<Caracteristica> Caracteristicas {get; set;}
         public string Km { get; set; }
         public string Estado { get; set; }

@@ -120,7 +120,7 @@ namespace CManager.Application.Handlers
                                                 Placa = anuncio.Placa,
                                                 Modelo = new(anuncio.Modelo),
                                                 TiposCombustiveis = anuncio.TiposCombustiveis,
-                                                Opcionais = anuncio.Opcionais,
+                                                Opcionais = anuncio.Opcionais?.Select(d => new OpcionalResponse(d)).ToList() ?? new List<OpcionalResponse>(),
                                                 Portas = anuncio.Portas,
                                                 Cambio = anuncio.Cambio,
                                                 Cor = anuncio.Cor,
