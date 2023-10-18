@@ -1,5 +1,4 @@
 using CManager.Integration.AWS.S3;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 
 namespace CManager.Application.Handlers
@@ -99,7 +98,7 @@ namespace CManager.Application.Handlers
                     Km = anuncio.Km,
                     Estado = anuncio.Estado,
                     Preco = anuncio.Preco,
-                    UsuarioId = anuncio.UsuarioId,
+                    // UsuarioId = anuncio.UsuarioId,
                     ExibirEmail = anuncio.ExibirEmail,
                     ExibirTelefone = anuncio.ExibirTelefone,
                     AnoVeiculo = anuncio.AnoVeiculo,
@@ -129,7 +128,7 @@ namespace CManager.Application.Handlers
                                                 Km = anuncio.Km,
                                                 Estado = anuncio.Estado,
                                                 Preco = anuncio.Preco,
-                                                UsuarioId = anuncio.UsuarioId,
+                                                // UsuarioId = anuncio.UsuarioId,
                                                 ExibirEmail = anuncio.ExibirEmail,
                                                 ExibirTelefone = anuncio.ExibirTelefone,
                                                 AnoVeiculo = anuncio.AnoVeiculo,

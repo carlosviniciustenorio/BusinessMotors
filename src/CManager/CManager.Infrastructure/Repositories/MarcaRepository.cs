@@ -9,7 +9,7 @@ namespace CManager.Infrastructure.Repositories
         
         public async Task AddAsync(Marca caracteristica) => await _dbSet.AddAsync(caracteristica);
         
-        public async Task<List<Marca>> GetListByByQueryAsync(GetMarcasQuery.Marcas query) => 
+        public async Task<List<Marca>> GetListByQueryAsync(GetMarcasQuery.Marcas query) => 
         await _dbSet.Where(d => string.IsNullOrEmpty(query.nome) || d.Descricao.Contains(query.nome))
                     .Skip(query.skip)
                     .Take(query.take)

@@ -20,7 +20,7 @@ namespace CManager.Application.Handlers
 
         public async Task<List<MarcaResponse>> Handle(GetMarcasQuery.Marcas request, CancellationToken cancellationToken)
         {
-            var marcas = await _marcaRepository.GetListByByQueryAsync(request);
+            var marcas = await _marcaRepository.GetListByQueryAsync(request);
             
             if(!marcas.Any())
                 return new List<MarcaResponse>();

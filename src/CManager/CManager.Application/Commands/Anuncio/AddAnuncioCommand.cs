@@ -44,13 +44,14 @@ namespace CManager.Application.Commands
                     .NotEmpty()
                     .WithMessage("Id Versão não pode ser vazio");
 
-                RuleFor(c => c.anoFabricacao)
-                    .NotEmpty()
-                    .WithMessage("Ano da fabricação não pode ser vazio");
-
                 RuleFor(c => c.anoVeiculo)
                     .NotEmpty()
-                    .WithMessage("Ano do veículo não pode ser vazio");
+                    .GreaterThanOrEqualTo(c => c.anoFabricacao)
+                    .WithMessage("Ano modelo não pode ser vazio e deve ser igual ou maior que ano de fabricação");
+
+                RuleFor(c => c.anoFabricacao)
+                    .NotEmpty()
+                    .WithMessage("Ano fabricação não pode ser vazio");
             }
         }
     }

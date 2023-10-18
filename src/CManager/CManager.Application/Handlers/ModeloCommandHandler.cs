@@ -13,7 +13,7 @@ namespace CManager.Application.Handlers
 
         public async Task<Unit> Handle(AddModeloCommand.ModeloCommand request, CancellationToken cancellationToken)
         {
-            Marca marca = await _marcaRepository.GetByIdAsync(request.idMarca);
+            Marca marca = await _marcaRepository.GetByQueryAsync(new GetMarcaQuery.Marca(request.idMarca));
             if(marca is null)
                 throw new InvalidOperationException("Marca informada não localizada");
 
