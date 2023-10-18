@@ -1,10 +1,10 @@
 namespace CManager.Application.Queries
 {
-    public static class GetMarcasQuery
+    public static class GetTiposCombustiveisQuery
     {
-        public sealed record Marcas(int take, string nome = "", int skip = 0) : IRequest<List<MarcaResponse>>;
+        public sealed record TiposCombustiveis(int take, string nome = "", int skip = 0) : IRequest<List<TipoCombustivelResponse>>;
 
-        public sealed class Validator : AbstractValidator<Marcas>
+        public sealed class Validator : AbstractValidator<TiposCombustiveis>
         {
             public Validator()
             {
