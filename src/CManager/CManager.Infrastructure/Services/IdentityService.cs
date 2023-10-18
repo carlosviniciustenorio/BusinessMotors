@@ -1,10 +1,7 @@
-﻿using CManager.Application.Services;
-using CManager.Infrastructure.Common;
+﻿using CManager.Infrastructure.Common;
 using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 

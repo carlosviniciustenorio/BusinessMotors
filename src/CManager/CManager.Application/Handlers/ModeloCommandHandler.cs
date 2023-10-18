@@ -1,6 +1,8 @@
 namespace CManager.Application.Handlers
 {
-    public class ModeloCommandHandler : IRequestHandler<AddModeloCommand.ModeloCommand, Unit>
+    public class ModeloCommandHandler : IRequestHandler<AddModeloCommand.ModeloCommand, Unit>,
+                                        IRequestHandler<GetModeloQuery.Modelo, ModeloResponse>,
+                                        IRequestHandler<GetModelosQuery.Modelos, List<ModeloResponse>>
     {
         private readonly IModeloRepository _modeloRepository;
         private readonly IMarcaRepository _marcaRepository;
@@ -20,6 +22,26 @@ namespace CManager.Application.Handlers
             await _modeloRepository.AddAsync(new(request.descricao, marca));
             await _modeloRepository.SaveChangesAsync();
             return Unit.Value;
+        }
+
+        public async Task<ModeloResponse> Handle(GetModeloQuery.Modelo request, CancellationToken cancellationToken)
+        {
+            var modelo = await _modeloRepository.GetByQueryAsync(request);
+            
+            if(modelo is null)
+                throw new InvalidDataException();
+
+            return new ModeloResponse(modelo);
+        }
+
+        public async Task<List<ModeloResponse>> Handle(GetModelosQuery.Modelos request, CancellationToken cancellationToken)
+        {
+             var modelos = await _modeloRepository.GetListByQueryAsync(request);
+            
+            if(!modelos.Any())
+                return new List<ModeloResponse>();
+
+            return modelos.Select(d => new ModeloResponse(d)).ToList();
         }
     }
 }

@@ -12,6 +12,6 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using CManager.Domain.Models;
 global using Microsoft.Extensions.Configuration;
 global using CManager.Infrastructure.Context.CManager;
-global using CManager.Application.Services;
+global using CManager.Application.Interfaces;
 global using CManager.Infrastructure.Repositories;
 global using CManager.Application.Queries;

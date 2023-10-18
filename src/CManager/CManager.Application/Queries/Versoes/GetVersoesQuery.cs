@@ -1,12 +1,10 @@
-using Microsoft.AspNetCore.Http;
-
 namespace CManager.Application.Queries
 {
-    public static class GetMarcasQuery
+    public static class GetVersoesQuery
     {
-        public sealed record Marcas(int take, string nome = "", int skip = 0) : IRequest<List<MarcaResponse>>;
+        public sealed record Versoes(int take, string nome = "", int skip = 0) : IRequest<List<VersaoResponse>>;
 
-        public sealed class Validator : AbstractValidator<Marcas>
+        public class Validator : AbstractValidator<Versoes>
         {
             public Validator()
             {

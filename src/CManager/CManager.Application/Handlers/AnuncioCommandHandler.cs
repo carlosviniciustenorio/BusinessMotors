@@ -92,7 +92,7 @@ namespace CManager.Application.Handlers
             if(anuncios.Any())
                 anuncios.ForEach(anuncio => response.Add(new AnunciosResponse{
                     Id = anuncio.Id,
-                    Modelo = new(anuncio.Modelo, anuncio.Versao),
+                    Modelo = new(anuncio.Modelo),
                     Cambio = anuncio.Cambio,
                     Cor = anuncio.Cor,
                     Km = anuncio.Km,
@@ -118,7 +118,7 @@ namespace CManager.Application.Handlers
             var response = new AnuncioResponse{
                                                 Id = anuncio.Id,
                                                 Placa = anuncio.Placa,
-                                                Modelo = new(anuncio.Modelo, anuncio.Versao),
+                                                Modelo = new(anuncio.Modelo),
                                                 TiposCombustiveis = anuncio.TiposCombustiveis,
                                                 Opcionais = anuncio.Opcionais,
                                                 Portas = anuncio.Portas,

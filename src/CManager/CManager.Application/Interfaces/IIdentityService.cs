@@ -1,7 +1,7 @@
 ﻿using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 
-namespace CManager.Application.Services
+namespace CManager.Application.Interfaces
 {
     public interface IIdentityService
     {

@@ -1,4 +1,4 @@
-namespace CManager.Application.Services
+namespace CManager.Application.Interfaces
 {
     public interface ICaracteristicaRepository
     {

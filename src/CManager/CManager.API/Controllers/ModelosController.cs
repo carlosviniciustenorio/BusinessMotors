@@ -14,5 +14,11 @@ namespace CManager.API.Controllers
 
         [HttpPost]
         public async Task<Unit> Create([FromBody]AddModeloCommand.ModeloCommand command) => await _mediatr.Send(command);
+
+        [HttpGet("getAll")]
+        public async Task<List<ModeloResponse>> GetAll([FromQuery] GetModelosQuery.Modelos query) => await _mediatr.Send(query);
+
+        [HttpGet]
+        public async Task<ModeloResponse> Get([FromQuery] GetModeloQuery.Modelo query) => await _mediatr.Send(query);
     }
 }
