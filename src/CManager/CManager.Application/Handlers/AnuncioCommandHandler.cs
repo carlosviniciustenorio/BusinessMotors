@@ -1,3 +1,4 @@
+using CManager.Domain.Helpers;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
 
@@ -120,8 +121,8 @@ namespace CManager.Application.Handlers
                                                 TiposCombustiveis = anuncio.TiposCombustiveis?.Select(d => new TipoCombustivelResponse(d)).ToList() ?? new List<TipoCombustivelResponse>(),
                                                 Opcionais = anuncio.Opcionais?.Select(d => new OpcionalResponse(d)).ToList() ?? new List<OpcionalResponse>(),
                                                 Portas = anuncio.Portas,
-                                                Cambio = anuncio.Cambio,
-                                                Cor = anuncio.Cor,
+                                                Cambio = EnumHelper.GetDisplayName(anuncio.Cambio),
+                                                Cor = EnumHelper.GetDisplayName(anuncio.Cor),
                                                 Caracteristicas = anuncio.Caracteristicas?.Select(d => new CaracteristicaResponse(d)).ToList() ?? new List<CaracteristicaResponse>(),
                                                 Km = anuncio.Km,
                                                 Estado = anuncio.Estado,
@@ -131,11 +132,8 @@ namespace CManager.Application.Handlers
                                                 ExibirTelefone = anuncio.ExibirTelefone,
                                                 AnoVeiculo = anuncio.AnoVeiculo,
                                                 AnoFabricacao = anuncio.AnoFabricacao,
-                                                Imagens = new List<ImagemResponse>()
+                                                Imagens = anuncio.ImagensS3?.Select(d => new ImagemResponse(d)).ToList() ?? new List<ImagemResponse>()
                                             };
-
-            if(anuncio.ImagensS3 != null && anuncio.ImagensS3.Any())
-                anuncio.ImagensS3.ForEach(d => response.Imagens.Add(new ImagemResponse(d)));
 
             return response;
         }

@@ -7,8 +7,8 @@ namespace CManager.Application.DTOs.Responses
         public ModeloResponse Modelo { get; set; }
         public List<TipoCombustivelResponse> TiposCombustiveis { get; set; }
         public int Portas { get; set; }
-        public ECambio Cambio { get; set; }
-        public ECor Cor { get; set; }
+        public string Cambio { get; set; }
+        public string Cor { get; set; }
         public List<OpcionalResponse> Opcionais { get; set; }
         public List<CaracteristicaResponse> Caracteristicas {get; set;}
         public string Km { get; set; }

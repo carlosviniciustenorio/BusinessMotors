@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CManager.Domain.Enums
 {
     public enum ECambio
     {
+        [Display (Name = "Manual")]
         Manual,
         [Display (Name = "Automático")]
         Automatico,
+        [Display (Name = "Automatizado")]
         Automatizado
     }
 }
