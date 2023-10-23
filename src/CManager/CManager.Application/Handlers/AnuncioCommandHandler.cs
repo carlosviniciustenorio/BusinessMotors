@@ -92,8 +92,8 @@ namespace CManager.Application.Handlers
                 anuncios.ForEach(anuncio => response.Add(new AnunciosResponse{
                     Id = anuncio.Id,
                     Modelo = new(anuncio.Modelo),
-                    Cambio = anuncio.Cambio,
-                    Cor = anuncio.Cor,
+                    Cambio = EnumHelper.GetDisplayName(anuncio.Cambio),
+                    Cor = EnumHelper.GetDisplayName(anuncio.Cor),
                     Km = anuncio.Km,
                     Estado = anuncio.Estado,
                     Preco = anuncio.Preco,
