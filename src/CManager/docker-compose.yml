@@ -8,8 +8,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
-      - ${HOME}/.aspnet/https:/root/.aspnet/https/
+      - C:/CManager/CManager/src/CManager/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - C:/CManager/CManager/src/CManager/.aspnet/https:/root/.aspnet/https/
     networks:
       - my_network
 
@@ -30,7 +30,10 @@ services:
     depends_on:
       - prometheus
 
+configs:
+  prometheus_config:
+    file: ./prometheus.yml
+
 networks:
   my_network:
-    external:
-      name: my_network
+    external: true
