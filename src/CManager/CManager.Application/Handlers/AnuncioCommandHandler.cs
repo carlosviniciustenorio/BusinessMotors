@@ -111,6 +111,9 @@ namespace CManager.Application.Handlers
                     Imagem = new ImagemResponse(anuncio.ImagensS3.First())
                 }));
 
+            var counter = Prometheus.Metrics.CreateCounter("AnunciosConsultados","Counter de anúncios consultados");
+            counter.Inc();
+
             return response;
         }
 
@@ -140,6 +143,9 @@ namespace CManager.Application.Handlers
                                                 AnoFabricacao = anuncio.AnoFabricacao,
                                                 Imagens = anuncio.ImagensS3?.Select(d => new ImagemResponse(d)).ToList() ?? new List<ImagemResponse>()
                                             };
+
+            var counter = Prometheus.Metrics.CreateCounter("AnuncioConsultado","Counter de anúncio consultado");
+            counter.Inc();
 
             return response;
         }
