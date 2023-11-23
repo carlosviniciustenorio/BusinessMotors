@@ -1,6 +1,8 @@
+using Amazon.S3.Model;
 using CManager.Domain.Helpers;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
+using Prometheus;
 
 namespace CManager.Application.Handlers
 {
@@ -76,6 +78,10 @@ namespace CManager.Application.Handlers
 
             await _anuncioRepository.AddAsync(anuncio);
             await _anuncioRepository.SaveChangesAsync();
+
+            var counter = Prometheus.Metrics.CreateCounter("AnunciosCriados","Counter de anúncios criados");
+            counter.Inc();
+
             return Unit.Value;
         }
         
