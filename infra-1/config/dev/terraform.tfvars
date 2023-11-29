@@ -1,2 +1,2 @@
 environment   = "dev"
-erc_repo_name = "ct_tech_repo"
+erc_repo_name = "salescar_repo"

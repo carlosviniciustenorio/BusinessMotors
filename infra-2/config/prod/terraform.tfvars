@@ -1,5 +1,5 @@
 environment   = "production"
-erc_repo_name = "ct_tech_repo"
+erc_repo_name = "salescar_repo"
 project = "CManager"
 owner = "AD"
 managed_by = "CT Technology"
