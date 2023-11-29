@@ -4,8 +4,8 @@ namespace CManager.Application.DTOs.Responses
     {
         public Guid Id { get; set; }
         public ModeloResponse Modelo { get; set; }
-        public ECambio Cambio { get; set; }
-        public ECor Cor { get; set; }
+        public string Cambio { get; set; }
+        public string Cor { get; set; }
         public string Km { get; set; }
         public string Estado { get; set; }
         public decimal Preco { get; set; }
