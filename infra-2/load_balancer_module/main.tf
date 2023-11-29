@@ -8,7 +8,7 @@ resource "aws_alb" "application_load_balancer" {
   ]
   security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
 }
-
+ 
 resource "aws_security_group" "load_balancer_security_group" {
   ingress {
     from_port   = 80
