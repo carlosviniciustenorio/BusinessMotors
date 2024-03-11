@@ -78,6 +78,24 @@
           "lib/net7.0/Carbon.Storage.dll": {}
         }
       },
+      "Elasticsearch.Net/7.17.5": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.6.0",
+          "System.Buffers": "4.5.1",
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Elasticsearch.Net.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elasticsearch.Net.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "FluentValidation/11.5.1": {
         "type": "package",
         "compile": {
@@ -565,7 +583,7 @@
           }
         }
       },
-      "Microsoft.CSharp/4.5.0": {
+      "Microsoft.CSharp/4.6.0": {
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -1549,7 +1567,7 @@
           "lib/netstandard1.3/Pomelo.EntityFrameworkCore.MySql.Design.dll": {}
         }
       },
-      "prometheus-net/8.0.1": {
+      "prometheus-net/8.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Http": "3.1.0",
@@ -1902,6 +1920,22 @@
           }
         }
       },
+      "Serilog.Formatting.Elasticsearch/9.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.12.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Serilog.Formatting.Elasticsearch.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Serilog.Formatting.Elasticsearch.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Serilog.Settings.Configuration/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -1952,6 +1986,28 @@
           }
         }
       },
+      "Serilog.Sinks.Elasticsearch/9.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Elasticsearch.Net": "7.17.5",
+          "Serilog": "2.12.0",
+          "Serilog.Formatting.Compact": "1.1.0",
+          "Serilog.Formatting.Elasticsearch": "9.0.3",
+          "Serilog.Sinks.File": "5.0.0",
+          "Serilog.Sinks.PeriodicBatching": "3.1.0",
+          "System.Diagnostics.DiagnosticSource": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Serilog.Sinks.Elasticsearch.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Serilog.Sinks.Elasticsearch.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Serilog.Sinks.File/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -1965,6 +2021,22 @@
         "runtime": {
           "lib/net5.0/Serilog.Sinks.File.dll": {
             "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Serilog.Sinks.PeriodicBatching/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Serilog.Sinks.PeriodicBatching.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Serilog.Sinks.PeriodicBatching.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -2061,7 +2133,7 @@
           "lib/netstandard1.6/System.AppContext.dll": {}
         }
       },
-      "System.Buffers/4.5.0": {
+      "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -2145,24 +2217,23 @@
           }
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.3.0": {
+      "System.Diagnostics.DiagnosticSource/6.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Tracing": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading": "4.3.0"
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/netstandard1.3/_._": {
+          "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {
+          "lib/net6.0/System.Diagnostics.DiagnosticSource.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Diagnostics.Tools/4.3.0": {
@@ -2666,6 +2737,22 @@
           "ref/netstandard1.5/System.Runtime.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Runtime.Extensions/4.3.0": {
@@ -3259,7 +3346,8 @@
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.3",
           "Microsoft.AspNetCore.Identity.UI": "7.0.3",
-          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0"
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
+          "prometheus-net": "8.1.0"
         },
         "compile": {
           "bin/placeholder/CManager.Application.dll": {}
@@ -3458,6 +3546,28 @@
         "carbon.storage.3.13.0.nupkg.sha512",
         "carbon.storage.nuspec",
         "lib/net7.0/Carbon.Storage.dll"
+      ]
+    },
+    "Elasticsearch.Net/7.17.5": {
+      "sha512": "orChsQi1Ceho/NyIylNOn6y4vuGcsbCfMZnCueNN0fzqYEGQmQdPfcVmsR5+3fwpXTgxCdjTUVmqOwvHpCSB+Q==",
+      "type": "package",
+      "path": "elasticsearch.net/7.17.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "elasticsearch.net.7.17.5.nupkg.sha512",
+        "elasticsearch.net.nuspec",
+        "lib/net461/Elasticsearch.Net.dll",
+        "lib/net461/Elasticsearch.Net.pdb",
+        "lib/net461/Elasticsearch.Net.xml",
+        "lib/netstandard2.0/Elasticsearch.Net.dll",
+        "lib/netstandard2.0/Elasticsearch.Net.pdb",
+        "lib/netstandard2.0/Elasticsearch.Net.xml",
+        "lib/netstandard2.1/Elasticsearch.Net.dll",
+        "lib/netstandard2.1/Elasticsearch.Net.pdb",
+        "lib/netstandard2.1/Elasticsearch.Net.xml",
+        "license.txt",
+        "nuget-icon.png"
       ]
     },
     "FluentValidation/11.5.1": {
@@ -3979,10 +4089,10 @@
         "microsoft.aspnetcore.webutilities.nuspec"
       ]
     },
-    "Microsoft.CSharp/4.5.0": {
-      "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+    "Microsoft.CSharp/4.6.0": {
+      "sha512": "kxn3M2rnAGy5N5DgcIwcE8QTePWU/XiYcQVzn9HqTls2NKluVzVSmVWRjK7OUPWbljCXuZxHyhEz9kPRIQeXow==",
       "type": "package",
-      "path": "microsoft.csharp/4.5.0",
+      "path": "microsoft.csharp/4.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3995,6 +4105,7 @@
         "lib/netcoreapp2.0/_._",
         "lib/netstandard1.3/Microsoft.CSharp.dll",
         "lib/netstandard2.0/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.xml",
         "lib/portable-net45+win8+wp8+wpa81/_._",
         "lib/uap10.0.16299/_._",
         "lib/win8/_._",
@@ -4004,7 +4115,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "microsoft.csharp.4.5.0.nupkg.sha512",
+        "microsoft.csharp.4.6.0.nupkg.sha512",
         "microsoft.csharp.nuspec",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
@@ -5360,10 +5471,10 @@
         "pomelo.entityframeworkcore.mysql.design.nuspec"
       ]
     },
-    "prometheus-net/8.0.1": {
-      "sha512": "A9sOtQB2gEhujBxPKw+KcGScBiPvBmy4lYVM5OlETMj4xjVD5r/ixIg52HHg2P0lcImJTpfeWnD0/9tpQsRQTA==",
+    "prometheus-net/8.1.0": {
+      "sha512": "4prJfXFYmCPtuedjSjvtsI9BGjsH6hXrqz/yAOx07osiVwzRVyLP7Os+5rFJ5g2PLOoO3149RbEyp2/b223/CQ==",
       "type": "package",
-      "path": "prometheus-net/8.0.1",
+      "path": "prometheus-net/8.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5377,7 +5488,7 @@
         "lib/netstandard2.0/Prometheus.NetStandard.dll",
         "lib/netstandard2.0/Prometheus.NetStandard.xml",
         "prometheus-net-logo.png",
-        "prometheus-net.8.0.1.nupkg.sha512",
+        "prometheus-net.8.1.0.nupkg.sha512",
         "prometheus-net.nuspec"
       ]
     },
@@ -5817,6 +5928,20 @@
         "serilog.formatting.compact.nuspec"
       ]
     },
+    "Serilog.Formatting.Elasticsearch/9.0.3": {
+      "sha512": "Rii98HYzP6zJfMzmRvbpEpglIwKYNEVrbKse2SofwGiNMSNvoz/U3i2PbtHdGfv2In8s/HQigrDiY7k33GR2KA==",
+      "type": "package",
+      "path": "serilog.formatting.elasticsearch/9.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Serilog.Formatting.Elasticsearch.dll",
+        "lib/netstandard2.0/Serilog.Formatting.Elasticsearch.xml",
+        "serilog-sink-nuget.png",
+        "serilog.formatting.elasticsearch.9.0.3.nupkg.sha512",
+        "serilog.formatting.elasticsearch.nuspec"
+      ]
+    },
     "Serilog.Settings.Configuration/7.0.0": {
       "sha512": "MlabSn74uXAGKNv9WWDdGejmsr7cKhsfi98ZtdeK119s4lTLp+hakBtnPm8OvXNUvtXYs2ijXKA0tIy4IMnjWQ==",
       "type": "package",
@@ -5879,6 +6004,20 @@
         "serilog.sinks.debug.nuspec"
       ]
     },
+    "Serilog.Sinks.Elasticsearch/9.0.3": {
+      "sha512": "k869kDOw58UZmJd5yep4Vl1UA7JokOWrxAC78o6JDVevcg3l6W5KMF+bt2ZaSJt6LGKTi6yBe8l+JBGm4PhCfA==",
+      "type": "package",
+      "path": "serilog.sinks.elasticsearch/9.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Serilog.Sinks.Elasticsearch.dll",
+        "lib/netstandard2.0/Serilog.Sinks.Elasticsearch.xml",
+        "serilog-sink-nuget.png",
+        "serilog.sinks.elasticsearch.9.0.3.nupkg.sha512",
+        "serilog.sinks.elasticsearch.nuspec"
+      ]
+    },
     "Serilog.Sinks.File/5.0.0": {
       "sha512": "uwV5hdhWPwUH1szhO8PJpFiahqXmzPzJT/sOijH/kFgUx+cyoDTMM8MHD0adw9+Iem6itoibbUXHYslzXsLEAg==",
       "type": "package",
@@ -5904,6 +6043,28 @@
         "lib/netstandard2.1/Serilog.Sinks.File.xml",
         "serilog.sinks.file.5.0.0.nupkg.sha512",
         "serilog.sinks.file.nuspec"
+      ]
+    },
+    "Serilog.Sinks.PeriodicBatching/3.1.0": {
+      "sha512": "NDWR7m3PalVlGEq3rzoktrXikjFMLmpwF0HI4sowo8YDdU+gqPlTHlDQiOGxHfB0sTfjPA9JjA7ctKG9zqjGkw==",
+      "type": "package",
+      "path": "serilog.sinks.periodicbatching/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net45/Serilog.Sinks.PeriodicBatching.dll",
+        "lib/net45/Serilog.Sinks.PeriodicBatching.xml",
+        "lib/netstandard1.1/Serilog.Sinks.PeriodicBatching.dll",
+        "lib/netstandard1.1/Serilog.Sinks.PeriodicBatching.xml",
+        "lib/netstandard1.2/Serilog.Sinks.PeriodicBatching.dll",
+        "lib/netstandard1.2/Serilog.Sinks.PeriodicBatching.xml",
+        "lib/netstandard2.0/Serilog.Sinks.PeriodicBatching.dll",
+        "lib/netstandard2.0/Serilog.Sinks.PeriodicBatching.xml",
+        "lib/netstandard2.1/Serilog.Sinks.PeriodicBatching.dll",
+        "lib/netstandard2.1/Serilog.Sinks.PeriodicBatching.xml",
+        "serilog.sinks.periodicbatching.3.1.0.nupkg.sha512",
+        "serilog.sinks.periodicbatching.nuspec"
       ]
     },
     "StackExchange.Redis/2.6.96": {
@@ -6069,15 +6230,17 @@
         "system.appcontext.nuspec"
       ]
     },
-    "System.Buffers/4.5.0": {
-      "sha512": "pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A==",
+    "System.Buffers/4.5.1": {
+      "sha512": "Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
       "type": "package",
-      "path": "system.buffers/4.5.0",
+      "path": "system.buffers/4.5.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Buffers.dll",
+        "lib/net461/System.Buffers.xml",
         "lib/netcoreapp2.0/_._",
         "lib/netstandard1.1/System.Buffers.dll",
         "lib/netstandard1.1/System.Buffers.xml",
@@ -6092,7 +6255,7 @@
         "ref/netstandard2.0/System.Buffers.dll",
         "ref/netstandard2.0/System.Buffers.xml",
         "ref/uap10.0.16299/_._",
-        "system.buffers.4.5.0.nupkg.sha512",
+        "system.buffers.4.5.1.nupkg.sha512",
         "system.buffers.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -6361,25 +6524,29 @@
         "system.diagnostics.debug.nuspec"
       ]
     },
-    "System.Diagnostics.DiagnosticSource/4.3.0": {
-      "sha512": "tD6kosZnTAGdrEa0tZSuFyunMbt/5KYDnHdndJYGqZoNy00XVXyACd5d6KnE1YgYv3ne2CjtAfNXo/fwEhnKUA==",
+    "System.Diagnostics.DiagnosticSource/6.0.0": {
+      "sha512": "frQDfv0rl209cKm1lnwTgFPzNigy2EKk1BS3uAvHvlBVKe5cymGyHO+Sj+NLv5VF/AhHsqPIUUwya5oV4CHMUw==",
       "type": "package",
-      "path": "system.diagnostics.diagnosticsource/4.3.0",
+      "path": "system.diagnostics.diagnosticsource/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/net46/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net46/System.Diagnostics.DiagnosticSource.xml",
-        "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.dll",
-        "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.xml",
-        "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll",
-        "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.xml",
-        "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.dll",
-        "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml",
-        "system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512",
-        "system.diagnostics.diagnosticsource.nuspec"
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Diagnostics.DiagnosticSource.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net461/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net5.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net5.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net6.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net6.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
+        "system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Diagnostics.Tools/4.3.0": {
@@ -7962,6 +8129,31 @@
         "system.runtime.nuspec"
       ]
     },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "System.Runtime.Extensions/4.3.0": {
       "sha512": "guW0uK0fn5fcJJ1tJVXYd7/1h5F+pea1r7FLSOz/f8vPEqbR2ZAknuRDvTQ8PzAilDveOxNjSfr0CHfIQfFk8g==",
       "type": "package",
@@ -9420,6 +9612,7 @@
       "Sentry.Extensions.Logging >= 3.29.1",
       "Serilog.AspNetCore >= 7.0.0",
       "Serilog.Extensions.Hosting >= 7.0.0",
+      "Serilog.Sinks.Elasticsearch >= 9.0.3",
       "Serilog.Sinks.File >= 5.0.0",
       "StackExchange.Redis >= 2.6.96",
       "Swashbuckle.AspNetCore >= 6.2.3",
@@ -9543,6 +9736,10 @@
             "target": "Package",
             "version": "[7.0.0, )"
           },
+          "Serilog.Sinks.Elasticsearch": {
+            "target": "Package",
+            "version": "[9.0.3, )"
+          },
           "Serilog.Sinks.File": {
             "target": "Package",
             "version": "[5.0.0, )"
@@ -9579,7 +9776,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -9588,7 +9785,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: AWSSDK.SecretsManager 3.3.103 requires AWSSDK.Core (>= 3.3.107.23 && < 3.4.0) but version AWSSDK.Core 3.7.106.28 was resolved.",
+      "message": "Versão detectada do pacote fora da restrição de dependência: AWSSDK.SecretsManager 3.3.103 requer AWSSDK.Core (>= 3.3.107.23 && < 3.4.0), mas a versão AWSSDK.Core 3.7.106.28 foi resolvida.",
       "libraryId": "AWSSDK.Core",
       "targetGraphs": [
         "net7.0"

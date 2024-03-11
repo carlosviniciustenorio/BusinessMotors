@@ -28,3 +28,5 @@ global using Microsoft.OpenApi.Models;
 global using Prometheus;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.AspNetCore.Hosting;
+global using Serilog;
+global using Serilog.Sinks.Elasticsearch;

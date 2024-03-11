@@ -36,11 +36,13 @@ namespace CManager.Application.Handlers
             if(user is null)
                 throw new InvalidOperationException("Usuário informado não localizado");
 
-            List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveisAsync(request);
-            List<Opcional> opcionais = await ValidarRetornarOpcionaisAsync(request);
-            List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicasAsync(request);
-            Versao versao = await ValidarRetornarVersaoASync(request);
-            Modelo modelo = await ValidarRetornarModeloASync(request);
+            var tiposCombustieis = ValidarRetornarTiposCombustiveisAsync(request);
+            var opcionais = ValidarRetornarOpcionaisAsync(request);
+            var caracteristicas = ValidarRetornarCaracteristicasAsync(request);
+            var versao = ValidarRetornarVersaoASync(request);
+            var modelo = ValidarRetornarModeloASync(request);
+
+            await Task.WhenAll(tiposCombustieis, opcionais, caracteristicas, versao, modelo);
 
             List<Imagem> imagens = new List<Imagem>();
             foreach (var item in request.files)
@@ -50,21 +52,21 @@ namespace CManager.Application.Handlers
                     var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
                     imagens.Add(new Imagem(imagem));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
             }
 
             Anuncio anuncio = new(request.placa,
-                                  modelo,
-                                  versao,
-                                  tiposCombustieis, 
+                                  modelo.Result,
+                                  versao.Result,
+                                  tiposCombustieis.Result, 
                                   request.portas, 
                                   request.cambio, 
                                   request.cor, 
-                                  opcionais, 
-                                  caracteristicas, 
+                                  opcionais.Result, 
+                                  caracteristicas.Result, 
                                   request.km, 
                                   request.estado, 
                                   request.preco, 

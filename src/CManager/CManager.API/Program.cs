@@ -1,28 +1,28 @@
-using Serilog;
-
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 var config = builder.Configuration;
 
-Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(config)
-            .CreateLogger();
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(dispose: true);
-builder.Host.UseSerilog(Log.Logger); 
+// Log.Logger = new LoggerConfiguration()
+//             .ReadFrom.Configuration(config)
+//             .CreateLogger();
+// builder.Logging.ClearProviders();
+// builder.Logging.AddSerilog(dispose: true);
+// builder.Host.UseSerilog(Log.Logger); 
+
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
 if(env.EnvironmentName != Environments.Development){
     builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
     configurator: options => {
-        options.PollingInterval = TimeSpan.FromMinutes(5);
+        // options.PollingInterval = TimeSpan.FromMinutes(5);
         options.AcceptedSecretArns = new List<string>(){"Issuer", "Audience", "SecurityKey", "ConnectionStringDB"};
         options.KeyGenerator = (secret, name) => secret.Name == "ConnectionStringDB" ? $"ApiSettings:{secret.Name}" : $"JwtOptions:{secret.Name}";
     });
 }
 
 builder.Services.AddApiProblemDetails();
+
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<ApiSettings>>().Value);
@@ -33,6 +33,17 @@ var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
 Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
+
+Log.Logger = new LoggerConfiguration()
+            .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
+            {
+                IndexFormat = $"{apiSettings.ElasticSearch.Index}-{0:yyyy.MM.dd}",
+                AutoRegisterTemplate = true
+            })
+            .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(dispose: true);
+builder.Host.UseSerilog(Log.Logger); 
 
 builder.Services.AddDbContext<IdentityDBContext>(options =>
         options.UseMySql(apiSettings.ConnectionStringDB, ServerVersion.AutoDetect(apiSettings.ConnectionStringDB)));

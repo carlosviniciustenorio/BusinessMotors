@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vJ27bEqlzELLit4h7AgEqoOv2iUQcg9Gbhgxp1hvD76snmFucL3Yc1BMU365HpoP615YWXpo/I1c/IEyrCMS8g==",
+  "dgSpecHash": "kVqv9ODdP3zZogNrJWNVRwEkpDcHHUCp3CDhILfgLBB0w3lDWWW/7Y54WsisB1S8asgwS8adupR1owyOkjVwtw==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
+  "projectFilePath": "c:\\CManager\\CManager\\src\\CManager\\CManager.Infrastructure\\CManager.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.core\\0.29.0\\amazon.core.0.29.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\amazon.s3\\0.29.0\\amazon.s3.0.29.0.nupkg.sha512",
@@ -58,7 +58,7 @@
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.logging.console\\1.1.1\\microsoft.extensions.logging.console.1.1.1.nupkg.sha512",
-    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.objectpool\\2.2.0\\microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.objectpool\\7.0.0\\microsoft.extensions.objectpool.7.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.webencoders\\2.2.0\\microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
@@ -84,6 +84,7 @@
     "C:\\Users\\carlo\\.nuget\\packages\\polly.extensions.http\\3.0.0\\polly.extensions.http.3.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\pomelo.entityframeworkcore.mysql.design\\1.1.2\\pomelo.entityframeworkcore.mysql.design.1.1.2.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\prometheus-net\\8.1.0\\prometheus-net.8.1.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
