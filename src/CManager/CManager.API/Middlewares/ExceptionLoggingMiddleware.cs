@@ -4,7 +4,7 @@ namespace CManager.API.Middlewares
 {
     public class ExceptionLoggingMiddleware : IMiddleware
     {
-        private readonly ILogger _logger;
+        private readonly Microsoft.Extensions.Logging.ILogger _logger;
 
         public ExceptionLoggingMiddleware(ILogger<ExceptionLoggingMiddleware> logger)
         {

@@ -37,7 +37,7 @@ Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
 Log.Logger = new LoggerConfiguration()
             .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
             {
-                IndexFormat = $"{apiSettings.ElasticSearch.Index}-{0:yyyy.MM.dd}",
+                IndexFormat = $"{apiSettings.ElasticSearch.Index[0]}",
                 AutoRegisterTemplate = true
             })
             .CreateLogger();
