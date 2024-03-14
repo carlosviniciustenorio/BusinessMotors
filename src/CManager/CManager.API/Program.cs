@@ -2,13 +2,6 @@ var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 var config = builder.Configuration;
 
-// Log.Logger = new LoggerConfiguration()
-//             .ReadFrom.Configuration(config)
-//             .CreateLogger();
-// builder.Logging.ClearProviders();
-// builder.Logging.AddSerilog(dispose: true);
-// builder.Host.UseSerilog(Log.Logger); 
-
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
 if(env.EnvironmentName != Environments.Development){

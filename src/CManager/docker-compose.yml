@@ -1,18 +1,6 @@
 version: "3.1"
 
 services:
-  web:
-    build: .
-    ports:
-      - "8000:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - C:/CManager/CManager/src/CManager/.microsoft/usersecrets/:/root/.microsoft/usersecrets
-      - C:/CManager/CManager/src/CManager/.aspnet/https:/root/.aspnet/https/
-    networks:
-      - my_network
-
   prometheus:
     build:
       context: .
@@ -25,6 +13,7 @@ services:
 
   grafana:
     image: grafana/grafana-enterprise
+    container_name: grafana
     ports:
       - "3001:3000"
     depends_on:
@@ -43,10 +32,27 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.16.3
     container_name: kibana
+    depends_on:
+      - elasticsearch
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
       - "5601:5601"
+    networks:
+      - my_network
+
+  web:
+    build: .
+    container_name: cmanagerApp
+    depends_on: 
+      - elasticsearch
+    ports:
+      - "8000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - C:/CManager/CManager/src/CManager/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - C:/CManager/CManager/src/CManager/.aspnet/https:/root/.aspnet/https/
     networks:
       - my_network
 
@@ -57,3 +63,4 @@ configs:
 networks:
   my_network:
     external: true
+    driver: bridge

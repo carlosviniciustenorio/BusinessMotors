@@ -1704,6 +1704,22 @@
           }
         }
       },
+      "NEST/7.17.5": {
+        "type": "package",
+        "dependencies": {
+          "Elasticsearch.Net": "7.17.5"
+        },
+        "compile": {
+          "lib/netstandard2.0/Nest.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Nest.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -6601,6 +6617,25 @@
         "mysqlconnector.nuspec"
       ]
     },
+    "NEST/7.17.5": {
+      "sha512": "bo9UyuIoVRx4IUQiuC8ZrlZuvAXKIccernC7UUKukQCEmRq2eVIk+gubHlnMQljrP51q0mN4cjgy9vv5uZPkoA==",
+      "type": "package",
+      "path": "nest/7.17.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/Nest.dll",
+        "lib/net461/Nest.pdb",
+        "lib/net461/Nest.xml",
+        "lib/netstandard2.0/Nest.dll",
+        "lib/netstandard2.0/Nest.pdb",
+        "lib/netstandard2.0/Nest.xml",
+        "license.txt",
+        "nest.7.17.5.nupkg.sha512",
+        "nest.nuspec",
+        "nuget-icon.png"
+      ]
+    },
     "NETStandard.Library/1.6.1": {
       "sha512": "WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "type": "package",
@@ -11174,6 +11209,7 @@
       "AWSSDK.Core >= 3.7.302.16",
       "CManager.Infrastructure >= 1.0.0",
       "CManager.Integration >= 1.0.0",
+      "Elasticsearch.Net >= 7.17.5",
       "FluentValidation.AspNetCore >= 11.3.0",
       "Hellang.Middleware.ProblemDetails >= 6.5.1",
       "Kralizek.Extensions.Configuration.AWSSecretsManager >= 1.7.0",
@@ -11181,6 +11217,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 8.0.3",
       "Microsoft.Extensions.Caching.StackExchangeRedis >= 8.0.3",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.19.6",
+      "NEST >= 7.17.5",
       "Newtonsoft.Json >= 13.0.3",
       "Polly.Extensions.Http >= 3.0.0",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
@@ -11251,6 +11288,10 @@
             "target": "Package",
             "version": "[3.7.302.16, )"
           },
+          "Elasticsearch.Net": {
+            "target": "Package",
+            "version": "[7.17.5, )"
+          },
           "FluentValidation.AspNetCore": {
             "target": "Package",
             "version": "[11.3.0, )"
@@ -11280,6 +11321,10 @@
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.19.6, )"
+          },
+          "NEST": {
+            "target": "Package",
+            "version": "[7.17.5, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -11362,7 +11407,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: AWSSDK.SecretsManager 3.3.103 requires AWSSDK.Core (>= 3.3.107.23 && < 3.4.0) but version AWSSDK.Core 3.7.302.16 was resolved.",
+      "message": "Versão detectada do pacote fora da restrição de dependência: AWSSDK.SecretsManager 3.3.103 requer AWSSDK.Core (>= 3.3.107.23 && < 3.4.0), mas a versão AWSSDK.Core 3.7.302.16 foi resolvida.",
       "libraryId": "AWSSDK.Core",
       "targetGraphs": [
         "net8.0"
