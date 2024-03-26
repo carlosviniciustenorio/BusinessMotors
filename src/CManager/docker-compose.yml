@@ -50,9 +50,6 @@ services:
       - "8000:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - C:/CManager/CManager/src/CManager/.microsoft/usersecrets/:/root/.microsoft/usersecrets
-      - C:/CManager/CManager/src/CManager/.aspnet/https:/root/.aspnet/https/
     networks:
       - my_network
 
