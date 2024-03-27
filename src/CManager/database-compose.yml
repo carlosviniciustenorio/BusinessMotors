@@ -4,7 +4,6 @@ services:
   db:
     image: mysql:latest
     container_name: db
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: mydatabase
@@ -20,7 +19,6 @@ services:
   adminer:
     image: adminer
     container_name: adminer
-    restart: always
     ports:
       - "8080:8080"
     networks:
