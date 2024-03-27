@@ -52,6 +52,20 @@ namespace CManager.API.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
+        /// <summary>
+        /// Associa uma role a um usuário.
+        /// </summary>
+        /// <remarks>
+        /// Esta operação permite associar uma role a um usuário específico com base nos dados fornecidos no corpo da solicitação.
+        /// </remarks>
+        /// <param name="user">Os dados do usuário e a role a ser associada.</param>
+        /// <returns>Um código de status HTTP indicando o sucesso da operação.</returns>
+        /// <response code="200">Retorna OK se a role for associada com sucesso.</response>
+        /// <response code="400">Se os dados do usuário fornecidos forem inválidos.</response>
+        /// <response code="401">Se o usuário não estiver autorizado a acessar o recurso.</response>
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("role")]
         public async Task<ActionResult> Role([FromBody] UsuarioCadastroRole user)
@@ -64,6 +78,20 @@ namespace CManager.API.Controllers
             return Ok();
         }
 
+        // <summary>
+        /// Realiza o login de um usuário.
+        /// </summary>
+        /// <remarks>
+        /// Esta operação permite que um usuário faça login no sistema utilizando suas credenciais.
+        /// </remarks>
+        /// <param name="usuarioLogin">As credenciais de login do usuário.</param>
+        /// <returns>Um objeto contendo as informações do usuário logado.</returns>
+        /// <response code="200">Retorna OK com as informações do usuário logado se o login for bem-sucedido.</response>
+        /// <response code="400">Se as credenciais de login fornecidas forem inválidas.</response>
+        /// <response code="401">Se o usuário não estiver autorizado a acessar o recurso.</response>
+        [ProducesResponseType(typeof(UsuarioCadastroResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPost("login")]
         public async Task<ActionResult<UsuarioCadastroResponse>> Login(UsuarioLoginRequest usuarioLogin)
         {
@@ -77,6 +105,19 @@ namespace CManager.API.Controllers
             return Unauthorized(resultado);
         }
 
+        /// <summary>
+        /// Atualiza o token de acesso de um usuário.
+        /// </summary>
+        /// <remarks>
+        /// Esta operação permite atualizar o token de acesso de um usuário com base em um refresh token válido.
+        /// </remarks>
+        /// <returns>Um objeto contendo as informações atualizadas do usuário.</returns>
+        /// <response code="200">Retorna OK com as informações do usuário atualizadas se a atualização for bem-sucedida.</response>
+        /// <response code="400">Se o ID do usuário não puder ser extraído da solicitação.</response>
+        /// <response code="401">Se o usuário não estiver autorizado a acessar o recurso ou se o refresh token fornecido for inválido.</response>
+        [ProducesResponseType(typeof(UsuarioCadastroResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPost("refresh")]
         public async Task<ActionResult<UsuarioCadastroResponse>> Refresh()
         {

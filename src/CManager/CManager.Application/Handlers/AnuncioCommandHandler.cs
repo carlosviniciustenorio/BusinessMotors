@@ -123,7 +123,7 @@ namespace CManager.Application.Handlers
         {
             var anuncio = await _anuncioRepository.GetByIdAsync(request.id);
             if(anuncio is null)
-                throw new InvalidOperationException("Anúncio informado não localizado");
+                throw new InvalidDataException("Anúncio informado não localizado");
 
             var response = new AnuncioResponse{
                                                 Id = anuncio.Id,
