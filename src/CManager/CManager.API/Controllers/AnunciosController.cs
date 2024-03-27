@@ -67,7 +67,7 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(AnuncioResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<AnuncioResponse> GetById([FromQuery]GetAnuncioQuery.Anuncio command) => await _mediatr.Send(command);    
     }
 }
