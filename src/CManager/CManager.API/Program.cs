@@ -8,7 +8,7 @@ if(env.EnvironmentName != Environments.Development){
     builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
     configurator: options => {
-        // options.PollingInterval = TimeSpan.FromMinutes(5);
+        options.PollingInterval = TimeSpan.FromHours(1);
         options.AcceptedSecretArns = new List<string>(){"Issuer", "Audience", "SecurityKey", "ConnectionStringDB"};
         options.KeyGenerator = (secret, name) => secret.Name == "ConnectionStringDB" ? $"ApiSettings:{secret.Name}" : $"JwtOptions:{secret.Name}";
     });
