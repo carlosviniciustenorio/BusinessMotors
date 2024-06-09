@@ -47,15 +47,9 @@ namespace CManager.Application.Handlers
             List<Imagem> imagens = new List<Imagem>();
             foreach (var item in request.files)
             {
-                try
-                {
-                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
-                    imagens.Add(new Imagem(imagem));
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                imagens.Add(new Imagem(imagem));
+                
             }
 
             Anuncio anuncio = new(request.placa,

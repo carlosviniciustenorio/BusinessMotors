@@ -1,8 +1,3 @@
-using System.Collections.ObjectModel;
-using CManager.Integration.Clients;
-using Nest;
-using Sentry;
-
 namespace CManager.API.Controllers
 {
     [ApiController]

@@ -27,13 +27,13 @@ var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
 Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
 
-Log.Logger = new LoggerConfiguration()
-            .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
-            {
-                IndexFormat = $"{apiSettings.ElasticSearch.Index[0]}",
-                AutoRegisterTemplate = true
-            })
-            .CreateLogger();
+// Log.Logger = new LoggerConfiguration()
+//             .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
+//             {
+//                 IndexFormat = $"{apiSettings.ElasticSearch.Index[0]}",
+//                 AutoRegisterTemplate = true
+//             })
+//             .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(dispose: true);
 builder.Host.UseSerilog(Log.Logger); 
@@ -147,9 +147,9 @@ app.UseProblemDetails();
 app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseSentryTracing();
 app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseRouting();
 app.UseHttpMetrics();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseEndpoints(endpoints =>

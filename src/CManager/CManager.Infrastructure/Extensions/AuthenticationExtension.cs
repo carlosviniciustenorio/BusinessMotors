@@ -45,23 +45,6 @@ namespace CManager.Infrastructure.Extensions
                 ClockSkew = TimeSpan.Zero
             };
 
-            // var tokenValidationParametersGoogle = new TokenValidationParameters
-            // {
-            //     ValidateIssuer = true,
-            //     ValidIssuer = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Issuer)}").Value,
-
-            //     ValidateAudience = true,
-            //     ValidAudience = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Audience)}").Value,
-
-            //     ValidateIssuerSigningKey = true,
-            //     IssuerSigningKey = securityKey,
-
-            //     RequireExpirationTime = true,
-            //     ValidateLifetime = true,
-
-            //     ClockSkew = TimeSpan.Zero
-            // };
-
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -70,12 +53,7 @@ namespace CManager.Infrastructure.Extensions
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = tokenValidationParameters;
-            })
-            // .AddJwtBearer(options =>
-            // {
-            //     options.TokenValidationParameters = tokenValidationParametersGoogle;
-            // })
-            ;
+            });
         }
     }
 }

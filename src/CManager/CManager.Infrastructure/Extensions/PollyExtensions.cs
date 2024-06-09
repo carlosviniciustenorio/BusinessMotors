@@ -1,6 +1,5 @@
 using CManager.Integration.Clients;
 using Polly;
-using Polly.Extensions.Http;
 using Polly.Retry;
 
 namespace CManager.Infrastructure.Extensions
