@@ -13,7 +13,10 @@ namespace CManager.Infrastructure.Repositories
             await _dbSet.IgnoreAutoIncludes()
                         .Include(d => d.Versoes)
                         .Include(d => d.Marca)
-                        .Where(d => string.IsNullOrEmpty(query.nome) || d.Descricao.Contains(query.nome))
+                        .Where(d => 
+                                (string.IsNullOrEmpty(query.nome) || d.Descricao.Contains(query.nome)) &&
+                                (query.idMarca <= 0 || d.Marca.Id == query.idMarca)
+                            )
                         .Skip(query.skip)
                         .Take(query.take)
                         .ToListAsync();

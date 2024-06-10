@@ -2,7 +2,7 @@ namespace CManager.Application.Queries
 {
     public static class GetModelosQuery
     {
-        public sealed record Modelos(int take, string nome = "", int skip = 0) : IRequest<List<ModeloResponse>>;
+        public sealed record Modelos(int take, string nome = "", int skip = 0, int idMarca = 0) : IRequest<List<ModeloResponse>>;
 
         public class Validator : AbstractValidator<Modelos>
         {
