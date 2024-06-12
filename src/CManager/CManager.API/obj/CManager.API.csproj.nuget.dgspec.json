@@ -356,7 +356,7 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[7.0.14, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -392,9 +392,17 @@
               "target": "Package",
               "version": "[8.0.3, )"
             },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[7.6.0, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.Net.Http.Headers": {
               "target": "Package",

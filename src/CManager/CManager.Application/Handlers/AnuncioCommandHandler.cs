@@ -1,8 +1,6 @@
-using Amazon.S3.Model;
 using CManager.Domain.Helpers;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
-using Prometheus;
 
 namespace CManager.Application.Handlers
 {

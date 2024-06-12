@@ -57,8 +57,7 @@ namespace CManager.Infrastructure.Extensions
                 {
                     OnAuthenticationFailed = context =>
                     {
-                        Console.WriteLine("Authentication failed.", context.Exception);
-                        return Task.CompletedTask;
+                        throw context.Exception;
                     },
                     OnTokenValidated = context =>
                     {

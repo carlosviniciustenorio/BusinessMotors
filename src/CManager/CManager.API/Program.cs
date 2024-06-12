@@ -61,7 +61,11 @@ builder.Services.AddStackExchangeRedisCache(redis =>
 });
 
 builder.Services.AddControllers()
-                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;})
+                .AddJsonOptions(options => 
+                { 
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+                })
                 .AddFluentValidation(options => { options.RegisterValidatorsFromAssemblyContaining<GetAnunciosQuery.Anuncios>();});
 
 builder.Services.AddEndpointsApiExplorer();

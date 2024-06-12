@@ -42,4 +42,16 @@
   <ItemGroup>
     <Folder Include="logs\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Handlers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Handlers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Handlers\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Handlers\**" />
+  </ItemGroup>
 </Project>
