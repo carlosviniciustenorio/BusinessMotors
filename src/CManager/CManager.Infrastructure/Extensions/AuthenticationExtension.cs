@@ -31,10 +31,10 @@ namespace CManager.Infrastructure.Extensions
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
-                ValidIssuer = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Issuer)}").Value,
+                ValidIssuer = jwtOptions.Issuer,
 
                 ValidateAudience = true,
-                ValidAudience = configuration.GetSection($"{nameof(JwtOptions)}:{nameof(JwtOptions.Audience)}").Value,
+                ValidAudience = jwtOptions.Audience,
 
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = securityKey,
@@ -53,6 +53,24 @@ namespace CManager.Infrastructure.Extensions
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = tokenValidationParameters;
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        Console.WriteLine("Authentication failed.", context.Exception);
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        Console.WriteLine("Token validated.");
+                        return Task.CompletedTask;
+                    },
+                    OnMessageReceived = context =>
+                    {
+                        Console.WriteLine("Token received.");
+                        return Task.CompletedTask;
+                    }
+                };
             });
         }
     }

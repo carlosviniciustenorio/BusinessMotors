@@ -115,7 +115,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
+
 builder.Services.AddHealthChecks();
 builder.Services.AddTransient<ExceptionLoggingMiddleware>();
 builder.Services.AddCors(options =>
@@ -128,7 +128,8 @@ builder.Services.AddCors(options =>
     });
 });
 
-
+builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
+builder.Services.AddAuthorization();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
