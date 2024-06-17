@@ -113,7 +113,7 @@ namespace CManager.Application.Handlers
 
         public async Task<AnuncioResponse> Handle(GetAnuncioQuery.Anuncio request, CancellationToken cancellationToken)
         {
-            var anuncio = await _anuncioRepository.GetByIdAsync(request.id);
+            var anuncio = await _anuncioRepository.GetByIdAsync(request.Id);
             if(anuncio is null)
                 throw new InvalidDataException("Anúncio informado não localizado");
 

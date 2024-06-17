@@ -39,8 +39,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(List<CaracteristicaResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("getAll")]
-        public async Task<List<CaracteristicaResponse>> GetAll([FromQuery] GetCaracteristicasQuery.Caracteristicas query) => await _mediatr.Send(query);
+        [HttpGet]
+        public async Task<List<CaracteristicaResponse>> Get([FromQuery] GetCaracteristicasQuery.Caracteristicas query) => await _mediatr.Send(query);
 
         /// <summary>
         /// Retorna uma característica com base nos parâmetros fornecidos.
@@ -56,8 +56,8 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(CaracteristicaResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<CaracteristicaResponse> Get([FromQuery] GetCaracteristicaQuery.Caracteristica query) => await _mediatr.Send(query);
+        [HttpGet("{id}")]
+        public async Task<CaracteristicaResponse> Get([FromRoute] GetCaracteristicaQuery.Caracteristica query) => await _mediatr.Send(query);
 
     }
 }

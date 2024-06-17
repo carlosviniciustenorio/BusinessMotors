@@ -39,8 +39,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(List<OpcionalResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("getAll")]
-        public async Task<List<OpcionalResponse>> GetAll([FromQuery] GetOpcionaisQuery.Opcionais query) => await _mediatr.Send(query);
+        [HttpGet]
+        public async Task<List<OpcionalResponse>> Get([FromQuery] GetOpcionaisQuery.Opcionais query) => await _mediatr.Send(query);
 
         /// <summary>
         /// Retorna um opcional com base nos parâmetros fornecidos.
@@ -55,8 +55,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(OpcionalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<OpcionalResponse> Get([FromQuery] GetOpcionalQuery.Opcional query) => await _mediatr.Send(query);
+        [HttpGet("{id}")]
+        public async Task<OpcionalResponse> Get([FromRoute] GetOpcionalQuery.Opcional query) => await _mediatr.Send(query);
 
     }
 }

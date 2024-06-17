@@ -39,8 +39,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(List<TipoCombustivelResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("getAll")]
-        public async Task<List<TipoCombustivelResponse>> GetAll([FromQuery] GetTiposCombustiveisQuery.TiposCombustiveis query) => await _mediatr.Send(query);
+        [HttpGet]
+        public async Task<List<TipoCombustivelResponse>> Get([FromQuery] GetTiposCombustiveisQuery.TiposCombustiveis query) => await _mediatr.Send(query);
 
         /// <summary>
         /// Retorna um tipo de combustível com base nos parâmetros fornecidos.
@@ -56,8 +56,8 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(TipoCombustivelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<TipoCombustivelResponse> Get([FromQuery] GetTipoCombustivelQuery.TipoCombustivel query) => await _mediatr.Send(query);
+        [HttpGet("{id}")]
+        public async Task<TipoCombustivelResponse> Get([FromRoute] GetTipoCombustivelQuery.TipoCombustivel query) => await _mediatr.Send(query);
 
 
     }

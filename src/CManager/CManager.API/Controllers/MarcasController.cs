@@ -39,8 +39,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(List<MarcaResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("getAll")]
-        public async Task<List<MarcaResponse>> GetAll([FromQuery] GetMarcasQuery.Marcas query) => await _mediatr.Send(query);
+        [HttpGet]
+        public async Task<List<MarcaResponse>> Get([FromQuery] GetMarcasQuery.Marcas query) => await _mediatr.Send(query);
 
         /// <summary>
         /// Retorna uma marca com base nos parâmetros fornecidos.
@@ -56,8 +56,8 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(MarcaResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<MarcaResponse> Get([FromQuery] GetMarcaQuery.Marca query) => await _mediatr.Send(query);
+        [HttpGet("{id}")]
+        public async Task<MarcaResponse> Get([FromRoute] GetMarcaQuery.Marca query) => await _mediatr.Send(query);
 
     }
 }

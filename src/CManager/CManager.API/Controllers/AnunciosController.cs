@@ -45,8 +45,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Retorna erros caso ocorram</response>
         [ProducesResponseType(typeof(List<AnunciosResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("getAll")]
-        public async Task<List<AnunciosResponse>> GetAll([FromQuery]GetAnunciosQuery.Anuncios command) => await _mediatr.Send(command);    
+        [HttpGet]
+        public async Task<List<AnunciosResponse>> Get([FromQuery]GetAnunciosQuery.Anuncios command) => await _mediatr.Send(command);    
         
         /// <summary>
         /// Retorna um anúncio com o ID fornecido.
@@ -62,7 +62,7 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(AnuncioResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<AnuncioResponse> GetById([FromQuery]GetAnuncioQuery.Anuncio command) => await _mediatr.Send(command);    
+        [HttpGet("{id}")]
+        public async Task<AnuncioResponse> Get([FromRoute]GetAnuncioQuery.Anuncio command) => await _mediatr.Send(command);    
     }
 }

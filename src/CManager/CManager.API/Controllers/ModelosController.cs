@@ -39,8 +39,8 @@ namespace CManager.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(List<ModeloResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("getAll")]
-        public async Task<List<ModeloResponse>> GetAll([FromQuery] GetModelosQuery.Modelos query) => await _mediatr.Send(query);
+        [HttpGet]
+        public async Task<List<ModeloResponse>> Get([FromQuery] GetModelosQuery.Modelos query) => await _mediatr.Send(query);
 
         /// <summary>
         /// Retorna um modelo com base nos parâmetros fornecidos.
@@ -56,8 +56,8 @@ namespace CManager.API.Controllers
         [ProducesResponseType(typeof(ModeloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<ModeloResponse> Get([FromQuery] GetModeloQuery.Modelo query) => await _mediatr.Send(query);
+        [HttpGet("{id}")]
+        public async Task<ModeloResponse> Get([FromRoute] GetModeloQuery.Modelo query) => await _mediatr.Send(query);
 
     }
 }

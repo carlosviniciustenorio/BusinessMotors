@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace CManager.Application.Queries
 {
     public static class GetModeloQuery
     {
-        public sealed record Modelo(int id, string nome = "") : IRequest<ModeloResponse>;
+        public sealed record Modelo([FromRoute]int id, [FromQuery]string nome = "") : IRequest<ModeloResponse>;
 
         public sealed class Validator : AbstractValidator<Modelo>
         {
