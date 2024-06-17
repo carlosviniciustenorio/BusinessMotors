@@ -1,6 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
-var config = builder.Configuration;
 
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
