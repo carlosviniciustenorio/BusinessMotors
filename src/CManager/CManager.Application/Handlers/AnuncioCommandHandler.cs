@@ -32,15 +32,13 @@ namespace CManager.Application.Handlers
         {
             var user = await _userManager.FindByIdAsync(request.usuarioId);
             if(user is null)
-                throw new InvalidOperationException("Usuário informado não localizado");
+                throw new InvalidOperationException("Usuário não localizado");
 
-            var tiposCombustieis = ValidarRetornarTiposCombustiveisAsync(request);
-            var opcionais = ValidarRetornarOpcionaisAsync(request);
-            var caracteristicas = ValidarRetornarCaracteristicasAsync(request);
-            var versao = ValidarRetornarVersaoASync(request);
-            var modelo = ValidarRetornarModeloASync(request);
-
-            await Task.WhenAll(tiposCombustieis, opcionais, caracteristicas, versao, modelo);
+            var tiposCombustieis = await ValidarRetornarTiposCombustiveisAsync(request);
+            var opcionais = await ValidarRetornarOpcionaisAsync(request);
+            var caracteristicas = await  ValidarRetornarCaracteristicasAsync(request);
+            var versao = await ValidarRetornarVersaoASync(request);
+            var modelo = await ValidarRetornarModeloASync(request);
 
             List<Imagem> imagens = new List<Imagem>();
             foreach (var item in request.files)
@@ -51,14 +49,14 @@ namespace CManager.Application.Handlers
             }
 
             Anuncio anuncio = new(request.placa,
-                                  modelo.Result,
-                                  versao.Result,
-                                  tiposCombustieis.Result, 
+                                  modelo,
+                                  versao,
+                                  tiposCombustieis, 
                                   request.portas, 
                                   request.cambio, 
                                   request.cor, 
-                                  opcionais.Result, 
-                                  caracteristicas.Result, 
+                                  opcionais, 
+                                  caracteristicas, 
                                   request.km, 
                                   request.estado, 
                                   request.preco, 
@@ -97,7 +95,6 @@ namespace CManager.Application.Handlers
                     Km = anuncio.Km,
                     Estado = anuncio.Estado,
                     Preco = anuncio.Preco,
-                    // UsuarioId = anuncio.UsuarioId,
                     ExibirEmail = anuncio.ExibirEmail,
                     ExibirTelefone = anuncio.ExibirTelefone,
                     AnoVeiculo = anuncio.AnoVeiculo,
@@ -130,7 +127,6 @@ namespace CManager.Application.Handlers
                                                 Km = anuncio.Km,
                                                 Estado = anuncio.Estado,
                                                 Preco = anuncio.Preco,
-                                                // UsuarioId = anuncio.UsuarioId,
                                                 ExibirEmail = anuncio.ExibirEmail,
                                                 ExibirTelefone = anuncio.ExibirTelefone,
                                                 AnoVeiculo = anuncio.AnoVeiculo,
@@ -147,7 +143,7 @@ namespace CManager.Application.Handlers
         #endregion
 
         #region Métodos
-        public async Task<List<Opcional>> ValidarRetornarOpcionaisAsync(AddAnuncioCommand.Command request)
+        private async Task<List<Opcional>> ValidarRetornarOpcionaisAsync(AddAnuncioCommand.Command request)
         {
             List<Opcional> opcionais = new();
             if(request.idOpcionais != null && request.idOpcionais.Any())
@@ -161,7 +157,7 @@ namespace CManager.Application.Handlers
             return opcionais;
         }
 
-        public async Task<List<Caracteristica>> ValidarRetornarCaracteristicasAsync(AddAnuncioCommand.Command request)
+        private async Task<List<Caracteristica>> ValidarRetornarCaracteristicasAsync(AddAnuncioCommand.Command request)
         {
             List<Caracteristica> caracteristicas = new();
             if(request.idCaracteristicas != null && request.idCaracteristicas.Any())
@@ -175,7 +171,7 @@ namespace CManager.Application.Handlers
             return caracteristicas;
         }
 
-        public async Task<List<TipoCombustivel>> ValidarRetornarTiposCombustiveisAsync(AddAnuncioCommand.Command request)
+        private async Task<List<TipoCombustivel>> ValidarRetornarTiposCombustiveisAsync(AddAnuncioCommand.Command request)
         {
             List<TipoCombustivel> tiposCombustieis = new();
             if(request.idTiposCombustiveis != null && request.idTiposCombustiveis.Any())
@@ -189,8 +185,8 @@ namespace CManager.Application.Handlers
             return tiposCombustieis;
         }
 
-        public async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
-        public async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
+        private async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
+        private async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
         
         #endregion
     }

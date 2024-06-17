@@ -1,3 +1,5 @@
+using System.Net;
+
 namespace CManager.API.Controllers
 {
     [ApiController]
@@ -17,13 +19,13 @@ namespace CManager.API.Controllers
         /// <remarks>
         /// </remarks>
         /// <returns></returns>
-        /// <response code="200">Sucesso</response>
+        /// <response code="201">Criado</response>
         /// <response code="500">Retorna erros caso ocorram</response>
-        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpPost]
         [Authorize]
-        public async Task<Unit> Create([FromForm]AddAnuncioCommand.Command command)
+        public async Task<HttpStatusCode> Create([FromForm]AddAnuncioCommand.Command command)
         {
             if (string.IsNullOrEmpty(command.usuarioId))
             {
@@ -32,7 +34,7 @@ namespace CManager.API.Controllers
             }
 
             await _mediatr.Send(command);    
-            return Unit.Value;
+            return HttpStatusCode.Created;
         } 
 
         /// <summary>

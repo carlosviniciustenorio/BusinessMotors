@@ -58,16 +58,6 @@ namespace CManager.Infrastructure.Extensions
                     OnAuthenticationFailed = context =>
                     {
                         throw context.Exception;
-                    },
-                    OnTokenValidated = context =>
-                    {
-                        Console.WriteLine("Token validated.");
-                        return Task.CompletedTask;
-                    },
-                    OnMessageReceived = context =>
-                    {
-                        Console.WriteLine("Token received.");
-                        return Task.CompletedTask;
                     }
                 };
             });

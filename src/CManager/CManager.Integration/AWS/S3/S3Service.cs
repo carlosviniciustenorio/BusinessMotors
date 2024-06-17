@@ -12,9 +12,8 @@ namespace CManager.Integration.AWS.S3
             if (file == null || file.Length == 0)
             return "No file selected.";
 
-            using var client = new AmazonS3Client("AKIAXZ75UTGUTYWAYWYM", "O2Ocn6MxMx2jLb0SkIJt0u+3wo9N+ovbzh5p6crR", RegionEndpoint.USEast1);
-            var bucketExist = await AmazonS3Util.DoesS3BucketExistV2Async(client, bucketName);
-
+            using var client = new AmazonS3Client(RegionEndpoint.USEast1);
+            
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
             var filePath = "uploads/" + fileName;
 
