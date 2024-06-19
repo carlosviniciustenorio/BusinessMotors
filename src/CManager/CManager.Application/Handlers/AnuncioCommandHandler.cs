@@ -128,7 +128,8 @@ namespace CManager.Application.Handlers
                                                 ExibirTelefone = anuncio.ExibirTelefone,
                                                 AnoVeiculo = anuncio.AnoVeiculo,
                                                 AnoFabricacao = anuncio.AnoFabricacao,
-                                                Imagens = anuncio.ImagensS3?.Select(d => new ImagemResponse(d)).ToList() ?? new List<ImagemResponse>()
+                                                Imagens = anuncio.ImagensS3?.Select(d => new ImagemResponse(d)).ToList() ?? new List<ImagemResponse>(),
+                                                UsuarioId = anuncio.UsuarioId
                                             };
 
             var counter = Prometheus.Metrics.CreateCounter("AnuncioConsultado","Counter de anúncio consultado");
