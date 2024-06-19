@@ -30,13 +30,13 @@ namespace CManager.API.Controllers
         /// <returns></returns>
         /// <response code="200">Usuário criado com sucesso</response>
         /// <response code="400">Retorna erros de validação</response>
-        /// <response code="500">Retorna erros caso ocorram</response>
+        /// <response code="500">Retorna erros da aplicação caso ocorram</response>
         [ProducesResponseType(typeof(UsuarioCadastroResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [Authorize(Roles = Roles.Admin)]
         [ClaimsAuthorizeAttribute(Infrastructure.Constants.Identity.ClaimTypes.Usuarios, "Create")]
-        [HttpPost("cadastro")]
+        [HttpPost]
         public async Task<ActionResult<UsuarioCadastroResponse>> Cadastrar([FromBody] UsuarioCadastroRequest usuarioCadastro)
         {
             _logger.LogInformation($"Tentativa de cadastro de usuário, request: {JsonConvert.SerializeObject(usuarioCadastro)}");
@@ -45,11 +45,33 @@ namespace CManager.API.Controllers
         
             UsuarioCadastroResponse resultado = await _identityService.CadastrarUsuario(usuarioCadastro);
             if (resultado.Sucesso)
-                return Ok(resultado);
-            else if (resultado.Erros.Any())
+                return Ok(resultado); 
+            
+            if (resultado.Erros.Any())
                 return BadRequest(new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: resultado.Erros));
 
             return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+        
+        /// <summary>
+        /// Consultar telefone do usuário
+        /// </summary>
+        /// <param name="id">Identificador do usuário</param>
+        /// <returns></returns>
+        /// <response code="200">Telefone do Usuário retornado com sucesso</response>
+        /// <response code="400">Retorna erros de validação</response>
+        /// <response code="500">Retorna erros da aplicação caso ocorram</response>
+        [Authorize]
+        [ProducesResponseType(typeof(UsuarioTelefoneResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [HttpGet("{id}/phone")]
+        public async Task<ActionResult<UsuarioTelefoneResponse>> Get([FromRoute] string id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            return await _identityService.GetTelefoneUsuarioAsync(id);
         }
 
         /// <summary>

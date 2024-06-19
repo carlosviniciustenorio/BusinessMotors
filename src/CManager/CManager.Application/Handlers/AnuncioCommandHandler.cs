@@ -1,6 +1,7 @@
 using CManager.Domain.Helpers;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 namespace CManager.Application.Handlers
 {
@@ -15,8 +16,9 @@ namespace CManager.Application.Handlers
         private readonly IModeloRepository _modeloRepository;
         private readonly IVersaoRepository _versaoRepository;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<AnuncioCommandHandler> _logger;
 
-        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
+        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository, ILogger<AnuncioCommandHandler> logger)
         {
             _caracteristicaRepository = caracteristicaRepository;
             _opcionalRepository = opcionalRepository;
@@ -25,6 +27,7 @@ namespace CManager.Application.Handlers
             _userManager = userManager;
             _modeloRepository = modeloRepository;
             _versaoRepository = versaoRepository;
+            _logger = logger;
         }
 
         #region Post
@@ -39,14 +42,8 @@ namespace CManager.Application.Handlers
             var caracteristicas = await  ValidarRetornarCaracteristicasAsync(request);
             var versao = await ValidarRetornarVersaoASync(request);
             var modelo = await ValidarRetornarModeloASync(request);
-
-            List<Imagem> imagens = new List<Imagem>();
-            foreach (var item in request.files)
-            {
-                var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
-                imagens.Add(new Imagem(imagem));
-                
-            }
+            
+            List<Imagem> imagens = await EfetuarUploadDeImagensAsync(request.files);
 
             Anuncio anuncio = new(request.placa,
                                   modelo,
@@ -186,8 +183,29 @@ namespace CManager.Application.Handlers
         }
 
         private async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
-        private async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
         
+        private async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
+
+        private async Task<List<Imagem>> EfetuarUploadDeImagensAsync(List<IFormFile> files)
+        {
+            List<Imagem> imagens = new();
+            try
+            {
+                foreach (var item in files)
+                {
+                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                    imagens.Add(new Imagem(imagem));
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Erro ao fazer upload de imagens no S3: {e}");
+                var counter = Prometheus.Metrics.CreateCounter("AnunciosComFalha","Counter de anúncios com falha");
+                counter.Inc();
+                throw;
+            }
+            return imagens;
+        }
         #endregion
     }
 }

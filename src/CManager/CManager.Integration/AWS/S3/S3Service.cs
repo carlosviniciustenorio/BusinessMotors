@@ -1,6 +1,5 @@
 using Amazon;
 using Amazon.S3;
-using Amazon.S3.Util;
 using Microsoft.AspNetCore.Http;
 
 namespace CManager.Integration.AWS.S3

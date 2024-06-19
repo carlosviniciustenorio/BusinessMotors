@@ -145,5 +145,14 @@ namespace CManager.Infrastructure.Services
 
             return claims;
         }
+
+        public async Task<UsuarioTelefoneResponse> GetTelefoneUsuarioAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user is null)
+                throw new InvalidDataException();
+
+            return new UsuarioTelefoneResponse(){Telefone = user.PhoneNumber};
+        }
     }
 }
