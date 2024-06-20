@@ -152,7 +152,7 @@ namespace CManager.Infrastructure.Services
             if (user is null)
                 throw new InvalidDataException();
 
-            return new UsuarioTelefoneResponse(){Telefone = user.PhoneNumber};
+            return new UsuarioTelefoneResponse(){Telefone = user.PhoneNumber, Email = user.Email};
         }
     }
 }

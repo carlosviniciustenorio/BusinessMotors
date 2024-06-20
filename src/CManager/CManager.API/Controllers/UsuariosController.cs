@@ -61,11 +61,10 @@ namespace CManager.API.Controllers
         /// <response code="200">Telefone do Usuário retornado com sucesso</response>
         /// <response code="400">Retorna erros de validação</response>
         /// <response code="500">Retorna erros da aplicação caso ocorram</response>
-        [Authorize]
         [ProducesResponseType(typeof(UsuarioTelefoneResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("{id}/phone")]
+        [HttpGet("{id}/detalhes")]
         public async Task<ActionResult<UsuarioTelefoneResponse>> Get([FromRoute] string id)
         {
             if (!ModelState.IsValid)
