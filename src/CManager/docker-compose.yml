@@ -10,12 +10,16 @@ services:
     configs:
       - source: prometheus_config
         target: /etc/prometheus/prometheus.yml
+    networks:
+      - my_network
 
   grafana:
     image: grafana/grafana-enterprise
     container_name: grafana
     ports:
       - "3001:3000"
+    networks:
+      - my_network
     depends_on:
       - prometheus
 
@@ -41,9 +45,9 @@ services:
     networks:
       - my_network
 
-  web:
+  salescarapi:
     build: .
-    container_name: cmanagerApp
+    container_name: salescarapi
     depends_on: 
       - elasticsearch
     ports:
