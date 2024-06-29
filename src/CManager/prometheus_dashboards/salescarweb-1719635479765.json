@@ -195,12 +195,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "orange",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "dark-red",
+                "value": 1
               }
             ]
           }
@@ -215,9 +215,8 @@
       },
       "id": 8,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -226,9 +225,9 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
       },
       "pluginVersion": "10.4.1",
       "targets": [
@@ -239,7 +238,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "system_net_http_requests_failed_total",
+          "expr": "microsoft_aspnetcore_hosting_failed_requests",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -250,7 +249,8 @@
         }
       ],
       "title": "Requests Failed Total",
-      "type": "stat"
+      "transparent": true,
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -265,7 +265,7 @@
           "custom": {
             "axisBorderShow": false,
             "axisCenteredZero": false,
-            "axisColorMode": "series",
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -583,11 +583,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -653,7 +650,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -709,19 +707,20 @@
       "type": "gauge"
     }
   ],
+  "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "salescarweb",
   "uid": "adq64oc9m33swe",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
