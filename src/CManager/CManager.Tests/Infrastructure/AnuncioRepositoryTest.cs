@@ -5,18 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CManager.Domain.Models;
 
 namespace CManager.Tests.Infrastructure
 {
     public class AnuncioRepositoryTest
     {
-        [Fact]
-        public void Test()
+        [Theory]
+        [InlineData("teste1")]
+        [InlineData("teste2")]
+        [InlineData("teste3")]
+        public void Test(string value)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CManagerDBContext>().UseInMemoryDatabase(Guid.NewGuid().ToString());
             var context = new CManagerDBContext(optionsBuilder.Options);
 
-            context.Opcional.Add(new ("teste"));
+            context.Opcional.Add(new (value));
             context.SaveChanges();
             Assert.Single(context.Opcional);
         }
