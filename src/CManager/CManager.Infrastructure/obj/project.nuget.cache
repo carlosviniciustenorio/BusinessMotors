@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TJvEQZMBtF7p515+Smh/XV7sgj3oS+PxqpC6q/uZvNDmfOIea+3DNMKu9rE0F+UwM1A01u/gGS864t2T2kYt+Q==",
+  "dgSpecHash": "sO+CEXhysIUkJpzrXn5eGAt9nYR3oObbFFdEC5y11/3xThPSmuXLNjUdEw+1giIMmKYFhOF572Wr2LwReoUjyA==",
   "success": true,
   "projectFilePath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Infrastructure/CManager.Infrastructure.csproj",
   "expectedPackageFiles": [
