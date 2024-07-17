@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "I0ojTsMeWR5uJaw0dwoYVQ03YfcKGtl6678o5Ckt9VsYvH0cRuQ0ZF1+SBIQ4oY1MQFnvkb1hJtha+EUY1yCCw==",
+  "dgSpecHash": "9hqF8feqHBqjE9PX1UxJsSZeRPBowzfIJmCIa4zPj/w6Fzs6nXj7XPWMBZkhy7GMSrPFbRuwbSXHsK8LFR1Bqg==",
   "success": true,
   "projectFilePath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.API/CManager.API.csproj",
   "expectedPackageFiles": [
     "/home/tenorio/.nuget/packages/amazon.core/0.31.0/amazon.core.0.31.0.nupkg.sha512",
     "/home/tenorio/.nuget/packages/amazon.s3/0.31.2/amazon.s3.0.31.2.nupkg.sha512",
+    "/home/tenorio/.nuget/packages/aspnetcoreratelimit/5.0.0/aspnetcoreratelimit.5.0.0.nupkg.sha512",
     "/home/tenorio/.nuget/packages/awssdk.core/3.7.302.16/awssdk.core.3.7.302.16.nupkg.sha512",
     "/home/tenorio/.nuget/packages/awssdk.s3/3.7.305.31/awssdk.s3.3.7.305.31.nupkg.sha512",
     "/home/tenorio/.nuget/packages/awssdk.secretsmanager/3.3.103/awssdk.secretsmanager.3.3.103.nupkg.sha512",

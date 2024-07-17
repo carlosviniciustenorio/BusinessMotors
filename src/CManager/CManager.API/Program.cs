@@ -1,3 +1,5 @@
+using AspNetCoreRateLimit;
+
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 
@@ -42,6 +44,11 @@ builder.Services.AddDbContext<IdentityDBContext>(options =>
 
 builder.Services.AddDbContext<CManagerDBContext>(options =>
         options.UseMySql(apiSettings.ConnectionStringDB, ServerVersion.AutoDetect(apiSettings.ConnectionStringDB)));
+
+builder.Services.AddMemoryCache();
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+builder.Services.AddInMemoryRateLimiting();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
@@ -145,6 +152,7 @@ else
     app.UseExceptionHandler("/Error");
 }
 
+app.UseIpRateLimiting();
 app.UseCors();
 app.UseSerilogRequestLogging();
 app.UseProblemDetails();

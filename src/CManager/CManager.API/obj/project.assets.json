@@ -24,6 +24,24 @@
           "lib/net8.0/Amazon.S3.dll": {}
         }
       },
+      "AspNetCoreRateLimit/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
+          "Microsoft.Extensions.Options": "6.0.0",
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/net6.0/AspNetCoreRateLimit.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/AspNetCoreRateLimit.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "AWSSDK.Core/3.7.302.16": {
         "type": "package",
         "compile": {
@@ -3936,6 +3954,18 @@
         "amazon.s3.0.31.2.nupkg.sha512",
         "amazon.s3.nuspec",
         "lib/net8.0/Amazon.S3.dll"
+      ]
+    },
+    "AspNetCoreRateLimit/5.0.0": {
+      "sha512": "6fq9+o1maGADUmpK/PvcF0DtXW2+7bSkIL7MDIo/agbIHKN8XkMQF4oze60DO731WaQmHmK260hB30FwPzCmEg==",
+      "type": "package",
+      "path": "aspnetcoreratelimit/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "aspnetcoreratelimit.5.0.0.nupkg.sha512",
+        "aspnetcoreratelimit.nuspec",
+        "lib/net6.0/AspNetCoreRateLimit.dll"
       ]
     },
     "AWSSDK.Core/3.7.302.16": {
@@ -11134,6 +11164,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "AWSSDK.Core >= 3.7.302.16",
+      "AspNetCoreRateLimit >= 5.0.0",
       "CManager.Infrastructure >= 1.0.0",
       "CManager.Integration >= 1.0.0",
       "Elasticsearch.Net >= 7.17.5",
@@ -11206,6 +11237,10 @@
           "AWSSDK.Core": {
             "target": "Package",
             "version": "[3.7.302.16, )"
+          },
+          "AspNetCoreRateLimit": {
+            "target": "Package",
+            "version": "[5.0.0, )"
           },
           "Elasticsearch.Net": {
             "target": "Package",

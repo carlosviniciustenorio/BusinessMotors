@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[3.7.302.16, )"
             },
+            "AspNetCoreRateLimit": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Elasticsearch.Net": {
               "target": "Package",
               "version": "[7.17.5, )"
