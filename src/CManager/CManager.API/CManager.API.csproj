@@ -13,12 +13,16 @@
     <PackageReference Include="AWSSDK.Core" Version="3.7.302.16" />
     <PackageReference Include="Elasticsearch.Net" Version="7.17.5" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.64.0-pre1" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.64.0-pre1" />
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
     <PackageReference Include="NEST" Version="7.17.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Polly.Extensions.Http" Version="3.0.0" />
@@ -35,6 +39,13 @@
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.28.0-rc1" />
+    <PackageReference Include="Grpc.Tools" Version="2.65.0">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="GrpcProto\car_ad.proto" GrpcServices="Client" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CManager.Infrastructure\CManager.Infrastructure.csproj" />
@@ -45,14 +56,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Handlers\**" />
+    <Compile Remove="Controllers\TestController.cs" />
+    <Compile Remove="Protos\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Handlers\**" />
+    <EmbeddedResource Remove="Protos\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Handlers\**" />
+    <Content Remove="Protos\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Handlers\**" />
+    <None Remove="Protos\**" />
   </ItemGroup>
 </Project>

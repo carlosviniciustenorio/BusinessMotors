@@ -1,4 +1,6 @@
 using AspNetCoreRateLimit;
+using Grpc.Net.Client;
+using CarAdService; 
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
@@ -16,7 +18,6 @@ if(env.EnvironmentName != Environments.Development){
 }
 
 builder.Services.AddApiProblemDetails();
-
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddScoped(c => c.GetService<IOptionsSnapshot<ApiSettings>>().Value);
@@ -27,6 +28,17 @@ var apiSettings = serviceProvider.GetService<ApiSettings>();
 var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
 Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
+
+builder.Services.AddGrpcClient<CarAd.CarAdClient>(o =>
+{
+    o.Address = new Uri("https://localhost:7073");
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback = 
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+    return handler;
+});
 
 Log.Logger = new LoggerConfiguration()
             .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
