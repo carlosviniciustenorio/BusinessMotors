@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarAdService";
+
+package carad;
+
+service CarAd {
+  rpc UpdateCarAd (UpdateCarAdRequest) returns (UpdateCarAdReply);
+}
+
+message UpdateCarAdRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  double price = 4;
+}
+
+message UpdateCarAdReply {
+  string message = 1;
+}

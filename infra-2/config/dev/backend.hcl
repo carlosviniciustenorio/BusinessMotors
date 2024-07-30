@@ -1,4 +1,4 @@
-bucket         = "infra-cmanager"
+bucket         = "infra-cmanager-dev"
 key            = "CManager/dev/terraform.tfstate"
 region         = "us-east-1"
 dynamodb_table = "infra-ct-tfstate"

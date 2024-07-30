@@ -1,65 +1,65 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
-      "Amazon.Core/0.29.0": {
+    "net8.0": {
+      "Amazon.Core/0.31.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/Amazon.Core.dll": {}
+          "lib/net8.0/Amazon.Core.dll": {}
         },
         "runtime": {
-          "lib/net7.0/Amazon.Core.dll": {}
+          "lib/net8.0/Amazon.Core.dll": {}
         }
       },
-      "Amazon.S3/0.29.0": {
+      "Amazon.S3/0.31.2": {
         "type": "package",
         "dependencies": {
-          "Amazon.Core": "0.29.0",
-          "Carbon.Storage": "3.13.0"
+          "Amazon.Core": "0.31.0",
+          "Carbon.Storage": "3.15.0"
         },
         "compile": {
-          "lib/net7.0/Amazon.S3.dll": {}
+          "lib/net8.0/Amazon.S3.dll": {}
         },
         "runtime": {
-          "lib/net7.0/Amazon.S3.dll": {}
+          "lib/net8.0/Amazon.S3.dll": {}
         }
       },
-      "AWSSDK.Core/3.7.106.28": {
+      "AWSSDK.Core/3.7.302.16": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+          "lib/net8.0/AWSSDK.Core.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+          "lib/net8.0/AWSSDK.Core.dll": {
             "related": ".pdb;.xml"
           }
         }
       },
-      "AWSSDK.S3/3.7.103.26": {
+      "AWSSDK.S3/3.7.305.31": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.105.18, 4.0.0)"
+          "AWSSDK.Core": "[3.7.302.16, 4.0.0)"
         },
         "compile": {
-          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+          "lib/net8.0/AWSSDK.S3.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+          "lib/net8.0/AWSSDK.S3.dll": {
             "related": ".pdb;.xml"
           }
         }
       },
-      "Carbon.Storage/3.13.0": {
+      "Carbon.Storage/3.15.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/Carbon.Storage.dll": {}
+          "lib/net8.0/Carbon.Storage.dll": {}
         },
         "runtime": {
-          "lib/net7.0/Carbon.Storage.dll": {}
+          "lib/net8.0/Carbon.Storage.dll": {}
         }
       },
       "Microsoft.AspNetCore.Http/2.2.2": {
@@ -132,18 +132,18 @@
           }
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
+      "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "7.0.0"
+          "Microsoft.Extensions.Primitives": "8.0.0"
         },
         "compile": {
-          "lib/net7.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+          "lib/net8.0/Microsoft.Extensions.Caching.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+          "lib/net8.0/Microsoft.Extensions.Caching.Abstractions.dll": {
             "related": ".xml"
           }
         },
@@ -162,6 +162,22 @@
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "Microsoft.Extensions.ObjectPool/2.2.0": {
@@ -195,15 +211,15 @@
           }
         }
       },
-      "Microsoft.Extensions.Primitives/7.0.0": {
+      "Microsoft.Extensions.Primitives/8.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/Microsoft.Extensions.Primitives.dll": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Microsoft.Extensions.Primitives.dll": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
             "related": ".xml"
           }
         },
@@ -228,7 +244,7 @@
           }
         }
       },
-      "Pipelines.Sockets.Unofficial/2.2.2": {
+      "Pipelines.Sockets.Unofficial/2.2.8": {
         "type": "package",
         "dependencies": {
           "System.IO.Pipelines": "5.0.1"
@@ -244,47 +260,48 @@
           }
         }
       },
-      "Polly/8.0.0": {
+      "Polly/8.3.1": {
         "type": "package",
         "dependencies": {
-          "Polly.Core": "8.0.0"
+          "Polly.Core": "8.3.1"
         },
         "compile": {
           "lib/net6.0/Polly.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Polly.dll": {
-            "related": ".pdb"
-          }
-        }
-      },
-      "Polly.Core/8.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Polly.Core.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Polly.Core.dll": {
+          "lib/net6.0/Polly.dll": {
             "related": ".pdb;.xml"
           }
         }
       },
-      "StackExchange.Redis/2.6.96": {
+      "Polly.Core/8.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Polly.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Polly.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "StackExchange.Redis/2.7.33": {
         "type": "package",
         "dependencies": {
-          "Pipelines.Sockets.Unofficial": "2.2.2"
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Pipelines.Sockets.Unofficial": "2.2.8"
         },
         "compile": {
-          "lib/net5.0/StackExchange.Redis.dll": {
+          "lib/net6.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net5.0/StackExchange.Redis.dll": {
+          "lib/net6.0/StackExchange.Redis.dll": {
             "related": ".xml"
           }
         }
@@ -336,46 +353,50 @@
     }
   },
   "libraries": {
-    "Amazon.Core/0.29.0": {
-      "sha512": "l3pvrYu2eiDpIS6I/g/Wsc88L+AqLG8hB/X1R7Zz53dkZn/GFz9UqbDySzlw56TEe+wcBNkvE+n/HkbSe+ciPQ==",
+    "Amazon.Core/0.31.0": {
+      "sha512": "P1D3zLKrf+bBrLabIydt2tvZ4NM98MXV+S17BMkUQJ325J+UP2PBAASWr9U3pHbv9Tj6v1MkQiLax07wgXXUgA==",
       "type": "package",
-      "path": "amazon.core/0.29.0",
+      "path": "amazon.core/0.31.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "amazon.core.0.29.0.nupkg.sha512",
+        "amazon.core.0.31.0.nupkg.sha512",
         "amazon.core.nuspec",
-        "lib/net7.0/Amazon.Core.dll"
+        "lib/net8.0/Amazon.Core.dll"
       ]
     },
-    "Amazon.S3/0.29.0": {
-      "sha512": "NU7m54R04AOcbIICOltrhTCptRAT0bPc44hVdkkRKnEzW7IOJws3pg1ys/8y6d0gmAkDsRBnxOgranq7546EJA==",
+    "Amazon.S3/0.31.2": {
+      "sha512": "94fkCYor8aNNkLEn0nPXAi6ExGpdl+Z6LvSDIiwE7Iun+RKfKs9ts9046UpiRoKMqrZ22TAJue10njWv9fjCKg==",
       "type": "package",
-      "path": "amazon.s3/0.29.0",
+      "path": "amazon.s3/0.31.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "amazon.s3.0.29.0.nupkg.sha512",
+        "amazon.s3.0.31.2.nupkg.sha512",
         "amazon.s3.nuspec",
-        "lib/net7.0/Amazon.S3.dll"
+        "lib/net8.0/Amazon.S3.dll"
       ]
     },
-    "AWSSDK.Core/3.7.106.28": {
-      "sha512": "XQzrj6CcdJodjsIy4a/U1cLdrS97ekL33b+C3KRAWPYpe9J8ELLXSuVTyYk/wphJ2fk+rjoE0e5RIOsXvrLmog==",
+    "AWSSDK.Core/3.7.302.16": {
+      "sha512": "iR/YHr8gkDqXHlOcSEzPFljboB8B7UhXdm3NfzvMeLGDW+pD3Xfs1+oh98DS1+PfC7rZKGco8jYEjOZgt7vwpw==",
       "type": "package",
-      "path": "awssdk.core/3.7.106.28",
+      "path": "awssdk.core/3.7.302.16",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.7.106.28.nupkg.sha512",
+        "awssdk.core.3.7.302.16.nupkg.sha512",
         "awssdk.core.nuspec",
+        "images/AWSLogo.png",
         "lib/net35/AWSSDK.Core.dll",
         "lib/net35/AWSSDK.Core.pdb",
         "lib/net35/AWSSDK.Core.xml",
         "lib/net45/AWSSDK.Core.dll",
         "lib/net45/AWSSDK.Core.pdb",
         "lib/net45/AWSSDK.Core.xml",
+        "lib/net8.0/AWSSDK.Core.dll",
+        "lib/net8.0/AWSSDK.Core.pdb",
+        "lib/net8.0/AWSSDK.Core.xml",
         "lib/netcoreapp3.1/AWSSDK.Core.dll",
         "lib/netcoreapp3.1/AWSSDK.Core.pdb",
         "lib/netcoreapp3.1/AWSSDK.Core.xml",
@@ -385,23 +406,28 @@
         "tools/account-management.ps1"
       ]
     },
-    "AWSSDK.S3/3.7.103.26": {
-      "sha512": "pGgm00r1MCuFCXkTn34sGDNVXGkPC+w/gtlAfME5y0eFP0HM1xjlohtXs2dVCwNcP9py/31CQXG4Dtdx5bvIvA==",
+    "AWSSDK.S3/3.7.305.31": {
+      "sha512": "ElvGvXAekMu0FwY7LJSOeaVi47rafgLFEz2C+e7Y5+kHhsO8FIKcum4pLubKUwbd20VPvN/G2m9oBShbz6al+g==",
       "type": "package",
-      "path": "awssdk.s3/3.7.103.26",
+      "path": "awssdk.s3/3.7.305.31",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
-        "awssdk.s3.3.7.103.26.nupkg.sha512",
+        "analyzers/dotnet/cs/SharedAnalysisCode.dll",
+        "awssdk.s3.3.7.305.31.nupkg.sha512",
         "awssdk.s3.nuspec",
+        "images/AWSLogo.png",
         "lib/net35/AWSSDK.S3.dll",
         "lib/net35/AWSSDK.S3.pdb",
         "lib/net35/AWSSDK.S3.xml",
         "lib/net45/AWSSDK.S3.dll",
         "lib/net45/AWSSDK.S3.pdb",
         "lib/net45/AWSSDK.S3.xml",
+        "lib/net8.0/AWSSDK.S3.dll",
+        "lib/net8.0/AWSSDK.S3.pdb",
+        "lib/net8.0/AWSSDK.S3.xml",
         "lib/netcoreapp3.1/AWSSDK.S3.dll",
         "lib/netcoreapp3.1/AWSSDK.S3.pdb",
         "lib/netcoreapp3.1/AWSSDK.S3.xml",
@@ -412,16 +438,16 @@
         "tools/uninstall.ps1"
       ]
     },
-    "Carbon.Storage/3.13.0": {
-      "sha512": "1ibkFBTFzkRXbklVRO8Uf1MtRkxcW+gG1XY7Yb0EXE9HZG5Ri0JzkV19BvLbr4a25sgPQ8CgZhNXT98yc/+YOA==",
+    "Carbon.Storage/3.15.0": {
+      "sha512": "k6aoP3AhSselN5eSROUq3lFCv+XvwobMUUwTtzjl32F6Xs8R5nyZMWKjZ1Y5gVLhDbyfmY3W6F1DvL4MNvPX7w==",
       "type": "package",
-      "path": "carbon.storage/3.13.0",
+      "path": "carbon.storage/3.15.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "carbon.storage.3.13.0.nupkg.sha512",
+        "carbon.storage.3.15.0.nupkg.sha512",
         "carbon.storage.nuspec",
-        "lib/net7.0/Carbon.Storage.dll"
+        "lib/net8.0/Carbon.Storage.dll"
       ]
     },
     "Microsoft.AspNetCore.Http/2.2.2": {
@@ -476,15 +502,16 @@
         "microsoft.aspnetcore.webutilities.nuspec"
       ]
     },
-    "Microsoft.Extensions.Caching.Abstractions/7.0.0": {
-      "sha512": "IeimUd0TNbhB4ded3AbgBLQv2SnsiVugDyGV1MvspQFVlA07nDC7Zul7kcwH5jWN3JiTcp/ySE83AIJo8yfKjg==",
+    "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
+      "sha512": "3KuSxeHoNYdxVYfg2IRZCThcrlJ1XJqIXkAWikCsbm5C/bCjv7G0WoKDyuR98Q+T607QT2Zl5GsbGRkENcV2yQ==",
       "type": "package",
-      "path": "microsoft.extensions.caching.abstractions/7.0.0",
+      "path": "microsoft.extensions.caching.abstractions/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
+        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/net461/Microsoft.Extensions.Caching.Abstractions.targets",
         "buildTransitive/net462/_._",
@@ -496,9 +523,11 @@
         "lib/net6.0/Microsoft.Extensions.Caching.Abstractions.xml",
         "lib/net7.0/Microsoft.Extensions.Caching.Abstractions.dll",
         "lib/net7.0/Microsoft.Extensions.Caching.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.Caching.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.Caching.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.xml",
-        "microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+        "microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
         "microsoft.extensions.caching.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -514,6 +543,58 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "microsoft.extensions.dependencyinjection.abstractions.2.2.0.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "sha512": "/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.abstractions/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "build/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.Extensions.ObjectPool/2.2.0": {
@@ -542,15 +623,16 @@
         "microsoft.extensions.options.nuspec"
       ]
     },
-    "Microsoft.Extensions.Primitives/7.0.0": {
-      "sha512": "um1KU5kxcRp3CNuI8o/GrZtD4AIOXDk+RLsytjZ9QPok3ttLUelLKpilVPuaFT3TFjOhSibUAso0odbOaCDj3Q==",
+    "Microsoft.Extensions.Primitives/8.0.0": {
+      "sha512": "bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/7.0.0",
+      "path": "microsoft.extensions.primitives/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
+        "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/net461/Microsoft.Extensions.Primitives.targets",
         "buildTransitive/net462/_._",
@@ -562,9 +644,11 @@
         "lib/net6.0/Microsoft.Extensions.Primitives.xml",
         "lib/net7.0/Microsoft.Extensions.Primitives.dll",
         "lib/net7.0/Microsoft.Extensions.Primitives.xml",
+        "lib/net8.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net8.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.8.0.0.nupkg.sha512",
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -582,10 +666,10 @@
         "microsoft.net.http.headers.nuspec"
       ]
     },
-    "Pipelines.Sockets.Unofficial/2.2.2": {
-      "sha512": "Bhk0FWxH1paI+18zr1g5cTL+ebeuDcBCR+rRFO+fKEhretgjs7MF2Mc1P64FGLecWp4zKCUOPzngBNrqVyY7Zg==",
+    "Pipelines.Sockets.Unofficial/2.2.8": {
+      "sha512": "zG2FApP5zxSx6OcdJQLbZDk2AVlN2BNQD6MorwIfV6gVj0RRxWPEp2LXAxqDGZqeNV1Zp0BNPcNaey/GXmTdvQ==",
       "type": "package",
-      "path": "pipelines.sockets.unofficial/2.2.2",
+      "path": "pipelines.sockets.unofficial/2.2.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -601,35 +685,39 @@
         "lib/netstandard2.0/Pipelines.Sockets.Unofficial.xml",
         "lib/netstandard2.1/Pipelines.Sockets.Unofficial.dll",
         "lib/netstandard2.1/Pipelines.Sockets.Unofficial.xml",
-        "pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+        "pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
         "pipelines.sockets.unofficial.nuspec"
       ]
     },
-    "Polly/8.0.0": {
-      "sha512": "vwIDGI+vUCrufIFi2IpN0EnMyKFRyKHCiJ47yQUvBtAkE76f8xgFjrI7cLmLWv4NwSXZH6DxUG088QmEuHwIFw==",
+    "Polly/8.3.1": {
+      "sha512": "xN9AxOudus8u4a//Tfu6Wxd5Oj7S4pjh/651S6FfIiVrbxQ8TeM+ieZC8c0y7Qto70zKBM5g8rBTqbAJnbetOA==",
       "type": "package",
-      "path": "polly/8.0.0",
+      "path": "polly/8.3.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net462/Polly.dll",
         "lib/net462/Polly.pdb",
+        "lib/net462/Polly.xml",
         "lib/net472/Polly.dll",
         "lib/net472/Polly.pdb",
+        "lib/net472/Polly.xml",
         "lib/net6.0/Polly.dll",
         "lib/net6.0/Polly.pdb",
+        "lib/net6.0/Polly.xml",
         "lib/netstandard2.0/Polly.dll",
         "lib/netstandard2.0/Polly.pdb",
+        "lib/netstandard2.0/Polly.xml",
         "package-icon.png",
         "package-readme.md",
-        "polly.8.0.0.nupkg.sha512",
+        "polly.8.3.1.nupkg.sha512",
         "polly.nuspec"
       ]
     },
-    "Polly.Core/8.0.0": {
-      "sha512": "g+8HnRjFTs8Ujz4Si4slrVrEK9M92DjvF75WvNpnF/lbT8M3/xW+tuD2udTiv2KuOsFOsRfOcZ12PddizrtXVA==",
+    "Polly.Core/8.3.1": {
+      "sha512": "b9mMAjqXuCXFCtf/RtRPwFUkAm/sz37s7G+taDvS5EqfkJsLiWfO2xO2cSISjIgIY+88oIZTGguP6UrRGRlqzg==",
       "type": "package",
-      "path": "polly.core/8.0.0",
+      "path": "polly.core/8.3.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -642,19 +730,22 @@
         "lib/net6.0/Polly.Core.dll",
         "lib/net6.0/Polly.Core.pdb",
         "lib/net6.0/Polly.Core.xml",
+        "lib/net8.0/Polly.Core.dll",
+        "lib/net8.0/Polly.Core.pdb",
+        "lib/net8.0/Polly.Core.xml",
         "lib/netstandard2.0/Polly.Core.dll",
         "lib/netstandard2.0/Polly.Core.pdb",
         "lib/netstandard2.0/Polly.Core.xml",
         "package-icon.png",
         "package-readme.md",
-        "polly.core.8.0.0.nupkg.sha512",
+        "polly.core.8.3.1.nupkg.sha512",
         "polly.core.nuspec"
       ]
     },
-    "StackExchange.Redis/2.6.96": {
-      "sha512": "JDj94bTwBZ6zA1vknEYJppRXRejTnl5u2z6cRBQ0DJ+Uy94qvn0XsQZ2M+1/VkqtxQ+LUU1h4JZWwcvVojGiQg==",
+    "StackExchange.Redis/2.7.33": {
+      "sha512": "2kCX5fvhEE824a4Ab5Imyi8DRuGuTxyklXV01kegkRpsWJcPmO6+GAQ+HegKxvXAxlXZ8yaRspvWJ8t3mMClfQ==",
       "type": "package",
-      "path": "stackexchange.redis/2.6.96",
+      "path": "stackexchange.redis/2.7.33",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -662,13 +753,13 @@
         "lib/net461/StackExchange.Redis.xml",
         "lib/net472/StackExchange.Redis.dll",
         "lib/net472/StackExchange.Redis.xml",
-        "lib/net5.0/StackExchange.Redis.dll",
-        "lib/net5.0/StackExchange.Redis.xml",
+        "lib/net6.0/StackExchange.Redis.dll",
+        "lib/net6.0/StackExchange.Redis.xml",
         "lib/netcoreapp3.1/StackExchange.Redis.dll",
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.6.96.nupkg.sha512",
+        "stackexchange.redis.2.7.33.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },
@@ -837,47 +928,40 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "AWSSDK.Core >= 3.7.106.28",
-      "AWSSDK.S3 >= 3.7.103.26",
-      "Amazon.S3 >= 0.29.0",
+    "net8.0": [
+      "AWSSDK.Core >= 3.7.302.16",
+      "AWSSDK.S3 >= 3.7.305.31",
+      "Amazon.S3 >= 0.31.2",
       "Microsoft.AspNetCore.Http >= 2.2.2",
-      "Microsoft.Extensions.Caching.Abstractions >= 7.0.0",
-      "Polly >= 8.0.0",
-      "StackExchange.Redis >= 2.6.96"
+      "Microsoft.Extensions.Caching.Abstractions >= 8.0.0",
+      "Polly >= 8.3.1",
+      "StackExchange.Redis >= 2.7.33"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\carlo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/home/tenorio/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
+      "projectUniqueName": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
       "projectName": "CManager.Integration",
-      "projectPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\CManager.Integration.csproj",
-      "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-      "outputPath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Integration\\obj\\",
+      "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
+      "packagesPath": "/home/tenorio/.nuget/packages/",
+      "outputPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/tenorio/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -888,20 +972,20 @@
       }
     },
     "frameworks": {
-      "net7.0": {
-        "targetAlias": "net7.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "AWSSDK.Core": {
             "target": "Package",
-            "version": "[3.7.106.28, )"
+            "version": "[3.7.302.16, )"
           },
           "AWSSDK.S3": {
             "target": "Package",
-            "version": "[3.7.103.26, )"
+            "version": "[3.7.305.31, )"
           },
           "Amazon.S3": {
             "target": "Package",
-            "version": "[0.29.0, )"
+            "version": "[0.31.2, )"
           },
           "Microsoft.AspNetCore.Http": {
             "target": "Package",
@@ -909,15 +993,15 @@
           },
           "Microsoft.Extensions.Caching.Abstractions": {
             "target": "Package",
-            "version": "[7.0.0, )"
+            "version": "[8.0.0, )"
           },
           "Polly": {
             "target": "Package",
-            "version": "[8.0.0, )"
+            "version": "[8.3.1, )"
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.6.96, )"
+            "version": "[2.7.33, )"
           }
         },
         "imports": [
@@ -936,7 +1020,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

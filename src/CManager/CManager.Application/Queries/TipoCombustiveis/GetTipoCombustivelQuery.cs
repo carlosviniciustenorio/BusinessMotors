@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace CManager.Application.Queries
 {
     public static class GetTipoCombustivelQuery
     {
-        public sealed record TipoCombustivel(int id, string nome = "") : IRequest<TipoCombustivelResponse>;
+        public sealed record TipoCombustivel([FromRoute]int id, [FromQuery]string nome = "") : IRequest<TipoCombustivelResponse>;
 
         public sealed class Validator : AbstractValidator<TipoCombustivel>
         {

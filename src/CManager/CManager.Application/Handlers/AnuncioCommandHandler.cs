@@ -1,8 +1,7 @@
-using Amazon.S3.Model;
 using CManager.Domain.Helpers;
 using CManager.Integration.AWS.S3;
 using Microsoft.AspNetCore.Identity;
-using Prometheus;
+using Microsoft.Extensions.Logging;
 
 namespace CManager.Application.Handlers
 {
@@ -17,8 +16,9 @@ namespace CManager.Application.Handlers
         private readonly IModeloRepository _modeloRepository;
         private readonly IVersaoRepository _versaoRepository;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<AnuncioCommandHandler> _logger;
 
-        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository)
+        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository, ILogger<AnuncioCommandHandler> logger)
         {
             _caracteristicaRepository = caracteristicaRepository;
             _opcionalRepository = opcionalRepository;
@@ -27,6 +27,7 @@ namespace CManager.Application.Handlers
             _userManager = userManager;
             _modeloRepository = modeloRepository;
             _versaoRepository = versaoRepository;
+            _logger = logger;
         }
 
         #region Post
@@ -34,27 +35,15 @@ namespace CManager.Application.Handlers
         {
             var user = await _userManager.FindByIdAsync(request.usuarioId);
             if(user is null)
-                throw new InvalidOperationException("Usuário informado não localizado");
+                throw new InvalidOperationException("Usuário não localizado");
 
-            List<TipoCombustivel> tiposCombustieis = await ValidarRetornarTiposCombustiveisAsync(request);
-            List<Opcional> opcionais = await ValidarRetornarOpcionaisAsync(request);
-            List<Caracteristica> caracteristicas = await ValidarRetornarCaracteristicasAsync(request);
-            Versao versao = await ValidarRetornarVersaoASync(request);
-            Modelo modelo = await ValidarRetornarModeloASync(request);
-
-            List<Imagem> imagens = new List<Imagem>();
-            foreach (var item in request.files)
-            {
-                try
-                {
-                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
-                    imagens.Add(new Imagem(imagem));
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
+            var tiposCombustieis = await ValidarRetornarTiposCombustiveisAsync(request);
+            var opcionais = await ValidarRetornarOpcionaisAsync(request);
+            var caracteristicas = await  ValidarRetornarCaracteristicasAsync(request);
+            var versao = await ValidarRetornarVersaoASync(request);
+            var modelo = await ValidarRetornarModeloASync(request);
+            
+            List<Imagem> imagens = await EfetuarUploadDeImagensAsync(request.files);
 
             Anuncio anuncio = new(request.placa,
                                   modelo,
@@ -103,7 +92,6 @@ namespace CManager.Application.Handlers
                     Km = anuncio.Km,
                     Estado = anuncio.Estado,
                     Preco = anuncio.Preco,
-                    // UsuarioId = anuncio.UsuarioId,
                     ExibirEmail = anuncio.ExibirEmail,
                     ExibirTelefone = anuncio.ExibirTelefone,
                     AnoVeiculo = anuncio.AnoVeiculo,
@@ -119,9 +107,9 @@ namespace CManager.Application.Handlers
 
         public async Task<AnuncioResponse> Handle(GetAnuncioQuery.Anuncio request, CancellationToken cancellationToken)
         {
-            var anuncio = await _anuncioRepository.GetByIdAsync(request.id);
+            var anuncio = await _anuncioRepository.GetByIdAsync(request.Id);
             if(anuncio is null)
-                throw new InvalidOperationException("Anúncio informado não localizado");
+                throw new InvalidDataException("Anúncio informado não localizado");
 
             var response = new AnuncioResponse{
                                                 Id = anuncio.Id,
@@ -136,12 +124,12 @@ namespace CManager.Application.Handlers
                                                 Km = anuncio.Km,
                                                 Estado = anuncio.Estado,
                                                 Preco = anuncio.Preco,
-                                                // UsuarioId = anuncio.UsuarioId,
                                                 ExibirEmail = anuncio.ExibirEmail,
                                                 ExibirTelefone = anuncio.ExibirTelefone,
                                                 AnoVeiculo = anuncio.AnoVeiculo,
                                                 AnoFabricacao = anuncio.AnoFabricacao,
-                                                Imagens = anuncio.ImagensS3?.Select(d => new ImagemResponse(d)).ToList() ?? new List<ImagemResponse>()
+                                                Imagens = anuncio.ImagensS3?.Select(d => new ImagemResponse(d)).ToList() ?? new List<ImagemResponse>(),
+                                                UsuarioId = anuncio.UsuarioId
                                             };
 
             var counter = Prometheus.Metrics.CreateCounter("AnuncioConsultado","Counter de anúncio consultado");
@@ -153,7 +141,7 @@ namespace CManager.Application.Handlers
         #endregion
 
         #region Métodos
-        public async Task<List<Opcional>> ValidarRetornarOpcionaisAsync(AddAnuncioCommand.Command request)
+        private async Task<List<Opcional>> ValidarRetornarOpcionaisAsync(AddAnuncioCommand.Command request)
         {
             List<Opcional> opcionais = new();
             if(request.idOpcionais != null && request.idOpcionais.Any())
@@ -167,7 +155,7 @@ namespace CManager.Application.Handlers
             return opcionais;
         }
 
-        public async Task<List<Caracteristica>> ValidarRetornarCaracteristicasAsync(AddAnuncioCommand.Command request)
+        private async Task<List<Caracteristica>> ValidarRetornarCaracteristicasAsync(AddAnuncioCommand.Command request)
         {
             List<Caracteristica> caracteristicas = new();
             if(request.idCaracteristicas != null && request.idCaracteristicas.Any())
@@ -181,7 +169,7 @@ namespace CManager.Application.Handlers
             return caracteristicas;
         }
 
-        public async Task<List<TipoCombustivel>> ValidarRetornarTiposCombustiveisAsync(AddAnuncioCommand.Command request)
+        private async Task<List<TipoCombustivel>> ValidarRetornarTiposCombustiveisAsync(AddAnuncioCommand.Command request)
         {
             List<TipoCombustivel> tiposCombustieis = new();
             if(request.idTiposCombustiveis != null && request.idTiposCombustiveis.Any())
@@ -195,9 +183,30 @@ namespace CManager.Application.Handlers
             return tiposCombustieis;
         }
 
-        public async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
-        public async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
+        private async Task<Modelo> ValidarRetornarModeloASync(AddAnuncioCommand.Command request) => await _modeloRepository.GetByIdAsync(request.idModelo) ?? throw new InvalidOperationException("Modelo informado não localizado");
         
+        private async Task<Versao> ValidarRetornarVersaoASync(AddAnuncioCommand.Command request) => await _versaoRepository.GetByIdAsync(request.idVersao) ?? throw new InvalidOperationException("Versão informada não localizada");
+
+        private async Task<List<Imagem>> EfetuarUploadDeImagensAsync(List<IFormFile> files)
+        {
+            List<Imagem> imagens = new();
+            try
+            {
+                foreach (var item in files)
+                {
+                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                    imagens.Add(new Imagem(imagem));
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Erro ao fazer upload de imagens no S3: {e}");
+                var counter = Prometheus.Metrics.CreateCounter("AnunciosComFalha","Counter de anúncios com falha");
+                counter.Inc();
+                throw;
+            }
+            return imagens;
+        }
         #endregion
     }
 }

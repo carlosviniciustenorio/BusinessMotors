@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MdOHWRSdEBL7QYxr2lZ/Pa4ulvk0g6m+zqCCPMqRD+bdRVSW6fd/L8gVDaDx1S4bn/W+WOSOTOL+KZ8nDomYrQ==",
+  "dgSpecHash": "5zAlPip17OMj8SgYLM3FNlyzXNZsRm8c4jovyClIDMOtZ6ot3W7bA4DEtaFc9kqHrt4quE/uqAxXKkgr4R1Bsg==",
   "success": true,
-  "projectFilePath": "C:\\CManager\\CManager\\src\\CManager\\CManager.Domain\\CManager.Domain.csproj",
+  "projectFilePath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

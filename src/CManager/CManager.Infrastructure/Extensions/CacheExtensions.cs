@@ -1,8 +1,4 @@
-﻿using CManager.Integration.Cache;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace CManager.Infrastructure.Extensions
+﻿namespace CManager.Infrastructure.Extensions
 {
     public static class CacheExtensions
     {

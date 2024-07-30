@@ -1,15 +1,19 @@
-namespace CManager.Application.Queries
-{
-    public static class GetAnuncioQuery
-    {
-        public sealed record Anuncio(Guid id) : IRequest<AnuncioResponse>;
+using Microsoft.AspNetCore.Mvc;
 
-        public sealed class Validator : AbstractValidator<Anuncio>
+namespace CManager.Application.Queries;
+public static class GetAnuncioQuery
+{
+    public sealed record Anuncio : IRequest<AnuncioResponse>
+    {
+        [FromRoute(Name = "id")]
+        public Guid Id { get; init; }
+    }
+
+    public sealed class Validator : AbstractValidator<Anuncio>
+    {
+        public Validator()
         {
-            public Validator()
-            {
-                RuleFor(c => c.id).NotEmpty().WithMessage("Informe o id do anúncio");
-            }
+            RuleFor(c => c.Id).NotEmpty().WithMessage("Informe o id do anúncio");
         }
     }
 }

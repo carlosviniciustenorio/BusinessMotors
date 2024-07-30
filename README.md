@@ -8,7 +8,7 @@ Has a WebAPI to sale cars using the best principles of software development.
 
 ## 💻 Technologies
 These are all the technologies and patterns used to develop this application
-- Framework: .NET 6
+- Framework: .NET 8
 - Cloud Provider: AWS - Services(ECR, ECS, VPC, ALB, TG, RDS, DynamoDB, S3)
 - IaC: Terraform
 - Container: Docker, Docker Compose
@@ -18,3 +18,4 @@ These are all the technologies and patterns used to develop this application
 - Cache: Redis
 - ORM: Entity Framework
 - CI/CD: GitHub Actions
+- Observability: Prometheus, Grafana, ElasticSearch, Kibana, Sentry

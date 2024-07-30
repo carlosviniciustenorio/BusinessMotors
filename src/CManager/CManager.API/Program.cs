@@ -1,22 +1,13 @@
-using Serilog;
-
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
-var config = builder.Configuration;
 
-Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(config)
-            .CreateLogger();
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(dispose: true);
-builder.Host.UseSerilog(Log.Logger); 
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
 if(env.EnvironmentName != Environments.Development){
     builder.Configuration.AddSecretsManager(
     region: Amazon.RegionEndpoint.USEast1, 
     configurator: options => {
-        options.PollingInterval = TimeSpan.FromMinutes(5);
+        options.PollingInterval = TimeSpan.FromHours(1);
         options.AcceptedSecretArns = new List<string>(){"Issuer", "Audience", "SecurityKey", "ConnectionStringDB"};
         options.KeyGenerator = (secret, name) => secret.Name == "ConnectionStringDB" ? $"ApiSettings:{secret.Name}" : $"JwtOptions:{secret.Name}";
     });
@@ -34,11 +25,38 @@ var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
 Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
 
+// builder.Services.AddGrpcClient<CarAd.CarAdClient>(o =>
+// {
+//     o.Address = new Uri("https://localhost:7073");
+// }).ConfigurePrimaryHttpMessageHandler(() =>
+// {
+//     var handler = new HttpClientHandler();
+//     handler.ServerCertificateCustomValidationCallback = 
+//         HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+//     return handler;
+// });
+
+Log.Logger = new LoggerConfiguration()
+            .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
+            {
+                IndexFormat = $"{apiSettings.ElasticSearch.Index[0]}",
+                AutoRegisterTemplate = true
+            })
+            .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(dispose: true);
+builder.Host.UseSerilog(Log.Logger); 
+
 builder.Services.AddDbContext<IdentityDBContext>(options =>
         options.UseMySql(apiSettings.ConnectionStringDB, ServerVersion.AutoDetect(apiSettings.ConnectionStringDB)));
 
 builder.Services.AddDbContext<CManagerDBContext>(options =>
         options.UseMySql(apiSettings.ConnectionStringDB, ServerVersion.AutoDetect(apiSettings.ConnectionStringDB)));
+
+builder.Services.AddMemoryCache();
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+builder.Services.AddInMemoryRateLimiting();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
@@ -57,7 +75,11 @@ builder.Services.AddStackExchangeRedisCache(redis =>
 });
 
 builder.Services.AddControllers()
-                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;})
+                .AddJsonOptions(options => 
+                { 
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+                })
                 .AddFluentValidation(options => { options.RegisterValidatorsFromAssemblyContaining<GetAnunciosQuery.Anuncios>();});
 
 builder.Services.AddEndpointsApiExplorer();
@@ -111,9 +133,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
 builder.Services.AddHealthChecks();
-builder.Services.AddTransient<ExceptionLoggingMiddleware>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
@@ -124,6 +144,9 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
+builder.Services.AddAuthorization();
+// builder.Services.AddTransient<ExceptionLoggingMiddleware>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -137,15 +160,16 @@ else
     app.UseExceptionHandler("/Error");
 }
 
+app.UseIpRateLimiting();
 app.UseCors();
 app.UseSerilogRequestLogging();
 app.UseProblemDetails();
-app.UseMiddleware<ExceptionLoggingMiddleware>();
+// app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseSentryTracing();
 app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseRouting();
 app.UseHttpMetrics();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseEndpoints(endpoints =>
