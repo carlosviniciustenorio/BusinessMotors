@@ -32,3 +32,4 @@ global using Serilog;
 global using Serilog.Sinks.Elasticsearch;
 global using Grpc.Net.Client;
 global using CarAdService; 
+global using AspNetCoreRateLimit;

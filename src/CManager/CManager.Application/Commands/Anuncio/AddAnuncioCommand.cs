@@ -33,7 +33,7 @@ namespace CManager.Application.Commands
             {
                 RuleFor(c => c.placa)
                     .NotEmpty()
-                    .WithMessage("Placa não pode ser vazio")
+                    .WithMessage("Placa deve ter 7 caracteres")
                     .Length(7);
 
                 RuleFor(c => c.idModelo)

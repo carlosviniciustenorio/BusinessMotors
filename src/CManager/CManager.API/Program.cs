@@ -1,5 +1,3 @@
-using AspNetCoreRateLimit;
-
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 
