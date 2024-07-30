@@ -45,7 +45,7 @@ jobs:
         run: terraform validate -no-color
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
+        run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars"
 
   build-image:
     needs: apply-infra1-dev
@@ -143,4 +143,4 @@ jobs:
             })
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false 
+        run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars"
