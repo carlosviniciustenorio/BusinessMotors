@@ -61,27 +61,6 @@
               "target": "Package",
               "version": "[11.3.0, )"
             },
-            "Google.Protobuf": {
-              "target": "Package",
-              "version": "[3.28.0-rc1, )"
-            },
-            "Grpc.Core": {
-              "target": "Package",
-              "version": "[2.46.6, )"
-            },
-            "Grpc.Net.Client.Web": {
-              "target": "Package",
-              "version": "[2.64.0-pre1, )"
-            },
-            "Grpc.Net.ClientFactory": {
-              "target": "Package",
-              "version": "[2.64.0-pre1, )"
-            },
-            "Grpc.Tools": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.65.0, )"
-            },
             "Hellang.Middleware.ProblemDetails": {
               "target": "Package",
               "version": "[6.5.1, )"
