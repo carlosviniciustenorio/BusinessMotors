@@ -133,9 +133,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
 builder.Services.AddHealthChecks();
-builder.Services.AddTransient<ExceptionLoggingMiddleware>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
@@ -148,6 +146,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddAuthentication(builder.Configuration, jwtOptions);
 builder.Services.AddAuthorization();
+// builder.Services.AddTransient<ExceptionLoggingMiddleware>();
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -164,7 +164,7 @@ app.UseIpRateLimiting();
 app.UseCors();
 app.UseSerilogRequestLogging();
 app.UseProblemDetails();
-app.UseMiddleware<ExceptionLoggingMiddleware>();
+// app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseSentryTracing();
 app.UseHttpsRedirection();
 app.UseRouting();

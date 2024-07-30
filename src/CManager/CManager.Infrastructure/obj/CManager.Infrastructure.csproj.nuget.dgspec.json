@@ -239,15 +239,15 @@
             },
             "Microsoft.IdentityModel.JsonWebTokens": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.Net.Http.Headers": {
               "target": "Package",

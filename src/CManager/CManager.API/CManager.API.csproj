@@ -52,23 +52,24 @@
     <ProjectReference Include="..\CManager.Integration\CManager.Integration.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="logs\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Handlers\**" />
     <Compile Remove="Controllers\TestController.cs" />
     <Compile Remove="Protos\**" />
+    <Compile Remove="logs\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Handlers\**" />
     <EmbeddedResource Remove="Protos\**" />
+    <EmbeddedResource Remove="logs\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Handlers\**" />
     <Content Remove="Protos\**" />
+    <Content Remove="logs\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Handlers\**" />
     <None Remove="Protos\**" />
+    <None Remove="logs\**" />
   </ItemGroup>
 </Project>
