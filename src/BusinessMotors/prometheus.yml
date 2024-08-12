@@ -11,4 +11,4 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets:
-          - salescarapi:80
+          - businessmotorsapi:80

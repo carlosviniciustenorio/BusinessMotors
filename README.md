@@ -1,10 +1,10 @@
 <h1> 
-  CManager
+  BusinessMotors
 </h1>
 
 ## 📌 Overview
 It's a project with many technologies.
-Has a WebAPI to sale cars using the best principles of software development.
+Has a WebAPI to sale motors using the best principles of software development.
 
 ## 💻 Technologies
 These are all the technologies and patterns used to develop this application
