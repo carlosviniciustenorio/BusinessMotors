@@ -1,0 +1,17 @@
+﻿global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using BusinessMotors.Integration.Cache;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using BusinessMotors.Domain.Models;
+global using Microsoft.Extensions.Configuration;
+global using BusinessMotors.Infrastructure.Context.CManager;
+global using BusinessMotors.Application.Interfaces;
+global using BusinessMotors.Infrastructure.Repositories;
+global using BusinessMotors.Application.Queries;

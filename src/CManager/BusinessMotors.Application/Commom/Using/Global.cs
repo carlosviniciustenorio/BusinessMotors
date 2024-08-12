@@ -1,0 +1,14 @@
+global using FluentValidation;
+global using MediatR;
+global using BusinessMotors.Domain.Enums;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading.Tasks;
+global using BusinessMotors.Application.Commands;
+global using BusinessMotors.Domain.Models;
+global using BusinessMotors.Application.Interfaces;
+global using BusinessMotors.Application.DTOs.Responses;
+global using BusinessMotors.Application.Queries;
+global using System.Linq.Expressions;
+global using Microsoft.AspNetCore.Http;
