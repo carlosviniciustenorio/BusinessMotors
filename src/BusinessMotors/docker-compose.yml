@@ -1,0 +1,67 @@
+version: "3.1"
+
+services:
+  prometheus:
+    build:
+      context: .
+      dockerfile: dockerfile-prometheus.yml
+    ports:
+      - "9090:9090"
+    configs:
+      - source: prometheus_config
+        target: /etc/prometheus/prometheus.yml
+    networks:
+      - my_network
+
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    networks:
+      - my_network
+    depends_on:
+      - prometheus
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.3
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    networks:
+      - my_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.16.3
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - my_network
+
+  businessmotorsapi:
+    build: .
+    container_name: businessmotorsapi
+    depends_on: 
+      - elasticsearch
+    ports:
+      - "8000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - my_network
+
+configs:
+  prometheus_config:
+    file: ./prometheus.yml
+
+networks:
+  my_network:
+    external: true
+    driver: bridge
