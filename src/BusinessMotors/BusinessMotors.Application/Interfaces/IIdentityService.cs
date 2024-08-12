@@ -9,6 +9,6 @@ namespace BusinessMotors.Application.Interfaces
         Task<UsuarioLoginResponse> Login(UsuarioLoginRequest usuarioLogin);
         Task CadastrarRole(string role, string email);
         Task<UsuarioLoginResponse> LoginComRefreshToken(string usuarioId);
-        Task<UsuarioTelefoneResponse> GetTelefoneUsuarioAsync(string id);
+        Task<UsuarioDetalhesResponse> GetDetailsUsuarioAsync(string id);
     }
 }

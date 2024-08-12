@@ -146,13 +146,13 @@ namespace BusinessMotors.Infrastructure.Services
             return claims;
         }
 
-        public async Task<UsuarioTelefoneResponse> GetTelefoneUsuarioAsync(string id)
+        public async Task<UsuarioDetalhesResponse> GetDetailsUsuarioAsync(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user is null)
                 throw new InvalidDataException();
 
-            return new UsuarioTelefoneResponse(){Telefone = user.PhoneNumber, Email = user.Email};
+            return new UsuarioDetalhesResponse(){Telefone = user.PhoneNumber, Email = user.Email};
         }
     }
 }

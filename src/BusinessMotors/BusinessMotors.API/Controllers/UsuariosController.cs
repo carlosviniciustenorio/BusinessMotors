@@ -61,16 +61,16 @@ namespace BusinessMotors.API.Controllers
         /// <response code="200">Telefone do Usuário retornado com sucesso</response>
         /// <response code="400">Retorna erros de validação</response>
         /// <response code="500">Retorna erros da aplicação caso ocorram</response>
-        [ProducesResponseType(typeof(UsuarioTelefoneResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UsuarioDetalhesResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}/detalhes")]
-        public async Task<ActionResult<UsuarioTelefoneResponse>> Get([FromRoute] string id)
+        public async Task<ActionResult<UsuarioDetalhesResponse>> Get([FromRoute] string id)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            return await _identityService.GetTelefoneUsuarioAsync(id);
+            return await _identityService.GetDetailsUsuarioAsync(id);
         }
 
         /// <summary>
