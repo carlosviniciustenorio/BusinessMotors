@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj": {}
+    "/home/tenorio/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj": {}
   },
   "projects": {
-    "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj": {
+    "/home/tenorio/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj",
+        "projectUniqueName": "/home/tenorio/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj",
         "projectName": "CManager.Application",
-        "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj",
+        "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Application/CManager.Application.csproj",
         "packagesPath": "/home/tenorio/.nuget/packages/",
-        "outputPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Application/obj/",
+        "outputPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj": {
-                "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj"
+              "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj": {
+                "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj"
               },
-              "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj": {
-                "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj"
+              "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj": {
+                "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj"
               }
             }
           }
@@ -90,18 +90,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj": {
+    "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
+        "projectUniqueName": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
         "projectName": "CManager.Domain",
-        "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
+        "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
         "packagesPath": "/home/tenorio/.nuget/packages/",
-        "outputPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/obj/",
+        "outputPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -143,18 +143,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj": {
+    "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
+        "projectUniqueName": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
         "projectName": "CManager.Integration",
-        "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
+        "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
         "packagesPath": "/home/tenorio/.nuget/packages/",
-        "outputPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/obj/",
+        "outputPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -226,7 +226,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

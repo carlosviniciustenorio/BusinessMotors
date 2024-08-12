@@ -29,7 +29,7 @@ namespace CManager.API.Controllers
         {
             if (string.IsNullOrEmpty(command.usuarioId))
             {
-                var userId = User.Claims.FirstOrDefault(d => d.Type.Contains("nameidentifier")).Value; 
+                var userId = User.Claims.FirstOrDefault(d => d.Type.Contains("nameidentifier"))?.Value; 
                 command.usuarioId = userId;
             }
 

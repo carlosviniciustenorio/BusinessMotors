@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
+      "projectUniqueName": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
       "projectName": "CManager.Domain",
-      "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
+      "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/CManager.Domain.csproj",
       "packagesPath": "/home/tenorio/.nuget/packages/",
-      "outputPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Domain/obj/",
+      "outputPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

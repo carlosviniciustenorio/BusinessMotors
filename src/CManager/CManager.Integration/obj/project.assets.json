@@ -944,11 +944,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
+      "projectUniqueName": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
       "projectName": "CManager.Integration",
-      "projectPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
+      "projectPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
       "packagesPath": "/home/tenorio/.nuget/packages/",
-      "outputPath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/obj/",
+      "outputPath": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -1020,7 +1020,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

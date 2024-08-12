@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RxOCDKJzWLRpAFzcEGKr7j4npGFPsFl+Ts6hAjWprnwjO9yjX+yOhe6PKeG7COJ4sd+Cmh7xTG+RjJWgG7SlUA==",
+  "dgSpecHash": "X5LfG3jO6EWt4LwQMoE1FfXw8w4CxLkj7aZp+h3bjxGuaTrUVT58Bz7Tw7lQE/0pHw/3sazoyBaDpthwzf0nXg==",
   "success": true,
-  "projectFilePath": "/home/tenorio/Desktop/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
+  "projectFilePath": "/home/tenorio/Development/CManager/src/CManager/CManager.Integration/CManager.Integration.csproj",
   "expectedPackageFiles": [
     "/home/tenorio/.nuget/packages/amazon.core/0.31.0/amazon.core.0.31.0.nupkg.sha512",
     "/home/tenorio/.nuget/packages/amazon.s3/0.31.2/amazon.s3.0.31.2.nupkg.sha512",
