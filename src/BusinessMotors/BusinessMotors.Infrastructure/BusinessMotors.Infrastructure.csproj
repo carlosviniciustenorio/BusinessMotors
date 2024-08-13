@@ -46,7 +46,4 @@
     <ProjectReference Include="..\BusinessMotors.Domain\BusinessMotors.Domain.csproj" />
     <ProjectReference Include="..\BusinessMotors.Integration\BusinessMotors.Integration.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Context\Identity\" />
-  </ItemGroup>
 </Project>

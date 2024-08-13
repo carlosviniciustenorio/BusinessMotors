@@ -9,12 +9,12 @@ namespace BusinessMotors.Infrastructure.Services
 {
     public class IdentityService : IIdentityService
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
+        private readonly UserManager<Usuario> _userManager;
         private readonly JwtOptions _jwtOptions;
 
-        public IdentityService(SignInManager<IdentityUser> signInManager,
-                               UserManager<IdentityUser> userManager,
+        public IdentityService(SignInManager<Usuario> signInManager,
+                               UserManager<Usuario> userManager,
                                IOptions<JwtOptions> jwtOptions)
         {
             _signInManager = signInManager;
@@ -24,16 +24,16 @@ namespace BusinessMotors.Infrastructure.Services
 
         public async Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest usuarioCadastro)
         {
-            var identityUser = new IdentityUser
+            var usuario = new Usuario
             {
                 UserName = usuarioCadastro.Nome,
                 Email = usuarioCadastro.Email,
                 EmailConfirmed = true
             };
 
-            var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
+            var result = await _userManager.CreateAsync(usuario, usuarioCadastro.Senha);
             if (result.Succeeded)
-                await _userManager.SetLockoutEnabledAsync(identityUser, false);
+                await _userManager.SetLockoutEnabledAsync(usuario, false);
 
             var usuarioCadastroResponse = new UsuarioCadastroResponse(result.Succeeded);
             if (!result.Succeeded && result.Errors.Count() > 0)
@@ -122,7 +122,7 @@ namespace BusinessMotors.Infrastructure.Services
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        private async Task<IList<Claim>> ObterClaims(IdentityUser user, bool adicionarClaimsUsuario)
+        private async Task<IList<Claim>> ObterClaims(Usuario user, bool adicionarClaimsUsuario)
         {
             var claims = new List<Claim>();
 

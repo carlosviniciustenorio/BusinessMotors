@@ -31,3 +31,4 @@ global using Microsoft.AspNetCore.Hosting;
 global using Serilog;
 global using Serilog.Sinks.Elasticsearch;
 global using AspNetCoreRateLimit;
+global using BusinessMotors.Domain.Models;

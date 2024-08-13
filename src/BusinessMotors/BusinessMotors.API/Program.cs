@@ -47,7 +47,7 @@ builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection(
 builder.Services.AddInMemoryRateLimiting();
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
+builder.Services.AddDefaultIdentity<Usuario>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IdentityDBContext>()
     .AddDefaultTokenProviders();

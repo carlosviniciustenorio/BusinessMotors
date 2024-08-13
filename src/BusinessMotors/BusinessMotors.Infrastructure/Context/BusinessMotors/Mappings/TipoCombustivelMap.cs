@@ -1,4 +1,4 @@
-namespace BusinessMotors.Infrastructure.Context.CManager.Mappings
+namespace BusinessMotors.Infrastructure.Context.BusinessMotors.Mappings
 {
     public class TipoCombustivelMap : IEntityTypeConfiguration<TipoCombustivel> 
     {

@@ -1,4 +1,4 @@
-using BusinessMotors.Infrastructure.Context.CManager.Mappings;
+using BusinessMotors.Infrastructure.Context.BusinessMotors.Mappings;
 
 namespace BusinessMotors.Infrastructure.Context.CManager
 {

@@ -15,10 +15,10 @@ namespace BusinessMotors.Application.Handlers
         private readonly IAnuncioRepository _anuncioRepository;
         private readonly IModeloRepository _modeloRepository;
         private readonly IVersaoRepository _versaoRepository;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<Usuario> _userManager;
         private readonly ILogger<AnuncioCommandHandler> _logger;
 
-        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<IdentityUser> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository, ILogger<AnuncioCommandHandler> logger)
+        public AnuncioCommandHandler(ICaracteristicaRepository caracteristicaRepository, IOpcionalRepository opcionalRepository, ITipoCombustivelRepository tipoCombustivelRepository, IAnuncioRepository anuncioRepository, UserManager<Usuario> userManager, IModeloRepository modeloRepository, IVersaoRepository versaoRepository, ILogger<AnuncioCommandHandler> logger)
         {
             _caracteristicaRepository = caracteristicaRepository;
             _opcionalRepository = opcionalRepository;
