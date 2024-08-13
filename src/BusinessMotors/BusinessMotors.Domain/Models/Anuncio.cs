@@ -1,4 +1,5 @@
 ﻿using BusinessMotors.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace BusinessMotors.Domain.Models
 {
@@ -17,18 +18,17 @@ namespace BusinessMotors.Domain.Models
         public string Km { get; private set; }
         public string Estado { get; private set; }
         public decimal Preco { get; private set; }
-        public string UsuarioId { get; private set; }
+        public string UserId { get; private set; }
+        public IdentityUser User { get; private set; }
         public int AnoFabricacao { get; private set; }
         public int AnoVeiculo { get; private set; }
-        public bool ExibirTelefone { get; private set; } = false;
-        public bool ExibirEmail { get; private set; } = false;
+        public bool ExibirTelefone { get; private set; }
+        public bool ExibirEmail { get; private set; }
         public List<Imagem> ImagensS3 { get; private set; }
         public DateTime? DataCriacao { get; set; }
         public DateTime? DataAtualizacao { get; set; }
-        public Anuncio()
-        {
-
-        }
+        
+        public Anuncio(){}
         public Anuncio(string placa,
                        Modelo modelo,
                        Versao versao,
@@ -61,7 +61,7 @@ namespace BusinessMotors.Domain.Models
             Km = km;
             Estado = estado;
             Preco = preco;
-            UsuarioId = usuarioId;
+            UserId = usuarioId;
             ExibirTelefone = exibirTelefone;
             ExibirEmail = exibirEmail;
             ImagensS3 = imagens;

@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 8.3.0 dump
+-- Adminer 4.8.1 MySQL 9.0.1 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -19,7 +19,7 @@ CREATE TABLE `Anuncio` (
   `Km` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `Estado` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `Preco` decimal(18,2) NOT NULL,
-  `UsuarioId` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `UserId` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `DataCriacao` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `DataAtualizacao` datetime(6) DEFAULT CURRENT_TIMESTAMP(6),
   `ExibirTelefone` tinyint(1) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `Anuncio` (
   CONSTRAINT `FK_Anuncio_Versao_VersaoId` FOREIGN KEY (`VersaoId`) REFERENCES `Versao` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `Anuncio` (`Id`, `Placa`, `ModeloId`, `VersaoId`, `Portas`, `Cambio`, `AnoVeiculo`, `AnoFabricacao`, `Cor`, `Km`, `Estado`, `Preco`, `UsuarioId`, `DataCriacao`, `DataAtualizacao`, `ExibirTelefone`, `ExibirEmail`) VALUES
+INSERT INTO `Anuncio` (`Id`, `Placa`, `ModeloId`, `VersaoId`, `Portas`, `Cambio`, `AnoVeiculo`, `AnoFabricacao`, `Cor`, `Km`, `Estado`, `Preco`, `UserId`, `DataCriacao`, `DataAtualizacao`, `ExibirTelefone`, `ExibirEmail`) VALUES
 ('08db46b1-62dd-4a49-81f4-43590331e006',	'CCC8I86',	3,	3,	4,	2,	2024,	2024,	3,	'12',	'RJ',	11111.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-03-27 00:16:18.534376',	'2024-03-27 00:16:18.534376',	0,	0),
 ('08db46b1-da0d-400e-8755-41c56a2d16a5',	'CCC8I86',	3,	3,	4,	2,	2023,	2023,	3,	'12',	'RJ',	11111.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-03-27 00:16:18.534376',	'2024-03-27 00:16:18.534376',	0,	0),
 ('08dc8f1f-db40-464b-8478-b73ee8622dcf',	'CCC8f88',	3,	3,	2,	2,	2021,	2021,	3,	'12',	'RJ',	121000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 22:50:15.637772',	NULL,	0,	0),
@@ -263,74 +263,62 @@ CREATE TABLE `Modelo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `Modelo` (`Id`, `Descricao`, `AnoModelo`, `AnoFabricacao`, `MarcaId`) VALUES
--- Modelos Jeep
-(1, 'Renegade', 2018, 2017, 1),
-(2, 'Compass', 2020, 2019, 1),
-(3, 'Wrangler', 2021, 2020, 1),
-(4, 'Cherokee', 2019, 2018, 1),
--- Modelos Chevrolet
-(5, 'Cruze', 2019, 2018, 2),
-(6, 'Onix', 2021, 2020, 2),
-(7, 'Tracker', 2020, 2019, 2),
-(8, 'S10', 2021, 2020, 2),
-(9, 'Camaro', 2021, 2020, 2),
--- Modelos Fiat
-(10, 'Palio', 2015, 2014, 3),
-(11, 'Uno', 2020, 2019, 3),
-(12, 'Toro', 2021, 2020, 3),
-(13, 'Strada', 2021, 2020, 3),
-(14, 'Argo', 2021, 2020, 3),
--- Modelos Volkswagem
-(15, 'Gol', 2020, 2019, 4),
-(16, 'Polo', 2021, 2020, 4),
-(17, 'Virtus', 2021, 2020, 4),
-(18, 'T-Cross', 2021, 2020, 4),
-(19, 'Tiguan', 2021, 2020, 4),
--- Modelos Kia
-(20, 'Sportage', 2020, 2019, 5),
-(21, 'Cerato', 2021, 2020, 5),
-(22, 'Sorento', 2021, 2020, 5),
-(23, 'Seltos', 2021, 2020, 5),
-(24, 'Soul', 2020, 2019, 5),
--- Modelos Hyundai
-(25, 'Tucson', 2021, 2020, 6),
-(26, 'Creta', 2021, 2020, 6),
-(27, 'HB20', 2021, 2020, 6),
-(28, 'Santa Fe', 2020, 2019, 6),
-(29, 'Elantra', 2021, 2020, 6),
--- Modelos Honda
-(30, 'Civic', 2019, 2018, 7),
-(31, 'Fit', 2020, 2019, 7),
-(32, 'HR-V', 2021, 2020, 7),
-(33, 'CR-V', 2021, 2020, 7),
-(34, 'City', 2021, 2020, 7),
--- Modelos Toyota
-(35, 'Corolla', 2021, 2020, 8),
-(36, 'Hilux', 2021, 2020, 8),
-(37, 'Yaris', 2021, 2020, 8),
-(38, 'RAV4', 2021, 2020, 8),
-(39, 'Etios', 2020, 2019, 8),
--- Modelos Cherry
-(40, 'Tiggo', 2021, 2020, 9),
-(41, 'Arrizo', 2021, 2020, 9),
-(42, 'QQ', 2020, 2019, 9),
-(43, 'Tiggo 8', 2021, 2020, 9),
--- Modelos Renault
-(44, 'Kwid', 2020, 2019, 10),
-(45, 'Duster', 2021, 2020, 10),
-(46, 'Sandero', 2021, 2020, 10),
-(47, 'Logan', 2021, 2020, 10),
-(48, 'Captur', 2021, 2020, 10),
--- Modelos Volvo
-(49, 'XC60', 2020, 2019, 11),
-(50, 'XC90', 2021, 2020, 11),
-(51, 'S60', 2021, 2020, 11),
-(52, 'V60', 2021, 2020, 11),
--- Modelos Jaguar
-(53, 'F-Pace', 2019, 2018, 12),
-(54, 'XE', 2021, 2020, 12),
-(55, 'XF', 2021, 2020, 12),
-(56, 'E-Pace', 2021, 2020, 12);
+(1,	'Renegade',	2018,	2017,	1),
+(2,	'Compass',	2020,	2019,	1),
+(3,	'Wrangler',	2021,	2020,	1),
+(4,	'Cherokee',	2019,	2018,	1),
+(5,	'Cruze',	2019,	2018,	2),
+(6,	'Onix',	2021,	2020,	2),
+(7,	'Tracker',	2020,	2019,	2),
+(8,	'S10',	2021,	2020,	2),
+(9,	'Camaro',	2021,	2020,	2),
+(10,	'Palio',	2015,	2014,	3),
+(11,	'Uno',	2020,	2019,	3),
+(12,	'Toro',	2021,	2020,	3),
+(13,	'Strada',	2021,	2020,	3),
+(14,	'Argo',	2021,	2020,	3),
+(15,	'Gol',	2020,	2019,	4),
+(16,	'Polo',	2021,	2020,	4),
+(17,	'Virtus',	2021,	2020,	4),
+(18,	'T-Cross',	2021,	2020,	4),
+(19,	'Tiguan',	2021,	2020,	4),
+(20,	'Sportage',	2020,	2019,	5),
+(21,	'Cerato',	2021,	2020,	5),
+(22,	'Sorento',	2021,	2020,	5),
+(23,	'Seltos',	2021,	2020,	5),
+(24,	'Soul',	2020,	2019,	5),
+(25,	'Tucson',	2021,	2020,	6),
+(26,	'Creta',	2021,	2020,	6),
+(27,	'HB20',	2021,	2020,	6),
+(28,	'Santa Fe',	2020,	2019,	6),
+(29,	'Elantra',	2021,	2020,	6),
+(30,	'Civic',	2019,	2018,	7),
+(31,	'Fit',	2020,	2019,	7),
+(32,	'HR-V',	2021,	2020,	7),
+(33,	'CR-V',	2021,	2020,	7),
+(34,	'City',	2021,	2020,	7),
+(35,	'Corolla',	2021,	2020,	8),
+(36,	'Hilux',	2021,	2020,	8),
+(37,	'Yaris',	2021,	2020,	8),
+(38,	'RAV4',	2021,	2020,	8),
+(39,	'Etios',	2020,	2019,	8),
+(40,	'Tiggo',	2021,	2020,	9),
+(41,	'Arrizo',	2021,	2020,	9),
+(42,	'QQ',	2020,	2019,	9),
+(43,	'Tiggo 8',	2021,	2020,	9),
+(44,	'Kwid',	2020,	2019,	10),
+(45,	'Duster',	2021,	2020,	10),
+(46,	'Sandero',	2021,	2020,	10),
+(47,	'Logan',	2021,	2020,	10),
+(48,	'Captur',	2021,	2020,	10),
+(49,	'XC60',	2020,	2019,	11),
+(50,	'XC90',	2021,	2020,	11),
+(51,	'S60',	2021,	2020,	11),
+(52,	'V60',	2021,	2020,	11),
+(53,	'F-Pace',	2019,	2018,	12),
+(54,	'XE',	2021,	2020,	12),
+(55,	'XF',	2021,	2020,	12),
+(56,	'E-Pace',	2021,	2020,	12);
 
 DROP TABLE IF EXISTS `Opcional`;
 CREATE TABLE `Opcional` (
@@ -380,4 +368,4 @@ INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
 (2,	'1.4 lxs 16v',	1),
 (3,	'1.8 lxs 16v',	3);
 
--- 2024-07-30 02:50:22
+-- 2024-08-12 22:27:58

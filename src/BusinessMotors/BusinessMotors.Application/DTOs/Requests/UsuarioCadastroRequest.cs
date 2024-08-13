@@ -4,6 +4,9 @@ namespace ECommerceCT.Application.DTOs.Requests
 {
     public class UsuarioCadastroRequest
     {
+        [Required(ErrorMessage = "Nome obrigatório")]
+        public string Nome { get; set; }
+        
         [Required(ErrorMessage = "E-mail obrigatório")]
         [EmailAddress(ErrorMessage = "O campo {0} é inválido")]
         public string Email { get; set; }

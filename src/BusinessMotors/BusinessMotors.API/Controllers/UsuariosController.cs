@@ -65,12 +65,31 @@ namespace BusinessMotors.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpGet("{id}/detalhes")]
-        public async Task<ActionResult<UsuarioDetalhesResponse>> Get([FromRoute] string id)
+        public async Task<ActionResult<UsuarioDetalhesResponse>> GetDetalhes([FromRoute] string id)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
             return await _identityService.GetDetailsUsuarioAsync(id);
+        }
+        
+        /// <summary>
+        /// Consultar usuários com filtros
+        /// </summary>
+        /// <param name="role">Nome da role</param>
+        /// <returns></returns>
+        /// <response code="200">Usuários retornados com sucesso</response>
+        /// <response code="400">Retorna erros de validação</response>
+        /// <response code="500">Retorna erros da aplicação caso ocorram</response>
+        [ProducesResponseType(typeof(List<UsuarioResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [HttpGet]
+        public async Task<ActionResult<List<UsuarioResponse>>> Get([FromQuery] string role)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            return await _identityService.GetUsuariosAsync(role);
         }
 
         /// <summary>

@@ -10,5 +10,6 @@ namespace BusinessMotors.Application.Interfaces
         Task CadastrarRole(string role, string email);
         Task<UsuarioLoginResponse> LoginComRefreshToken(string usuarioId);
         Task<UsuarioDetalhesResponse> GetDetailsUsuarioAsync(string id);
+        Task<List<UsuarioResponse>> GetUsuariosAsync(string role);
     }
 }

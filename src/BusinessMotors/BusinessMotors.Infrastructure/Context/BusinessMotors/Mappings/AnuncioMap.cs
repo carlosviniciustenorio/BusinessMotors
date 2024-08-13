@@ -8,7 +8,7 @@ namespace BusinessMotors.Infrastructure.Context.CManager.Mappings
             entity.Property(d => d.Placa).IsRequired();
             entity.Property(d => d.AnoVeiculo).IsRequired().HasMaxLength(4);
             entity.Property(d => d.AnoFabricacao).IsRequired().HasMaxLength(4);
-            entity.Property(d => d.UsuarioId).IsRequired().HasMaxLength(100);
+            entity.Property(d => d.UserId).IsRequired().HasMaxLength(36);
             entity.Property(d => d.Preco).IsRequired().HasPrecision(18,2);
             entity.Property(d => d.DataCriacao).IsRequired();
             entity.Property(d => d.DataAtualizacao).IsRequired(false);
@@ -18,7 +18,8 @@ namespace BusinessMotors.Infrastructure.Context.CManager.Mappings
             entity.HasMany(d => d.ImagensS3).WithOne();
             entity.HasOne(d => d.Modelo).WithMany().OnDelete(DeleteBehavior.NoAction);
             entity.HasOne(d => d.Versao).WithMany().OnDelete(DeleteBehavior.NoAction);
-            
+            entity.HasOne(d => d.User).WithMany().HasForeignKey(d => d.UserId).OnDelete(DeleteBehavior.Cascade);
+
             entity.Navigation(n => n.Opcionais).AutoInclude();
             entity.Navigation(n => n.Caracteristicas).AutoInclude();
             entity.Navigation(n => n.TiposCombustiveis).AutoInclude();

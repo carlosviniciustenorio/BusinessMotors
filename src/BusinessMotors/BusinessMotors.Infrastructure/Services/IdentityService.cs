@@ -26,7 +26,7 @@ namespace BusinessMotors.Infrastructure.Services
         {
             var identityUser = new IdentityUser
             {
-                UserName = usuarioCadastro.Email,
+                UserName = usuarioCadastro.Nome,
                 Email = usuarioCadastro.Email,
                 EmailConfirmed = true
             };
@@ -153,6 +153,18 @@ namespace BusinessMotors.Infrastructure.Services
                 throw new InvalidDataException();
 
             return new UsuarioDetalhesResponse(){Telefone = user.PhoneNumber, Email = user.Email};
+        }
+        
+        public async Task<List<UsuarioResponse>> GetUsuariosAsync(string role)
+        {
+            var users = _userManager.GetUsersInRoleAsync(role).Result.ToList();
+            List<UsuarioResponse> response = new();
+            
+            if (users is null && !users.Any())
+                return response;
+
+            users.ToList().ForEach(d => response.Add(new(d.Id, d.UserName)));
+            return response;
         }
     }
 }

@@ -6,12 +6,12 @@ namespace BusinessMotors.Infrastructure.Context.CManager
     {
         public DbSet<Anuncio> Anuncio { get; set; }
         public DbSet<Opcional> Opcional { get; set; }
-
         public BusinessMotorsDBContext(DbContextOptions<BusinessMotorsDBContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnuncioMap).Assembly);
+            modelBuilder.Ignore<IdentityUser>();
         }
     }
 }
