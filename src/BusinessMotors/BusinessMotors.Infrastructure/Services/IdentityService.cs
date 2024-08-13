@@ -152,7 +152,7 @@ namespace BusinessMotors.Infrastructure.Services
             if (user is null)
                 throw new InvalidDataException();
 
-            return new UsuarioDetalhesResponse(){Telefone = user.PhoneNumber, Email = user.Email};
+            return new UsuarioDetalhesResponse(user.PhoneNumber, user.Email, user.Instagram, user.Twitter, user.Facebook);
         }
         
         public async Task<List<UsuarioResponse>> GetUsuariosAsync(string role)
