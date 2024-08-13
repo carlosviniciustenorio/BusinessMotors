@@ -17,5 +17,8 @@ namespace ECommerceCT.Application.DTOs.Requests
 
         [Compare(nameof(Senha), ErrorMessage = "As senhas devem ser iguais")]
         public string SenhaConfirmacao { get; set; }
+
+        [Required] 
+        public string Role { get; set; } = "Comum";
     }
 }

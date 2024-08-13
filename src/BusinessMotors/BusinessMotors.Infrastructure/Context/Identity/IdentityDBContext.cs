@@ -13,8 +13,8 @@ namespace BusinessMotors.Infrastructure.Context.Identity
             {
                 entity.ToTable("AspNetRoles");
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name).HasMaxLength(256);
-                entity.Property(e => e.NormalizedName).HasMaxLength(256);
+                entity.Property(e => e.Name).HasMaxLength(256).IsRequired(false);
+                entity.Property(e => e.NormalizedName).HasMaxLength(256).IsRequired(false);
                 entity.Property(e => e.ConcurrencyStamp).IsConcurrencyToken();
             });
 

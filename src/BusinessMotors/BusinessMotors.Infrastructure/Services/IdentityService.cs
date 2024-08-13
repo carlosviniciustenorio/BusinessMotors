@@ -22,22 +22,27 @@ namespace BusinessMotors.Infrastructure.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest usuarioCadastro)
+        public async Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest request)
         {
             var usuario = new Usuario
             {
-                UserName = usuarioCadastro.Nome,
-                Email = usuarioCadastro.Email,
+                Nome = request.Nome,
+                UserName = request.Email,
+                Email = request.Email,
                 EmailConfirmed = true
             };
 
-            var result = await _userManager.CreateAsync(usuario, usuarioCadastro.Senha);
-            if (result.Succeeded)
-                await _userManager.SetLockoutEnabledAsync(usuario, false);
-
+            IdentityResult result = await _userManager.CreateAsync(usuario, request.Senha);
             var usuarioCadastroResponse = new UsuarioCadastroResponse(result.Succeeded);
+
             if (!result.Succeeded && result.Errors.Count() > 0)
+            {
                 usuarioCadastroResponse.AdicionarErros(result.Errors.Select(r => r.Description));
+                return usuarioCadastroResponse;
+            }
+            
+            await _userManager.SetLockoutEnabledAsync(usuario, false);
+            await _userManager.AddToRoleAsync(usuario, request.Role);
 
             return usuarioCadastroResponse;
         }

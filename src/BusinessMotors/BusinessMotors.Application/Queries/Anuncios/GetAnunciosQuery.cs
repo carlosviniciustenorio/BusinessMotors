@@ -2,7 +2,7 @@ namespace BusinessMotors.Application.Queries
 {
     public static class GetAnunciosQuery
     {
-        public sealed record Anuncios(int take, string? estado, decimal? precoInicio, decimal? precoFim, int? kmInicio, int? kmFim, int? anoModeloInicio, int? anoModeloFim, int? idMarca, int? idModelo, int? idVersao, int skip = 0) : IRequest<List<AnunciosResponse>>;
+        public sealed record Anuncios(int take, string? estado, decimal? precoInicio, decimal? precoFim, int? kmInicio, int? kmFim, int? anoModeloInicio, int? anoModeloFim, int? idMarca, int? idModelo, int? idVersao, int skip = 0, string role = "") : IRequest<List<AnunciosResponse>>;
 
         public sealed class Validator : AbstractValidator<Anuncios>
         {

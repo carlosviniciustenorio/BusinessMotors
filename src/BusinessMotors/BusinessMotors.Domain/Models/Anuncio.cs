@@ -1,5 +1,4 @@
 ﻿using BusinessMotors.Domain.Enums;
-using Microsoft.AspNetCore.Identity;
 
 namespace BusinessMotors.Domain.Models
 {
@@ -19,7 +18,7 @@ namespace BusinessMotors.Domain.Models
         public string Estado { get; private set; }
         public decimal Preco { get; private set; }
         public string UserId { get; private set; }
-        public IdentityUser User { get; private set; }
+        public Usuario User { get; private set; }
         public int AnoFabricacao { get; private set; }
         public int AnoVeiculo { get; private set; }
         public bool ExibirTelefone { get; private set; }
