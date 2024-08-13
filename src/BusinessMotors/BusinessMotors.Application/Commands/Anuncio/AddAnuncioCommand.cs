@@ -18,6 +18,7 @@ namespace BusinessMotors.Application.Commands
             public List<int>? idCaracteristicas {get; set;}
             public string km {get; set;}
             public string estado {get; set;}
+            public string cidade { get; set; }
             public string? usuarioId {get; set;}
             public decimal preco {get; set;}
             public bool exibirTelefone {get; set;}

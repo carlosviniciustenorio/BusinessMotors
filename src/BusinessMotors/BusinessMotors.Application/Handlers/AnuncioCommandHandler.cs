@@ -56,6 +56,7 @@ namespace BusinessMotors.Application.Handlers
                                   caracteristicas, 
                                   request.km, 
                                   request.estado, 
+                                  request.cidade,
                                   request.preco, 
                                   user.Id, 
                                   request.exibirTelefone, 

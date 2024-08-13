@@ -12,6 +12,8 @@ namespace BusinessMotors.Infrastructure.Context.BusinessMotors.Mappings
             entity.Property(d => d.Preco).IsRequired().HasPrecision(18,2);
             entity.Property(d => d.DataCriacao).IsRequired();
             entity.Property(d => d.DataAtualizacao).IsRequired(false);
+            entity.Property(d => d.Estado).IsRequired();
+            entity.Property(d => d.Cidade).IsRequired();
             entity.HasMany(d => d.Caracteristicas).WithMany();
             entity.HasMany(d => d.Opcionais).WithMany();
             entity.HasMany(d => d.TiposCombustiveis).WithMany();

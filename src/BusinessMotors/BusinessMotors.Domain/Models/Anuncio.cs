@@ -16,6 +16,7 @@ namespace BusinessMotors.Domain.Models
         public List<Caracteristica> Caracteristicas {get; private set;}
         public string Km { get; private set; }
         public string Estado { get; private set; }
+        public string Cidade { get; private set; }
         public decimal Preco { get; private set; }
         public string UserId { get; private set; }
         public Usuario User { get; private set; }
@@ -39,6 +40,7 @@ namespace BusinessMotors.Domain.Models
                        List<Caracteristica> caracteristicas,
                        string km,
                        string estado,
+                       string cidade,
                        decimal preco,
                        string usuarioId,
                        bool exibirTelefone,
@@ -59,6 +61,7 @@ namespace BusinessMotors.Domain.Models
             Caracteristicas = caracteristicas;
             Km = km;
             Estado = estado;
+            Cidade = cidade;
             Preco = preco;
             UserId = usuarioId;
             ExibirTelefone = exibirTelefone;

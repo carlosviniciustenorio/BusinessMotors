@@ -18,6 +18,7 @@ CREATE TABLE `Anuncio` (
   `Cor` int NOT NULL,
   `Km` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `Estado` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `Cidade` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `Preco` decimal(18,2) NOT NULL,
   `UserId` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `DataCriacao` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
@@ -31,12 +32,12 @@ CREATE TABLE `Anuncio` (
   CONSTRAINT `FK_Anuncio_Versao_VersaoId` FOREIGN KEY (`VersaoId`) REFERENCES `Versao` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `Anuncio` (`Id`, `Placa`, `ModeloId`, `VersaoId`, `Portas`, `Cambio`, `AnoVeiculo`, `AnoFabricacao`, `Cor`, `Km`, `Estado`, `Preco`, `UserId`, `DataCriacao`, `DataAtualizacao`, `ExibirTelefone`, `ExibirEmail`) VALUES
-('08db46b1-62dd-4a49-81f4-43590331e006',	'CCC8I86',	3,	3,	4,	2,	2024,	2024,	3,	'12',	'RJ',	11111.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-03-27 00:16:18.534376',	'2024-03-27 00:16:18.534376',	0,	0),
-('08db46b1-da0d-400e-8755-41c56a2d16a5',	'CCC8I86',	3,	3,	4,	2,	2023,	2023,	3,	'12',	'RJ',	11111.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-03-27 00:16:18.534376',	'2024-03-27 00:16:18.534376',	0,	0),
-('08dc8f1f-db40-464b-8478-b73ee8622dcf',	'CCC8f88',	3,	3,	2,	2,	2021,	2021,	3,	'12',	'RJ',	121000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 22:50:15.637772',	NULL,	0,	0),
-('08dc8f21-d0a2-4d6d-87ca-468a7b21c3ac',	'LTO8F54',	3,	3,	4,	0,	2023,	2023,	2,	'48',	'RJ',	45000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 23:04:17.657808',	NULL,	1,	1),
-('08dc8f21-f6cc-411c-84ca-a75c5febbfab',	'LTO8F54',	1,	2,	4,	0,	2023,	2023,	2,	'48',	'RJ',	45000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 23:05:21.702424',	NULL,	1,	1);
+INSERT INTO `Anuncio` (`Id`, `Placa`, `ModeloId`, `VersaoId`, `Portas`, `Cambio`, `AnoVeiculo`, `AnoFabricacao`, `Cor`, `Km`, `Estado`, `Cidade`, `Preco`, `UserId`, `DataCriacao`, `DataAtualizacao`, `ExibirTelefone`, `ExibirEmail`) VALUES
+('08db46b1-62dd-4a49-81f4-43590331e006',	'CCC8I86',	3,	3,	4,	2,	2024,	2024,	3,	'12',	'RJ',	'',	11111.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-03-27 00:16:18.534376',	'2024-03-27 00:16:18.534376',	0,	0),
+('08db46b1-da0d-400e-8755-41c56a2d16a5',	'CCC8I86',	3,	3,	4,	2,	2023,	2023,	3,	'12',	'RJ',	'',	11111.00,	'817edbe1-6e53-413a-9ad6-39612fa42ed1',	'2024-03-27 00:16:18.534376',	'2024-03-27 00:16:18.534376',	0,	0),
+('08dc8f1f-db40-464b-8478-b73ee8622dcf',	'CCC8f88',	3,	3,	2,	2,	2021,	2021,	3,	'12',	'RJ',	'',	121000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 22:50:15.637772',	NULL,	0,	0),
+('08dc8f21-d0a2-4d6d-87ca-468a7b21c3ac',	'LTO8F54',	3,	3,	4,	0,	2023,	2023,	2,	'48',	'RJ',	'',	45000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 23:04:17.657808',	NULL,	1,	1),
+('08dc8f21-f6cc-411c-84ca-a75c5febbfab',	'LTO8F54',	1,	2,	4,	0,	2023,	2023,	2,	'48',	'RJ',	'',	45000.00,	'ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'2024-06-17 23:05:21.702424',	NULL,	1,	1);
 
 DROP TABLE IF EXISTS `AnuncioCaracteristica`;
 CREATE TABLE `AnuncioCaracteristica` (
@@ -112,7 +113,8 @@ CREATE TABLE `AspNetRoles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `AspNetRoles` (`Id`, `Name`, `NormalizedName`, `ConcurrencyStamp`) VALUES
-('1',	'Admin',	'Admin',	'Admin');
+('1',	'Admin',	'Admin',	'Admin'),
+('2',	'Agencia',	'Agencia',	'Agencia');
 
 DROP TABLE IF EXISTS `AspNetUserClaims`;
 CREATE TABLE `AspNetUserClaims` (
@@ -154,7 +156,8 @@ CREATE TABLE `AspNetUserRoles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `AspNetUserRoles` (`UserId`, `RoleId`) VALUES
-('ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'1');
+('ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'1'),
+('817edbe1-6e53-413a-9ad6-39612fa42ed1',	'2');
 
 DROP TABLE IF EXISTS `AspNetUserTokens`;
 CREATE TABLE `AspNetUserTokens` (
@@ -171,6 +174,7 @@ DROP TABLE IF EXISTS `AspNetUsers`;
 CREATE TABLE `AspNetUsers` (
   `Id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `UserName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Name` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `NormalizedUserName` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `Email` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `NormalizedEmail` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
@@ -184,16 +188,17 @@ CREATE TABLE `AspNetUsers` (
   `LockoutEnd` datetime(6) DEFAULT NULL,
   `LockoutEnabled` tinyint(1) NOT NULL,
   `AccessFailedCount` int NOT NULL,
-  `Instragram` varchar(300) NOT NULL,
-  `Facebook` varchar(300) NOT NULL,
-  `Twitter` varchar(300) NOT NULL,
+  `Instragram` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Facebook` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `Twitter` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `UserNameIndex` (`NormalizedUserName`),
   KEY `EmailIndex` (`NormalizedEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-INSERT INTO `AspNetUsers` (`Id`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`, `Instragram`, `Facebook`, `Twitter`) VALUES
-('ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'Carlos Tenorio',	'CARLOS.TENORIO@GMAIL.COM',	'carlos.tenorio@gmail.com',	'CARLOS.TENORIO@GMAIL.COM',	1,	'AQAAAAIAAYagAAAAEF/dNHu2g+srIRAQunPSLpl/2/413g5yTKdPFbyDDgl0MEbpT7o+lQIvYVwVkQ7mfg==',	'7WBMNKNSCOB67ZM73RKFNLGKO5D2GDCL',	'63ff31f1-0552-4942-b84f-bac44cd24c0d',	'21999999999',	0,	0,	NULL,	0,	0,	'carlosviniciustenorio',	'carlosviniciustenorio',	'carlosviniciustenorio');
+INSERT INTO `AspNetUsers` (`Id`, `UserName`, `Name`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`, `Instragram`, `Facebook`, `Twitter`) VALUES
+('817edbe1-6e53-413a-9ad6-39612fa42ed1',	'agencia@gmail.com',	'Agencia de Carro',	'AGENCIA@GMAIL.COM',	'agencia@gmail.com',	'AGENCIA@GMAIL.COM',	1,	'AQAAAAIAAYagAAAAECjRWoZLqA4hqATlQlk5da1Ejjg+Fo4jgbw7iOP7EK/37U/W/vx2iS4MrfU4nOn5Jw==',	'C44YR6533VKPAGXIWRKJ4LUV2JBIXVHG',	'0cc84e1c-e83c-447e-9f7e-82a2cd16146b',	NULL,	0,	0,	NULL,	0,	0,	NULL,	NULL,	NULL),
+('ad0905e9-8c87-49a1-9b01-46416f6b08b2',	'carlostenorio',	'Carlos Tenorio',	'carlostenorio',	'carlos.tenorio@gmail.com',	'CARLOS.TENORIO@GMAIL.COM',	1,	'AQAAAAIAAYagAAAAEF/dNHu2g+srIRAQunPSLpl/2/413g5yTKdPFbyDDgl0MEbpT7o+lQIvYVwVkQ7mfg==',	'7WBMNKNSCOB67ZM73RKFNLGKO5D2GDCL',	'63ff31f1-0552-4942-b84f-bac44cd24c0d',	'21999999999',	0,	0,	NULL,	0,	0,	'carlosviniciustenorio',	'carlosviniciustenorio',	'carlosviniciustenorio');
 
 DROP TABLE IF EXISTS `Caracteristica`;
 CREATE TABLE `Caracteristica` (
@@ -350,7 +355,6 @@ CREATE TABLE `TipoCombustivel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `TipoCombustivel` (`Id`, `Descricao`) VALUES
-(1,	'Benzina'),
 (2,	'Gasolina'),
 (3,	'Álcool'),
 (4,	'Elétrico'),
@@ -366,146 +370,111 @@ CREATE TABLE `Versao` (
   CONSTRAINT `FK_Versao_Modelo_ModeloId` FOREIGN KEY (`ModeloId`) REFERENCES `Modelo` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Jeep
 INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(1, '1.8 Flex', 1),
-(2, '2.0 Diesel', 1),
-(3, '2.4 Flex', 2),
-(4, '2.0 Turbo', 2),
-(5, '3.6 V6', 3),
-(6, '2.0 Diesel', 3),
-(7, '2.4 Flex', 4),
-(8, '3.6 V6', 4);
+(1,	'1.8 Flex',	1),
+(2,	'2.0 Diesel',	1),
+(3,	'2.4 Flex',	2),
+(4,	'2.0 Turbo',	2),
+(5,	'3.6 V6',	3),
+(6,	'2.0 Diesel',	3),
+(7,	'2.4 Flex',	4),
+(8,	'3.6 V6',	4),
+(9,	'1.0 Turbo',	5),
+(10,	'1.4 Flex',	5),
+(11,	'1.0 Turbo',	6),
+(12,	'1.4 Turbo',	6),
+(13,	'1.0 Turbo',	7),
+(14,	'2.0 Turbo',	7),
+(15,	'2.8 Diesel',	8),
+(16,	'3.6 V6',	8),
+(17,	'2.0 Turbo',	9),
+(18,	'2.8 Diesel',	9),
+(19,	'1.0 Flex',	10),
+(20,	'1.8 Flex',	10),
+(21,	'2.0 Diesel',	11),
+(22,	'1.3 Flex',	11),
+(23,	'2.0 Turbo',	12),
+(24,	'1.8 Flex',	12),
+(25,	'1.3 Flex',	13),
+(26,	'2.0 Diesel',	13),
+(27,	'1.8 Flex',	14),
+(28,	'2.0 Turbo',	14),
+(29,	'1.0 Turbo',	15),
+(30,	'1.6 Flex',	15),
+(31,	'1.6 Flex',	16),
+(32,	'2.0 Turbo',	16),
+(33,	'1.6 Flex',	17),
+(34,	'2.0 Diesel',	17),
+(35,	'1.0 Turbo',	18),
+(36,	'1.6 Flex',	18),
+(37,	'2.0 Diesel',	19),
+(38,	'2.4 Turbo',	19),
+(39,	'2.0 Flex',	20),
+(40,	'2.4 Diesel',	20),
+(41,	'2.0 Turbo',	21),
+(42,	'1.6 Turbo',	21),
+(43,	'2.4 Diesel',	22),
+(44,	'2.0 Turbo',	22),
+(45,	'1.6 Flex',	23),
+(46,	'2.0 Turbo',	23),
+(47,	'1.6 Flex',	24),
+(48,	'1.6 Flex',	25),
+(49,	'2.0 Diesel',	25),
+(50,	'1.8 Flex',	26),
+(51,	'2.0 Turbo',	26),
+(52,	'1.0 Turbo',	27),
+(53,	'2.0 Flex',	27),
+(54,	'2.4 Diesel',	28),
+(55,	'2.0 Turbo',	28),
+(56,	'2.0 Flex',	29),
+(57,	'1.5 Flex',	30),
+(58,	'2.0 Turbo',	30),
+(59,	'1.8 Flex',	31),
+(60,	'2.0 Turbo',	31),
+(61,	'1.8 Flex',	32),
+(62,	'2.0 Diesel',	32),
+(63,	'2.0 Turbo',	33),
+(64,	'2.4 Diesel',	33),
+(65,	'1.6 Flex',	34),
+(66,	'1.8 Flex',	35),
+(67,	'2.0 Turbo',	35),
+(68,	'2.8 Diesel',	36),
+(69,	'3.0 Diesel',	36),
+(70,	'1.5 Flex',	37),
+(71,	'2.0 Diesel',	37),
+(72,	'2.5 Diesel',	38),
+(73,	'2.0 Turbo',	38),
+(74,	'1.5 Flex',	39),
+(75,	'1.6 Flex',	40),
+(76,	'2.0 Turbo',	40),
+(77,	'1.5 Flex',	41),
+(78,	'2.0 Diesel',	41),
+(79,	'1.0 Turbo',	42),
+(80,	'1.5 Flex',	42),
+(81,	'2.0 Turbo',	43),
+(82,	'1.0 Turbo',	44),
+(83,	'1.6 Flex',	44),
+(84,	'1.8 Flex',	45),
+(85,	'2.0 Diesel',	45),
+(86,	'2.4 Turbo',	46),
+(87,	'1.6 Flex',	46),
+(88,	'2.0 Diesel',	47),
+(89,	'1.8 Turbo',	47),
+(90,	'2.0 Turbo',	48),
+(91,	'2.0 Diesel',	49),
+(92,	'2.4 Turbo',	49),
+(93,	'2.0 Flex',	50),
+(94,	'2.4 Diesel',	50),
+(95,	'2.0 Turbo',	51),
+(96,	'2.4 Diesel',	51),
+(97,	'2.0 Flex',	52),
+(98,	'2.4 Turbo',	52),
+(99,	'2.0 Turbo',	53),
+(100,	'3.0 Diesel',	53),
+(101,	'2.0 Flex',	54),
+(102,	'2.4 Turbo',	54),
+(103,	'3.0 Turbo',	55),
+(104,	'2.0 Diesel',	55),
+(105,	'2.4 Turbo',	56);
 
--- Chevrolet
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(9, '1.0 Turbo', 5),
-(10, '1.4 Flex', 5),
-(11, '1.0 Turbo', 6),
-(12, '1.4 Turbo', 6),
-(13, '1.0 Turbo', 7),
-(14, '2.0 Turbo', 7),
-(15, '2.8 Diesel', 8),
-(16, '3.6 V6', 8),
-(17, '2.0 Turbo', 9),
-(18, '2.8 Diesel', 9);
-
--- Fiat
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(19, '1.0 Flex', 10),
-(20, '1.8 Flex', 10),
-(21, '2.0 Diesel', 11),
-(22, '1.3 Flex', 11),
-(23, '2.0 Turbo', 12),
-(24, '1.8 Flex', 12),
-(25, '1.3 Flex', 13),
-(26, '2.0 Diesel', 13),
-(27, '1.8 Flex', 14),
-(28, '2.0 Turbo', 14);
-
--- Volkswagem
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(29, '1.0 Turbo', 15),
-(30, '1.6 Flex', 15),
-(31, '1.6 Flex', 16),
-(32, '2.0 Turbo', 16),
-(33, '1.6 Flex', 17),
-(34, '2.0 Diesel', 17),
-(35, '1.0 Turbo', 18),
-(36, '1.6 Flex', 18),
-(37, '2.0 Diesel', 19),
-(38, '2.4 Turbo', 19);
-
--- Kia
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(39, '2.0 Flex', 20),
-(40, '2.4 Diesel', 20),
-(41, '2.0 Turbo', 21),
-(42, '1.6 Turbo', 21),
-(43, '2.4 Diesel', 22),
-(44, '2.0 Turbo', 22),
-(45, '1.6 Flex', 23),
-(46, '2.0 Turbo', 23),
-(47, '1.6 Flex', 24);
-
--- Hyundai
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(48, '1.6 Flex', 25),
-(49, '2.0 Diesel', 25),
-(50, '1.8 Flex', 26),
-(51, '2.0 Turbo', 26),
-(52, '1.0 Turbo', 27),
-(53, '2.0 Flex', 27),
-(54, '2.4 Diesel', 28),
-(55, '2.0 Turbo', 28),
-(56, '2.0 Flex', 29);
-
--- Honda
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(57, '1.5 Flex', 30),
-(58, '2.0 Turbo', 30),
-(59, '1.8 Flex', 31),
-(60, '2.0 Turbo', 31),
-(61, '1.8 Flex', 32),
-(62, '2.0 Diesel', 32),
-(63, '2.0 Turbo', 33),
-(64, '2.4 Diesel', 33),
-(65, '1.6 Flex', 34);
-
--- Toyota
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(66, '1.8 Flex', 35),
-(67, '2.0 Turbo', 35),
-(68, '2.8 Diesel', 36),
-(69, '3.0 Diesel', 36),
-(70, '1.5 Flex', 37),
-(71, '2.0 Diesel', 37),
-(72, '2.5 Diesel', 38),
-(73, '2.0 Turbo', 38),
-(74, '1.5 Flex', 39);
-
--- Cherry
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(75, '1.6 Flex', 40),
-(76, '2.0 Turbo', 40),
-(77, '1.5 Flex', 41),
-(78, '2.0 Diesel', 41),
-(79, '1.0 Turbo', 42),
-(80, '1.5 Flex', 42),
-(81, '2.0 Turbo', 43);
-
--- Renault
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(82, '1.0 Turbo', 44),
-(83, '1.6 Flex', 44),
-(84, '1.8 Flex', 45),
-(85, '2.0 Diesel', 45),
-(86, '2.4 Turbo', 46),
-(87, '1.6 Flex', 46),
-(88, '2.0 Diesel', 47),
-(89, '1.8 Turbo', 47),
-(90, '2.0 Turbo', 48);
-
--- Volvo
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(91, '2.0 Diesel', 49),
-(92, '2.4 Turbo', 49),
-(93, '2.0 Flex', 50),
-(94, '2.4 Diesel', 50),
-(95, '2.0 Turbo', 51),
-(96, '2.4 Diesel', 51),
-(97, '2.0 Flex', 52),
-(98, '2.4 Turbo', 52);
-
--- Jaguar
-INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
-(99, '2.0 Turbo', 53),
-(100, '3.0 Diesel', 53),
-(101, '2.0 Flex', 54),
-(102, '2.4 Turbo', 54),
-(103, '3.0 Turbo', 55),
-(104, '2.0 Diesel', 55),
-(105, '2.4 Turbo', 56);
-
-
--- 2024-08-13 14:49:29
+-- 2024-08-13 18:35:55
