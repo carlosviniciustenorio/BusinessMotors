@@ -48,8 +48,6 @@ services:
   businessmotorsapi:
     build: .
     container_name: businessmotorsapi
-    depends_on: 
-      - elasticsearch
     ports:
       - "8000:80"
     environment:

@@ -8,6 +8,7 @@ namespace BusinessMotors.Application.DTOs.Responses
         public string Cor { get; set; }
         public string Km { get; set; }
         public string Estado { get; set; }
+        public string Cidade { get; set; }
         public decimal Preco { get; set; }
         // public string UsuarioId { get; set; }
         public bool ExibirTelefone { get; set; } = false;
