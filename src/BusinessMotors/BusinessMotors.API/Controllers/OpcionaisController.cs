@@ -1,7 +1,6 @@
 namespace BusinessMotors.API.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
     public class OpcionaisController : ControllerBase
     {
@@ -24,6 +23,7 @@ namespace BusinessMotors.API.Controllers
         /// <response code="500">Se ocorrer um erro interno do servidor.</response>
         [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [Authorize]
         [HttpPost]
         public async Task<Unit> Create([FromBody] AddOpcionalCommand.OpcionalCommand command) => await _mediatr.Send(command);
 
