@@ -196,9 +196,7 @@ namespace BusinessMotors.API.Controllers
 
             var user = await _identityService.GetUserByEmailAsync(email);
             if (user == null)
-            {
                 _identityService.CadastrarUsuario(new UsuarioCadastroRequest() { Email = email }, authenticateResult.Principal.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
-            }
 
             var response = _identityService.GerarCredenciais(email);
             return Ok(response);
