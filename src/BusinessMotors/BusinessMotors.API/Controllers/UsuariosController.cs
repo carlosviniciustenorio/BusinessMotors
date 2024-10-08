@@ -6,6 +6,7 @@ using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 using System.Net;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace BusinessMotors.API.Controllers
 {
@@ -70,7 +71,7 @@ namespace BusinessMotors.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            return await _identityService.GetDetailsUsuarioAsync(id);
+            return await _identityService.GetUserDetailsAsync(id);
         }
         
         /// <summary>
@@ -144,6 +145,65 @@ namespace BusinessMotors.API.Controllers
 
             return Unauthorized(resultado);
         }
+        
+        // <summary>
+        /// Realiza o login de um usuário google.
+        /// </summary>
+        /// <remarks>
+        /// Esta operação permite que um usuário faça login no sistema utilizando Google como provider.
+        /// </remarks>
+        /// <response code="200">Retorna OK se o login for bem-sucedido.</response>
+        /// <response code="400">Se as credenciais de login fornecidas forem inválidas.</response>
+        /// <response code="401">Se o usuário não estiver autorizado a acessar o recurso.</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [HttpGet("login-google")]
+        public IActionResult GoogleLogin()
+        {
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("GoogleResponse")
+            };
+
+            return Challenge(properties, "Google");
+        }
+        
+        // <summary>
+        /// Callback do Google Auth
+        /// </summary>
+        /// <remarks>
+        /// Esta operação permite que um usuário faça login no sistema utilizando Google como provider.
+        /// </remarks>
+        /// <response code="200">Retorna OK se o login for bem-sucedido.</response>
+        /// <response code="400">Se as credenciais de login fornecidas forem inválidas.</response>
+        /// <response code="401">Se o usuário não estiver autorizado a acessar o recurso.</response>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [HttpGet("google-response")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var authenticateResult = await HttpContext.AuthenticateAsync(IdentityConstants.ExternalScheme);
+            if (!authenticateResult.Succeeded)
+                return BadRequest("Erro ao autenticar com o Google.");
+
+            var claims = authenticateResult.Principal.Identities.FirstOrDefault()?.Claims;
+            var email = claims?.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(email))
+                return BadRequest("Não foi possível obter o email do usuário.");
+
+            var user = await _identityService.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                _identityService.CadastrarUsuario(new UsuarioCadastroRequest() { Email = email }, authenticateResult.Principal.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+            }
+
+            var response = _identityService.GerarCredenciais(email);
+            return Ok(response);
+        }
+
 
         /// <summary>
         /// Atualiza o token de acesso de um usuário.

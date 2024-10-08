@@ -22,7 +22,7 @@ namespace BusinessMotors.Infrastructure.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest request)
+        public async Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest request, string provider = "")
         {
             var usuario = new Usuario
             {
@@ -32,7 +32,15 @@ namespace BusinessMotors.Infrastructure.Services
                 EmailConfirmed = true
             };
 
-            IdentityResult result = await _userManager.CreateAsync(usuario, request.Senha);
+            IdentityResult result;
+            if (string.IsNullOrEmpty(request.Senha))
+            {
+                result = await _userManager.CreateAsync(usuario);
+                await VincularLogin(usuario, provider);
+            }
+            else
+                result = await _userManager.CreateAsync(usuario, request.Senha);
+                
             var usuarioCadastroResponse = new UsuarioCadastroResponse(result.Succeeded);
 
             if (!result.Succeeded && result.Errors.Count() > 0)
@@ -93,7 +101,7 @@ namespace BusinessMotors.Infrastructure.Services
             return usuarioLoginResponse;
         }
 
-        private async Task<UsuarioLoginResponse> GerarCredenciais(string email)
+        public async Task<UsuarioLoginResponse> GerarCredenciais(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var accessTokenClaims = await ObterClaims(user, adicionarClaimsUsuario: true);
@@ -151,7 +159,7 @@ namespace BusinessMotors.Infrastructure.Services
             return claims;
         }
 
-        public async Task<UsuarioDetalhesResponse> GetDetailsUsuarioAsync(string id)
+        public async Task<UsuarioDetalhesResponse> GetUserDetailsAsync(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user is null)
@@ -171,5 +179,9 @@ namespace BusinessMotors.Infrastructure.Services
             users.ToList().ForEach(d => response.Add(new(d.Id, d.UserName)));
             return response;
         }
+
+        public async Task<Usuario> GetUserByEmailAsync(string email) => await _userManager.FindByEmailAsync(email);
+
+        public async Task VincularLogin(Usuario user, string provider) => await _userManager.AddLoginAsync(user, new UserLoginInfo("Google", provider, "Google"));
     }
 }

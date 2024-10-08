@@ -60,6 +60,14 @@ namespace BusinessMotors.Infrastructure.Extensions
                         throw context.Exception;
                     }
                 };
+            })
+            .AddGoogle(options =>
+            {
+                options.ClientId = "";
+                options.ClientSecret = "";
+                options.CallbackPath = "/signin-google";
+                options.SaveTokens = true;
+                options.SignInScheme = IdentityConstants.ExternalScheme;
             });
         }
     }

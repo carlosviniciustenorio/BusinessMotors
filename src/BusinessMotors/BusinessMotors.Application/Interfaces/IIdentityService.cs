@@ -5,11 +5,13 @@ namespace BusinessMotors.Application.Interfaces
 {
     public interface IIdentityService
     {
-        Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest usuarioCadastro);
+        Task<UsuarioCadastroResponse> CadastrarUsuario(UsuarioCadastroRequest usuarioCadastro, string provider = "");
         Task<UsuarioLoginResponse> Login(UsuarioLoginRequest usuarioLogin);
         Task CadastrarRole(string role, string email);
         Task<UsuarioLoginResponse> LoginComRefreshToken(string usuarioId);
-        Task<UsuarioDetalhesResponse> GetDetailsUsuarioAsync(string id);
+        Task<UsuarioDetalhesResponse> GetUserDetailsAsync(string id);
         Task<List<UsuarioResponse>> GetUsuariosAsync(string role);
+        Task<Usuario> GetUserByEmailAsync(string email);
+        Task<UsuarioLoginResponse> GerarCredenciais(string email);
     }
 }
