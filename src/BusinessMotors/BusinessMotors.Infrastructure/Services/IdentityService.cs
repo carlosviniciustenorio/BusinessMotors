@@ -83,7 +83,7 @@ namespace BusinessMotors.Infrastructure.Services
             return usuarioLoginResponse;
         }
 
-        public async Task<UsuarioLoginResponse> LoginComRefreshToken(string usuarioId)
+        public async Task<UsuarioLoginResponse> LoginRefreshToken(string usuarioId)
         {
             var usuarioLoginResponse = new UsuarioLoginResponse();
             var usuario = await _userManager.FindByIdAsync(usuarioId);
@@ -95,8 +95,6 @@ namespace BusinessMotors.Infrastructure.Services
 
             if (usuarioLoginResponse.Sucesso)
                 return await GerarCredenciais(usuario.Email);
-
-
 
             return usuarioLoginResponse;
         }

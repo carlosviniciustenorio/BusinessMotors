@@ -61,11 +61,12 @@ namespace BusinessMotors.Infrastructure.Extensions
                     }
                 };
             })
+            .AddCookie()
             .AddGoogle(options =>
             {
                 options.ClientId = "";
                 options.ClientSecret = "";
-                options.CallbackPath = "/signin-google";
+                options.CallbackPath = "/api/usuarios/google-response";
                 options.SaveTokens = true;
                 options.SignInScheme = IdentityConstants.ExternalScheme;
             });

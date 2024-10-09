@@ -1,7 +1,6 @@
 ﻿using BusinessMotors.API.Attributes;
 using BusinessMotors.API.Shared;
 using BusinessMotors.Infrastructure.Constants.Identity;
-using BusinessMotors.Integration.Cache;
 using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 using System.Net;
@@ -16,10 +15,12 @@ namespace BusinessMotors.API.Controllers
     {
         private readonly IIdentityService _identityService;
         private readonly ILogger<UsuariosController> _logger;
-        public UsuariosController(IIdentityService identityService, ILogger<UsuariosController> logger)
+        private readonly SignInManager<Usuario> _signInManager;
+        public UsuariosController(IIdentityService identityService, ILogger<UsuariosController> logger, SignInManager<Usuario> signInManager)
         {
             _identityService = identityService;
             _logger = logger;
+            _signInManager = signInManager;
         }
 
         /// <summary>
@@ -161,11 +162,8 @@ namespace BusinessMotors.API.Controllers
         [HttpGet("login-google")]
         public IActionResult GoogleLogin()
         {
-            var properties = new AuthenticationProperties
-            {
-                RedirectUri = Url.Action("GoogleResponse")
-            };
-
+            var redirectUrl = Url.Action("GoogleResponse", "Usuarios");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
             return Challenge(properties, "Google");
         }
         
@@ -201,8 +199,7 @@ namespace BusinessMotors.API.Controllers
             var response = _identityService.GerarCredenciais(email);
             return Ok(response);
         }
-
-
+        
         /// <summary>
         /// Atualiza o token de acesso de um usuário.
         /// </summary>
@@ -224,7 +221,7 @@ namespace BusinessMotors.API.Controllers
             if (usuarioId == null)
                 return BadRequest();
 
-            var resultado = await _identityService.LoginComRefreshToken(usuarioId);
+            var resultado = await _identityService.LoginRefreshToken(usuarioId);
             if (resultado.Sucesso)
                 return Ok(resultado);
 
