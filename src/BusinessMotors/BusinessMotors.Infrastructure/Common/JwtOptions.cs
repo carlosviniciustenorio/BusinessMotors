@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using System.Security.Permissions;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BusinessMotors.Infrastructure.Common
 {
@@ -10,6 +11,7 @@ namespace BusinessMotors.Infrastructure.Common
         public int AccessTokenExpiration { get; set; }
         public int RefreshTokenExpiration { get; set; }
         public string SecurityKey { get; set; }
+        public string PublicKeyPath { get; set; }
         public string PrivateKeyPath { get; set; }
     }
 }

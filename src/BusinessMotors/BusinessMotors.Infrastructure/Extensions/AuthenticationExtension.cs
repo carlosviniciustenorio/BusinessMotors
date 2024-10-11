@@ -11,8 +11,7 @@ namespace BusinessMotors.Infrastructure.Extensions
     {
         public static void AddAuthentication(this IServiceCollection services, IConfiguration configuration, JwtOptions jwtOptions)
         {
-            // var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.SecurityKey));
-            var relativePublicKeyPath = configuration["Keys:PublicKeyPath"];
+            var relativePublicKeyPath = jwtOptions.PublicKeyPath;
             var publicKeyPath = Path.Combine(Directory.GetCurrentDirectory(), relativePublicKeyPath);
 
             if (!File.Exists(publicKeyPath))
@@ -22,6 +21,7 @@ namespace BusinessMotors.Infrastructure.Extensions
             RSA rsa = RSA.Create();
             rsa.ImportFromPem(publicKeyContent);
 
+            // var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.SecurityKey));
             services.Configure<JwtOptions>(options =>
             {
                 options.Issuer = jwtOptions.Issuer;
