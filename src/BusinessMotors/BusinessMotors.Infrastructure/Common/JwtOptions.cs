@@ -10,5 +10,6 @@ namespace BusinessMotors.Infrastructure.Common
         public int AccessTokenExpiration { get; set; }
         public int RefreshTokenExpiration { get; set; }
         public string SecurityKey { get; set; }
+        public string PrivateKeyPath { get; set; }
     }
 }

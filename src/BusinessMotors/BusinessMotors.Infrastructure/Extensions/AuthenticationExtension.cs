@@ -1,5 +1,8 @@
-﻿using BusinessMotors.Infrastructure.Common;
+﻿using System.Reflection;
+using System.Security.Cryptography;
+using BusinessMotors.Infrastructure.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BusinessMotors.Infrastructure.Extensions
@@ -8,13 +11,23 @@ namespace BusinessMotors.Infrastructure.Extensions
     {
         public static void AddAuthentication(this IServiceCollection services, IConfiguration configuration, JwtOptions jwtOptions)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.SecurityKey));
+            // var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.SecurityKey));
+            var relativePublicKeyPath = configuration["Keys:PublicKeyPath"];
+            var publicKeyPath = Path.Combine(Directory.GetCurrentDirectory(), relativePublicKeyPath);
+
+            if (!File.Exists(publicKeyPath))
+                throw new FileNotFoundException($"Public key file not found at path: {publicKeyPath}");
+
+            string publicKeyContent = File.ReadAllText(publicKeyPath);
+            RSA rsa = RSA.Create();
+            rsa.ImportFromPem(publicKeyContent);
 
             services.Configure<JwtOptions>(options =>
             {
                 options.Issuer = jwtOptions.Issuer;
                 options.Audience = jwtOptions.Audience;
-                options.SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
+                //Chave Simétrica
+                // options.SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
                 options.AccessTokenExpiration = jwtOptions.AccessTokenExpiration;
                 options.RefreshTokenExpiration = jwtOptions.RefreshTokenExpiration;
             });
@@ -37,7 +50,7 @@ namespace BusinessMotors.Infrastructure.Extensions
                 ValidAudience = jwtOptions.Audience,
 
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = securityKey,
+                IssuerSigningKey = new RsaSecurityKey(rsa),
 
                 RequireExpirationTime = true,
                 ValidateLifetime = true,
@@ -64,8 +77,8 @@ namespace BusinessMotors.Infrastructure.Extensions
             .AddCookie()
             .AddGoogle(options =>
             {
-                options.ClientId = "";
-                options.ClientSecret = "";
+                options.ClientId = "601031446578-041rnfqa1p0lifpsju0vj7f3labjr15j.apps.googleusercontent.com";
+                options.ClientSecret = "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";
                 options.CallbackPath = "/api/usuarios/google-response";
                 options.SaveTokens = true;
                 options.SignInScheme = IdentityConstants.ExternalScheme;

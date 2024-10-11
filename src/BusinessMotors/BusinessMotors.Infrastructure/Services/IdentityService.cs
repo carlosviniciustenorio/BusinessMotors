@@ -3,7 +3,10 @@ using ECommerceCT.Application.DTOs.Requests;
 using ECommerceCT.Application.DTOs.Responses;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BusinessMotors.Infrastructure.Services
 {
@@ -121,16 +124,43 @@ namespace BusinessMotors.Infrastructure.Services
 
         public string GerarToken(IEnumerable<Claim> claims, DateTime dataExpiracao)
         {
-            var jwt = new JwtSecurityToken(
-                issuer: _jwtOptions.Issuer,
-                audience: _jwtOptions.Audience,
-                claims: claims,
-                notBefore: DateTime.Now,
-                expires: dataExpiracao,
-                signingCredentials: _jwtOptions.SigningCredentials
-                );
+            var relativePublicKeyPath = _jwtOptions.PrivateKeyPath;
+            var privateKeyPath = Path.Combine(Directory.GetCurrentDirectory(), relativePublicKeyPath);
 
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            if (!File.Exists(privateKeyPath))
+                throw new FileNotFoundException($"Private key file not found at path: {privateKeyPath}");
+
+            string publicKeyContent = File.ReadAllText(privateKeyPath);
+            RSA rsa = RSA.Create();
+            rsa.ImportFromPem(publicKeyContent);
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = new RsaSecurityKey(rsa);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = dataExpiracao,
+                Issuer = _jwtOptions.Issuer,
+                Audience = _jwtOptions.Audience,
+                NotBefore = DateTime.Now,
+                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+            
+            //Chave simetrica
+            // var jwt = new JwtSecurityToken(
+            //     issuer: _jwtOptions.Issuer,
+            //     audience: _jwtOptions.Audience,
+            //     claims: claims,
+            //     notBefore: DateTime.Now,
+            //     expires: dataExpiracao,
+            //     signingCredentials: _jwtOptions.SigningCredentials
+            //     );
+            //
+            // return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
         private async Task<IList<Claim>> ObterClaims(Usuario user, bool adicionarClaimsUsuario)

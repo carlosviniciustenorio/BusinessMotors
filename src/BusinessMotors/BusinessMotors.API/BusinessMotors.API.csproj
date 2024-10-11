@@ -63,4 +63,7 @@
     <None Remove="Protos\**" />
     <None Remove="logs\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Keys\" />
+  </ItemGroup>
 </Project>

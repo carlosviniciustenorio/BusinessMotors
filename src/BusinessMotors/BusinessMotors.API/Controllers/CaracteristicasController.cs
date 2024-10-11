@@ -1,6 +1,7 @@
 namespace BusinessMotors.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class CaracteristicasController : ControllerBase
     {
