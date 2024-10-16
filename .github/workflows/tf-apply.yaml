@@ -44,8 +44,20 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
+      - name: Check if ECR exists
+        id: check-ecr
+        run: |
+          ECR_EXISTS=$(terraform state show aws_ecr_repository.my_ecr_repository > /dev/null 2>&1; echo $?)
+          if [ "$ECR_EXISTS" -eq 0 ]; then
+            echo "ECR already exists, skipping apply."
+            exit 0
+          else
+            echo "ECR does not exist, proceeding with apply."
+          fi
+
       - name: Terraform Apply
         run: terraform apply -auto-approve -var-file="config/dev/terraform.tfvars" -lock=false
+        if: steps.check-ecr.outcome != 'success'
 
   build-image:
     needs: apply-infra1-dev

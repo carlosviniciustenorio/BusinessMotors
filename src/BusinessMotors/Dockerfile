@@ -25,5 +25,7 @@ RUN dotnet publish "BusinessMotors.API.csproj" -c Release -o /app/publish /p:Use
 FROM base AS final
 
 WORKDIR /app
+
+COPY BusinessMotors.API/Keys /app/Keys
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BusinessMotors.API.dll"]
