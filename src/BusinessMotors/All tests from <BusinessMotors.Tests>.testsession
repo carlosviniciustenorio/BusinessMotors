@@ -1,0 +1,7 @@
+BusinessMotors.Tests (3 tests) Success
+  BusinessMotors.Tests.Infrastructure (3 tests) Success
+    AnuncioRepositoryTest (3 tests) Success
+      Test (3 tests) Success
+        Test(value: "teste1") Success
+        Test(value: "teste2") Success
+        Test(value: "teste3") Success
