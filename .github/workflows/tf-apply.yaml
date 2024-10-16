@@ -52,7 +52,7 @@ jobs:
     name: 'Docker build image and push to ECR'
     runs-on: ubuntu-latest 
     env:
-      TF_WORKING_DIR: 'src/CManager'
+      TF_WORKING_DIR: 'src/BusinessMotors'
 
     defaults:
       run:
