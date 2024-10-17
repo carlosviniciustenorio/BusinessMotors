@@ -26,7 +26,7 @@ resource "aws_iam_policy" "policies" {
     Version   = "2012-10-17"
     Statement = [
       {
-        Sid     = "Stmt1684445489794"
+        Sid     = "AllowSMAccess"
         Action  = "secretsmanager:*",
         Effect  = "Allow"
         Resource = "*"
