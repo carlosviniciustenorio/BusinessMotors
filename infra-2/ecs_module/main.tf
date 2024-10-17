@@ -20,7 +20,7 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
 
 resource "aws_iam_policy" "policies" {
   name        = "example-rds-fargate-policy"
-  description = "Policy to allow RDS Fargate to access Secrets Manager"
+  description = "Policy to allow RDS Fargate to access Secrets Manager and CloudWatch Logs"
 
   policy = jsonencode({
     Version   = "2012-10-17"
@@ -35,6 +35,16 @@ resource "aws_iam_policy" "policies" {
         Sid     = "AllowECRAccess"
         Action  = "ecr:*"
         Effect  = "Allow"
+        Resource = "*"
+      },
+      {
+        Sid     = "AllowCloudWatchLogs",
+        Action  = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        Effect  = "Allow",
         Resource = "*"
       }
     ]
@@ -67,7 +77,15 @@ resource "aws_ecs_task_definition" "business-motors_task" {
         }
       ],
       "memory": 512,
-      "cpu": 256
+      "cpu": 256,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/business-motors-task",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ]
   DEFINITION
