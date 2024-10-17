@@ -1,5 +1,5 @@
 resource "aws_alb" "application_load_balancer" {
-  name               = "lb-tf-cmanager"
+  name               = "lb-tf-business-motors"
   load_balancer_type = "application"
   subnets = [ 
     var.default_subnet_a_id,
@@ -26,7 +26,7 @@ resource "aws_security_group" "load_balancer_security_group" {
 }
 
 resource "aws_lb_target_group" "target_group" {
-  name        = "target-group-cmanager"
+  name        = "target-group-business-motors"
   port        = 80
   protocol    = "HTTP"
   target_type = "ip"

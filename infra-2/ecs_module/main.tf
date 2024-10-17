@@ -46,12 +46,12 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
   policy_arn = aws_iam_policy.policies.arn
 }
 
-resource "aws_ecs_task_definition" "cmanager_task" {
-  family                   = "cmanager-task" # Naming our first task
+resource "aws_ecs_task_definition" "business-motors_task" {
+  family                   = "business-motors-task" # Naming our first task
   container_definitions    = <<DEFINITION
   [
     {
-      "name": "cmanager-task",
+      "name": "business-motors-task",
       "image": "${var.ecr_repository_url}",
       "essential": true,
       "portMappings": [
@@ -79,15 +79,15 @@ resource "aws_ecs_task_definition" "cmanager_task" {
 }
 
 resource "aws_ecs_service" "cmanager_ecs_service" {
-  name            = "${aws_ecs_task_definition.cmanager_task.family}"                        
+  name            = "${aws_ecs_task_definition.business-motors_task.family}"                        
   cluster         = "${aws_ecs_cluster.ecs_fargate_cluster_ct.id}"             
-  task_definition = "${aws_ecs_task_definition.cmanager_task.arn}" 
+  task_definition = "${aws_ecs_task_definition.business-motors_task.arn}" 
   launch_type     = "FARGATE"
   desired_count   = 1
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "${aws_ecs_task_definition.cmanager_task.family}"
+    container_name   = "${aws_ecs_task_definition.business-motors_task.family}"
     container_port   = 80
   }
 
