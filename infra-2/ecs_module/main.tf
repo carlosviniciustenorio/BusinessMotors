@@ -100,8 +100,17 @@ resource "aws_ecs_service" "cmanager_ecs_service" {
   name            = "${aws_ecs_task_definition.business-motors_task.family}"                        
   cluster         = "${aws_ecs_cluster.ecs_fargate_cluster_ct.id}"             
   task_definition = "${aws_ecs_task_definition.business-motors_task.arn}" 
-  launch_type     = "FARGATE"
+  # launch_type     = "FARGATE"
   desired_count   = 1
+
+  deployment_controller {
+    type = "ECS"
+  }
+
+  capacity_provider_strategy {
+    capacity_provider = "FARGATE_SPOT"
+    weight            = 1
+  }
 
   load_balancer {
     target_group_arn = var.target_group_arn
