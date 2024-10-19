@@ -18,46 +18,54 @@ resource "aws_iam_role" "ecsTaskExecutionRole" {
   })
 }
 
-resource "aws_iam_policy" "policies" {
-  name        = "example-rds-fargate-policy"
-  description = "Policy to allow RDS Fargate to access Secrets Manager and CloudWatch Logs"
+resource "aws_iam_policy" "ecsTaskExecutionRole_policy" {
+  name        = "ecsTaskExecutionRolePolicy"
+  description = "Policy for ECS Task Execution Role to access Secrets Manager, ECR, and CloudWatch Logs"
 
   policy = jsonencode({
     Version   = "2012-10-17"
     Statement = [
       {
-        Sid     = "AllowSMAccess"
-        Action  = "secretsmanager:*",
-        Effect  = "Allow"
+        Sid     = "AllowSecretsManagerAccess",
+        Effect  = "Allow",
+        Action  = [
+          "secretsmanager:GetSecretValue",
+          "secretsmanager:DescribeSecret",
+          "secretsmanager:ListSecrets"
+        ],
         Resource = "*"
       },
       {
-        Sid     = "AllowECRAccess"
-        Action  = "ecr:*"
-        Effect  = "Allow"
+        Sid     = "AllowECRAccess",
+        Effect  = "Allow",
+        Action  = [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability"
+        ],
         Resource = "*"
       },
       {
         Sid     = "AllowCloudWatchLogs",
+        Effect  = "Allow",
         Action  = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ],
-        Effect  = "Allow",
         Resource = "*"
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
+resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy_attachment" {
   role       = aws_iam_role.ecsTaskExecutionRole.name
-  policy_arn = aws_iam_policy.policies.arn
+  policy_arn = aws_iam_policy.ecsTaskExecutionRole_policy.arn
 }
 
-resource "aws_ecs_task_definition" "business-motors_task" {
-  family                   = "business-motors-task" # Naming our first task
+resource "aws_ecs_task_definition" "business_motors_task" {
+  family                   = "business-motors-task"
   container_definitions    = <<DEFINITION
   [
     {
@@ -90,17 +98,16 @@ resource "aws_ecs_task_definition" "business-motors_task" {
   ]
   DEFINITION
   requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"   
-  memory                   = 512        
-  cpu                      = 256        
-  execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRole.arn}"
+  network_mode             = "awsvpc"
+  memory                   = 512
+  cpu                      = 256
+  execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
 }
 
 resource "aws_ecs_service" "cmanager_ecs_service" {
-  name            = "${aws_ecs_task_definition.business-motors_task.family}"                        
-  cluster         = "${aws_ecs_cluster.ecs_fargate_cluster_ct.id}"             
-  task_definition = "${aws_ecs_task_definition.business-motors_task.arn}" 
-  # launch_type     = "FARGATE"
+  name            = aws_ecs_task_definition.business_motors_task.family
+  cluster         = aws_ecs_cluster.ecs_fargate_cluster_ct.id
+  task_definition = aws_ecs_task_definition.business_motors_task.arn
   desired_count   = 1
 
   deployment_controller {
@@ -114,24 +121,26 @@ resource "aws_ecs_service" "cmanager_ecs_service" {
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "${aws_ecs_task_definition.business-motors_task.family}"
+    container_name   = aws_ecs_task_definition.business_motors_task.family
     container_port   = 80
   }
 
   network_configuration {
-    subnets          = [var.default_subnet_a_id,
-                        var.default_subnet_b_id,
-                        var.default_subnet_c_id]
+    subnets          = [
+      var.default_subnet_a_id,
+      var.default_subnet_b_id,
+      var.default_subnet_c_id
+    ]
     assign_public_ip = true
-    security_groups  = ["${aws_security_group.service_security_group.id}"]
+    security_groups  = [aws_security_group.service_security_group.id]
   }
 }
 
 resource "aws_security_group" "service_security_group" {
   ingress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
     security_groups = [var.load_balancer_security_group_id]
   }
 
