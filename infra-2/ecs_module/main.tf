@@ -29,9 +29,15 @@ resource "aws_iam_policy" "ecsTaskExecutionRole_policy" {
         Sid     = "AllowSecretsManagerAccess",
         Effect  = "Allow",
         Action  = [
-          "secretsmanager:GetSecretValue",
-          "secretsmanager:DescribeSecret",
-          "secretsmanager:ListSecrets"
+          "secretsmanager:*"
+        ],
+        Resource = "*"
+      },
+      {
+        Sid     = "AllowEC2Access",
+        Effect  = "Allow",
+        Action  = [
+          "ec2:*"
         ],
         Resource = "*"
       },
@@ -39,10 +45,7 @@ resource "aws_iam_policy" "ecsTaskExecutionRole_policy" {
         Sid     = "AllowECRAccess",
         Effect  = "Allow",
         Action  = [
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchGetImage",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:GetAuthorizationToken"
+          "ecr:*"
         ],
         Resource = "*"
       },
@@ -50,9 +53,7 @@ resource "aws_iam_policy" "ecsTaskExecutionRole_policy" {
         Sid     = "AllowCloudWatchLogs",
         Effect  = "Allow",
         Action  = [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
+          "logs:*"
         ],
         Resource = "*"
       }
