@@ -3,15 +3,15 @@ var env = builder.Environment;
 
 builder.Logging.AddSentry(options => options.Dsn = builder.Configuration["Sentry:Dsn"]);
 
-// if(env.EnvironmentName != Environments.Development){
-//     builder.Configuration.AddSecretsManager(
-//     region: Amazon.RegionEndpoint.USEast1, 
-//     configurator: options => {
-//         options.PollingInterval = TimeSpan.FromMinutes(5);
-//         options.AcceptedSecretArns = new List<string>(){"Issuer", "Audience", "ConnectionStringDB"};
-//         options.KeyGenerator = (secret, name) => secret.Name == "ConnectionStringDB" ? $"ApiSettings:{secret.Name}" : $"JwtOptions:{secret.Name}";
-//     });
-// }
+if(env.EnvironmentName != Environments.Development){
+    builder.Configuration.AddSecretsManager(
+    region: Amazon.RegionEndpoint.USEast1, 
+    configurator: options => {
+        options.PollingInterval = TimeSpan.FromHours(1);
+        options.AcceptedSecretArns = new List<string>(){"Issuer", "Audience", "ConnectionStringDB"};
+        options.KeyGenerator = (secret, name) => secret.Name == "ConnectionStringDB" ? $"ApiSettings:{secret.Name}" : $"JwtOptions:{secret.Name}";
+    });
+}
 
 builder.Services.AddApiProblemDetails();
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
@@ -25,14 +25,14 @@ var jwtOptions = serviceProvider.GetService<JwtOptions>();
 
 Console.WriteLine($"ApiSettings: ${JsonConvert.SerializeObject(apiSettings)}");
 
-// Log.Logger = new LoggerConfiguration()
-//             .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
-//             {
-//                 IndexFormat = $"{apiSettings.ElasticSearch.Index[0]}",
-//                 AutoRegisterTemplate = true
-//             })
-//             .CreateLogger();
-// builder.Logging.ClearProviders();
+Log.Logger = new LoggerConfiguration()
+            .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri($"{apiSettings.ElasticSearch.Endpoint}"))
+            {
+                IndexFormat = $"{apiSettings.ElasticSearch.Index[0]}",
+                AutoRegisterTemplate = true
+            })
+            .CreateLogger();
+builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(dispose: true);
 builder.Host.UseSerilog(Log.Logger); 
 
