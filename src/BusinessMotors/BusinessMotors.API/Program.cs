@@ -68,6 +68,7 @@ builder.Services.AddControllers()
                 { 
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                     options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                 })
                 .AddFluentValidation(options => { options.RegisterValidatorsFromAssemblyContaining<GetAnunciosQuery.Anuncios>();});
 
