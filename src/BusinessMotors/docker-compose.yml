@@ -102,26 +102,6 @@ services:
       - kong-migrations
     networks:
       - my_network
-  
-  konga:
-    image: pantsel/konga:latest
-    container_name: konga
-    environment:
-      DB_ADAPTER: "postgres"
-      DB_HOST: "kong-database"
-      DB_PORT: 5432
-      DB_USER: "kong"
-      DB_PASSWORD: "kong"
-      NODE_ENV: "production"
-      TOKEN_SECRET: "algumsecreta"
-      KONGA_HOOK_TIMEOUT: 60000
-    ports:
-      - "1337:1337"
-    depends_on:
-      - kong
-      - kong-database
-    networks:
-      - my_network
 
 configs:
   prometheus_config:
