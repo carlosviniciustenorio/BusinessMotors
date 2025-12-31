@@ -197,7 +197,7 @@ namespace BusinessMotors.Application.Handlers
             {
                 foreach (var item in files)
                 {
-                    var imagem = await S3Service.UploadImage(item, "salescar", "us-east-1");
+                    var imagem = await S3Service.UploadImage(item, "businessmotors", "us-east-1");
                     imagens.Add(new Imagem(imagem));
                 }
             }

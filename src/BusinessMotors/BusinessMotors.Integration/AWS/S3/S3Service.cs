@@ -11,7 +11,13 @@ namespace BusinessMotors.Integration.AWS.S3
             if (file == null || file.Length == 0)
             return "No file selected.";
 
-            using var client = new AmazonS3Client(RegionEndpoint.USEast1);
+            var config = new AmazonS3Config
+            {
+                ServiceURL = "http://localhost:4566",
+                ForcePathStyle = true,
+            };
+
+            using var client = new AmazonS3Client("test", "test", config);
             
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
             var filePath = "uploads/" + fileName;
