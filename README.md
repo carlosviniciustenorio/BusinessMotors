@@ -19,3 +19,30 @@ These are all the technologies and patterns used to develop this application
 - ORM: Entity Framework
 - CI/CD: GitHub Actions
 - Observability: Prometheus, Grafana, ElasticSearch, Kibana, Sentry
+
+## High level diagram
+
+``` mermaid
+    flowchart LR
+        subgraph Frontend
+            User
+            BusinessMotorsFront
+        end
+        subgraph Public Network
+            LoadBalancer
+        end
+        subgraph AWS VPC
+            BusinessMotorsAPI
+            RDS
+        end
+
+        subgraph AWS Network
+            S3
+        end
+
+        User--Cloudfront/s3 --> BusinessMotorsFront
+        BusinessMotorsFront--tcp/80 --> LoadBalancer
+        LoadBalancer--tcp/8080 --> BusinessMotorsAPI --> S3
+        BusinessMotorsAPI --> RDS--tcp/3036
+        RDS --> BusinessMotorsAPI
+```
