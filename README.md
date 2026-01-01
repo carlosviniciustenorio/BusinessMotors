@@ -45,4 +45,6 @@ These are all the technologies and patterns used to develop this application
         LoadBalancer--tcp/8080 --> BusinessMotorsAPI --> S3
         BusinessMotorsAPI --> RDS--tcp/3036
         RDS --> BusinessMotorsAPI
+        BusinessMotorsFront --> S3
+        S3 --> BusinessMotorsFront
 ```
