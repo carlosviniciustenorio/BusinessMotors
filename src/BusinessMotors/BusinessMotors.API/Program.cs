@@ -103,7 +103,6 @@ else
     app.UseExceptionHandler("/Error");
 }
 
-app.UseIpRateLimiting();
 app.UseCors(options =>
 {
     options.AllowAnyOrigin();
@@ -111,14 +110,15 @@ app.UseCors(options =>
     options.AllowAnyMethod();
 });
 app.UseSerilogRequestLogging();
-app.UseProblemDetails();
-// app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseSentryTracing();
+app.UseProblemDetails();
+app.UseIpRateLimiting();
+// app.UseMiddleware<ExceptionLoggingMiddleware>();
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseHttpMetrics();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHttpMetrics();
 app.MapControllers();
 app.UseEndpoints(endpoints =>
 {
