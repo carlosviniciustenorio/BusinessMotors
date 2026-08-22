@@ -51,49 +51,59 @@ These are all the technologies and patterns used to develop this application
 
 ## Visão do cluster Kubernetes
 
-A estrutura abaixo representa a arquitetura aplicada no namespace `development` com base nos manifestos em `kubernetes/manifests`.
+A estrutura abaixo representa a arquitetura aplicada no namespace `development` com base nos manifestos em `kubernetes/manifests`, considerando um cluster com dois nós workers.
 
 ```mermaid
 flowchart TB
     User --> Ingress
 
-    subgraph KubernetesCluster[Cluster Kubernetes]
-        subgraph NamespaceDev[Namespace: development]
-            Ingress[Ingress development-ingress]
+    subgraph Cluster[Cluster Kubernetes]
+        subgraph Node1[Node 1]
+            subgraph NamespaceDev1[Namespace: development]
+                Ingress[Ingress development-ingress]
 
-            subgraph API[BusinessMotors API]
-                ServiceAPI[Service: businessmotorsapi]
-                HPA[HorizontalPodAutoscaler]
-                DeploymentAPI[Deployment: businessmotorsapi\n3 replicas]
-                PodAPI1[Pod API 1]
-                PodAPI2[Pod API 2]
+                subgraph API1[BusinessMotors API]
+                    ServiceAPI[Service: businessmotorsapi]
+                    HPA[HorizontalPodAutoscaler]
+                    DeploymentAPI[Deployment: businessmotorsapi\n3 replicas]
+                    PodAPI1[Pod API 1]
+                    PodAPI2[Pod API 2]
+                end
+
+                subgraph Adminer1[Adminer]
+                    ServiceAdminer[Service: adminer]
+                    DeploymentAdminer[Deployment: adminer]
+                end
+
+                subgraph Mysql1[MySQL]
+                    ServiceMySQL[Service: mysql]
+                    StatefulSetMySQL[StatefulSet: mysql\n1 replica]
+                    PVC[PVC: mysql-pvc]
+                end
+
+                Secret[Secret: mysql-secret]
+                ConfigMap[ConfigMap: api-config]
+            end
+        end
+
+        subgraph Node2[Node 2]
+            subgraph NamespaceDev2[Namespace: development]
                 PodAPI3[Pod API 3]
             end
-
-            subgraph Adminer[Adminer]
-                ServiceAdminer[Service: adminer]
-                DeploymentAdminer[Deployment: adminer]
-            end
-
-            subgraph MySQL[MySQL]
-                ServiceMySQL[Service: mysql]
-                StatefulSetMySQL[StatefulSet: mysql\n1 replica]
-                PVC[PVC: mysql-pvc]
-            end
-
-            Secret[Secret: mysql-secret]
-            ConfigMap[ConfigMap: api-config]
         end
     end
 
     Ingress --> ServiceAPI
     Ingress --> ServiceAdminer
 
-    ServiceAPI --> DeploymentAPI
     HPA --> DeploymentAPI
     DeploymentAPI --> PodAPI1
     DeploymentAPI --> PodAPI2
     DeploymentAPI --> PodAPI3
+
+    ServiceAPI --> PodAPI1
+    ServiceAPI --> PodAPI2
+    ServiceAPI --> PodAPI3
 
     PodAPI1 -->|envFrom configMap| ConfigMap
     PodAPI2 -->|envFrom configMap| ConfigMap
