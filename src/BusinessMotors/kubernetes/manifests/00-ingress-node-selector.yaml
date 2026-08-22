@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-node-selector-patch
+  namespace: development
+data:
+  README: |-
+    This repository previously included a partial Deployment patch for ingress-nginx.
+    Applying a partial Deployment manifest directly is invalid. To schedule the
+    ingress controller on the control-plane node (labelled ingress-ready=true),
+    run the following command locally against your cluster:
+
+      kubectl patch deployment ingress-nginx-controller -n ingress-nginx \
+        --type='strategic' -p '{"spec":{"template":{"spec":{"nodeSelector":{"ingress-ready":"true"}}}}}'
+
+    The repository keeps the ingress manifest updated (manifests/11-ingress.yaml)
+    which also includes the rewrite annotations required for the API path.

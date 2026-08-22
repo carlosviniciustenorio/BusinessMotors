@@ -4,15 +4,15 @@ metadata:
   name: development-ingress
   namespace: development
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /businessmotorsapi
-            pathType: Prefix
+          - path: /businessmotorsapi(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: businessmotorsapi

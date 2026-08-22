@@ -71,7 +71,32 @@ Se quiser recriar o Secret do zero:
 ```bash
 kubectl delete secret mysql-secret -n development
 kubectl apply -f manifests/01-secrets.yaml
+
+### 5. Garantir que o Ingress Controller esteja no node com portas mapeadas (Kind)
+
+Em clusters Kind este repositório cria mapeamentos de portas (`extraPortMappings`) apenas no node `control-plane`. Se o `ingress-nginx` for agendado em um `worker`, `localhost:80` pode não alcançar o controller, causando falhas de conexão pelo Ingress.
+
+Para forçar o `ingress-nginx` a rodar no `control-plane`, aplique o patch incluído neste repositório:
+
+```bash
+kubectl apply -f manifests/00-ingress-node-selector.yaml
 ```
+
+Isso adiciona um `nodeSelector` a `ingress-nginx-controller` direcionando-o para o node com o label `ingress-ready=true`.
+```
+ 
+### 6. Reescrita de caminho para a API (Ingress)
+
+O `Ingress` deste repositório remove o prefixo `/businessmotorsapi` antes de encaminhar para o serviço da API. Sem essa reescrita, o backend ASP.NET pode receber caminhos como `/businessmotorsapi/swagger/index.html` e retornar 404, porque a aplicação espera `/swagger/index.html`.
+
+O manifesto `manifests/11-ingress.yaml` já inclui as anotações do NGINX necessárias:
+
+```yaml
+nginx.ingress.kubernetes.io/use-regex: "true"
+nginx.ingress.kubernetes.io/rewrite-target: /$2
+```
+
+Se preferir não reescrever no Ingress, configure a aplicação ASP.NET para usar `PathBase` com `/businessmotorsapi`.
 
 ---
 
