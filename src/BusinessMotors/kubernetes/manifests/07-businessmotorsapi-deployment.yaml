@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: businessmotorsapi
+  namespace: development
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: businessmotorsapi
+  template:
+    metadata:
+      labels:
+        app: businessmotorsapi
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - businessmotorsapi
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: api
+          # Edit this image tag to match your local Docker image.
+          image: businessmotorsapi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          envFrom:
+            - configMapRef:
+                name: api-config
+          env:
+            # Overrides ApiSettings:ConnectionStringDB from appsettings.Development.json.
+            # Uses the Kubernetes DNS name of the MySQL headless service.
+            - name: ApiSettings__ConnectionStringDB
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: connection-string
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "256m"
+            limits:
+              memory: "512Mi"
+              cpu: "256m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
