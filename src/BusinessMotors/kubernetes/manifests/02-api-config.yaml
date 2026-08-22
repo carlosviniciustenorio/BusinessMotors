@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: development
+data:
+  ASPNETCORE_ENVIRONMENT: "Development"
+  # Cache configuration (Redis). Update the host when a real Redis service is deployed.
+  ApiSettings__Cache__InstanceName: "CManager"
+  ApiSettings__Cache__Configuration: "redis.development.svc.cluster.local:6379"
+  # Elasticsearch configuration. Update the endpoint when a real Elasticsearch service is deployed.
+  ApiSettings__ElasticSearch__Endpoint: "http://elasticsearch.development.svc.cluster.local:9200"
+  # Array indexes for ApiSettings.ElasticSearch.Index
+  ApiSettings__ElasticSearch__Index__0: "cmanager"
+  ApiSettings__ElasticSearch__Index__1: "cars"

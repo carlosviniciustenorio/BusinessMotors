@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: development
+spec:
+  # Headless service for direct pod DNS resolution (mysql-0.mysql.development.svc.cluster.local).
+  clusterIP: None
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+      name: mysql
