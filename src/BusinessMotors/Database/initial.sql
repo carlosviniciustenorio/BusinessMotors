@@ -477,4 +477,284 @@ INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
 (104,	'2.0 Diesel',	55),
 (105,	'2.4 Turbo',	56);
 
--- 2024-08-13 18:35:55
+
+/* New brands (Marca) */
+INSERT INTO `Marca` (`Id`, `Descricao`) VALUES
+(13, 'Ford'),
+(14, 'BMW'),
+(15, 'Audi'),
+(16, 'Nissan'),
+(17, 'Mazda'),
+(18, 'Subaru'),
+(19, 'Mitsubishi'),
+(20, 'Peugeot'),
+(21, 'Citroën'),
+(22, 'Suzuki'),
+(23, 'Lexus'),
+(24, 'Mercedes-Benz'),
+(25, 'Mini'),
+(26, 'Land Rover'),
+(27, 'Skoda'),
+(28, 'Opel'),
+(29, 'Alfa Romeo');
+
+/* Models (Modelo) for new brands */
+INSERT INTO `Modelo` (`Id`, `Descricao`, `AnoModelo`, `AnoFabricacao`, `MarcaId`) VALUES
+(57, 'Fiesta', 2018, 2017, 13),
+(58, 'Focus', 2019, 2018, 13),
+(59, 'EcoSport', 2020, 2019, 13),
+(60, 'Ka', 2017, 2016, 13),
+(61, 'Ranger', 2021, 2020, 13),
+(62, 'Mustang', 2021, 2020, 13),
+(63, 'Série 1', 2019, 2018, 14),
+(64, 'Série 3', 2021, 2020, 14),
+(65, 'X1', 2020, 2019, 14),
+(66, 'X3', 2021, 2020, 14),
+(67, 'X5', 2021, 2020, 14),
+(68, 'A3', 2020, 2019, 15),
+(69, 'A4', 2021, 2020, 15),
+(70, 'A6', 2021, 2020, 15),
+(71, 'Q3', 2020, 2019, 15),
+(72, 'Q5', 2021, 2020, 15),
+(73, 'Versa', 2020, 2019, 16),
+(74, 'Sentra', 2020, 2019, 16),
+(75, 'Kicks', 2021, 2020, 16),
+(76, 'March', 2019, 2018, 16),
+(77, 'Frontier', 2021, 2020, 16),
+(78, 'Mazda 3', 2021, 2020, 17),
+(79, 'CX-5', 2021, 2020, 17),
+(80, 'CX-30', 2020, 2019, 17),
+(81, 'Impreza', 2020, 2019, 18),
+(82, 'Forester', 2021, 2020, 18),
+(83, 'Outback', 2021, 2020, 18),
+(84, 'Lancer', 2018, 2017, 19),
+(85, 'ASX', 2019, 2018, 19),
+(86, 'Pajero', 2020, 2019, 19),
+(87, 'Triton', 2021, 2020, 19),
+(88, '208', 2020, 2019, 20),
+(89, '2008', 2021, 2020, 20),
+(90, '3008', 2021, 2020, 20),
+(91, 'C3', 2020, 2019, 21),
+(92, 'C4 Cactus', 2020, 2019, 21),
+(93, 'Swift', 2020, 2019, 22),
+(94, 'Vitara', 2021, 2020, 22),
+(95, 'NX', 2021, 2020, 23),
+(96, 'RX', 2021, 2020, 23),
+(97, 'IS', 2020, 2019, 23),
+(98, 'A-Class', 2021, 2020, 24),
+(99, 'C-Class', 2021, 2020, 24),
+(100, 'E-Class', 2021, 2020, 24),
+(101, 'GLA', 2020, 2019, 24),
+(102, 'GLC', 2021, 2020, 24),
+(103, 'Cooper', 2020, 2019, 25),
+(104, 'Countryman', 2021, 2020, 25),
+(105, 'Defender', 2021, 2020, 26),
+(106, 'Discovery', 2021, 2020, 26),
+(107, 'Range Rover', 2021, 2020, 26),
+(108, 'Octavia', 2020, 2019, 27),
+(109, 'Kodiaq', 2021, 2020, 27),
+(110, 'Corsa', 2020, 2019, 28),
+(111, 'Astra', 2021, 2020, 28),
+(112, 'Giulia', 2020, 2019, 29),
+(113, 'Stelvio', 2021, 2020, 29);
+
+/* One basic version per new model (Versao) */
+INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
+(106, '1.0', 57),
+(107, '1.6', 58),
+(108, '2.0', 59),
+(109, '1.0', 60),
+(110, '2.2 Diesel', 61),
+(111, '5.0 V8', 62),
+(112, '118i', 63),
+(113, '320i', 64),
+(114, 'X1 20i', 65),
+(115, 'X3 20d', 66),
+(116, 'X5 30d', 67),
+(117, '1.4 TFSI', 68),
+(118, '2.0 TFSI', 69),
+(119, '3.0 TFSI', 70),
+(120, '35 TFSI', 71),
+(121, '45 TFSI', 72),
+(122, '1.6', 73),
+(123, '2.0', 74),
+(124, '1.6 Turbo', 75),
+(125, '1.0', 76),
+(126, '2.3 Diesel', 77),
+(127, '2.0', 78),
+(128, '2.5 Turbo', 79),
+(129, '2.0', 80),
+(130, '2.0', 81),
+(131, '2.5', 82),
+(132, '3.6', 83),
+(133, '2.0', 84),
+(134, '2.0', 85),
+(135, '3.2', 86),
+(136, '2.4', 87),
+(137, '1.2 PureTech', 88),
+(138, '1.2 Turbo', 89),
+(139, '1.6', 90),
+(140, '1.2', 91),
+(141, '1.6', 92),
+(142, '1.2', 93),
+(143, '1.4 Turbo', 94),
+(144, '2.0 Hybrid', 95),
+(145, '3.5 V6', 96),
+(146, '2.0 Turbo', 97),
+(147, 'A200', 98),
+(148, 'C200', 99),
+(149, 'E200', 100),
+(150, 'GLA 200', 101),
+(151, 'GLC 250', 102),
+(152, 'Cooper S', 103),
+(153, 'Countryman Cooper', 104),
+(154, 'Defender 110', 105),
+(155, 'Discovery Sport', 106),
+(156, 'Range Rover Sport', 107),
+(157, '1.0 TSI', 108),
+(158, '2.0 TSI', 109),
+(159, '1.0', 110),
+(160, '1.4 Turbo', 111),
+(161, '2.0 Turbo', 112),
+(162, '2.2 Diesel', 113);
+
+/* Additional fuel types */
+INSERT INTO `TipoCombustivel` (`Id`, `Descricao`) VALUES
+(1, 'Flex'),
+(6, 'Diesel'),
+(7, 'Híbrido');
+
+/* More opcionais */
+INSERT INTO `Opcional` (`Id`, `Descricao`) VALUES
+(11, 'Rodas de liga leve'),
+(12, 'Sensor de estacionamento'),
+(13, 'Câmera de ré'),
+(14, 'Bluetooth'),
+(15, 'Teto solar'),
+(16, 'Central multimídia'),
+(17, 'Start/Stop'),
+(18, 'Controle de cruzeiro'),
+(19, 'Sensor de chuva'),
+(20, 'Faróis de LED');
+
+/* More características */
+INSERT INTO `Caracteristica` (`Id`, `Descricao`) VALUES
+(11, 'Chave reserva'),
+(12, 'Manual do proprietário'),
+(13, 'Revisões em dia'),
+(14, 'IPVA pago 2026'),
+(15, 'Veículo com garagem'),
+(16, 'Único dono (confirmado)'),
+(17, 'Aceita financiamento'),
+(18, 'Sem multas'),
+(19, 'Check-up recente'),
+(20, 'Pneus novos');
+
+-- 2024-08-13 18:35:55 (original)
+
+-- Expanded Chinese-market domain data added 2026-08-22
+
+/* Chinese and recent-market brands */
+INSERT INTO `Marca` (`Id`, `Descricao`) VALUES
+(30, 'BYD'),
+(31, 'NIO'),
+(32, 'XPeng'),
+(33, 'Li Auto'),
+(34, 'Geely'),
+(35, 'Haval'),
+(36, 'Changan'),
+(37, 'MG'),
+(38, 'Dongfeng'),
+(39, 'Great Wall');
+
+/* Models for the new brands */
+INSERT INTO `Modelo` (`Id`, `Descricao`, `AnoModelo`, `AnoFabricacao`, `MarcaId`) VALUES
+(114, 'Dolphin', 2022, 2021, 30),
+(115, 'Han', 2022, 2021, 30),
+(116, 'Tang', 2021, 2020, 30),
+(117, 'Atto 3', 2022, 2021, 30),
+(118, 'ES6', 2021, 2020, 31),
+(119, 'ES8', 2021, 2020, 31),
+(120, 'ET7', 2022, 2021, 31),
+(121, 'P7', 2021, 2020, 32),
+(122, 'G3', 2020, 2019, 32),
+(123, 'P5', 2022, 2021, 32),
+(124, 'L9', 2023, 2022, 33),
+(125, 'L8', 2022, 2021, 33),
+(126, 'L7', 2022, 2021, 33),
+(127, 'Coolray', 2021, 2020, 34),
+(128, 'Emgrand', 2020, 2019, 34),
+(129, 'Geometry A', 2020, 2019, 34),
+(130, 'H6', 2021, 2020, 35),
+(131, 'Jolion', 2021, 2020, 35),
+(132, 'H2', 2020, 2019, 35),
+(133, 'CS75', 2021, 2020, 36),
+(134, 'CS35', 2020, 2019, 36),
+(135, 'ZS', 2021, 2020, 37),
+(136, 'HS', 2021, 2020, 37),
+(137, 'MG3', 2019, 2018, 37),
+(138, 'Glory 580', 2020, 2019, 38),
+(139, 'Fengon 580', 2020, 2019, 38),
+(140, 'Tank 300', 2022, 2021, 39),
+(141, 'Poer', 2021, 2020, 39),
+(142, 'Tank 500', 2023, 2022, 39);
+
+/* One representative version per new model */
+INSERT INTO `Versao` (`Id`, `Descricao`, `ModeloId`) VALUES
+(163, 'Dolphin EV', 114),
+(164, 'Han EV', 115),
+(165, 'Tang PHEV', 116),
+(166, 'Atto 3 EV', 117),
+(167, 'ES6 EV', 118),
+(168, 'ES8 EV', 119),
+(169, 'ET7 EV', 120),
+(170, 'P7 EV', 121),
+(171, 'G3 EV', 122),
+(172, 'P5 EV', 123),
+(173, 'L9 PHEV', 124),
+(174, 'L8 PHEV', 125),
+(175, 'L7 PHEV', 126),
+(176, '1.5 Turbo', 127),
+(177, '1.5 Turbo', 128),
+(178, '1.5 EV', 129),
+(179, 'H6 1.5', 130),
+(180, 'Jolion 1.5', 131),
+(181, 'H2 1.5', 132),
+(182, 'CS75 2.0', 133),
+(183, 'CS35 1.6', 134),
+(184, 'ZS EV', 135),
+(185, 'HS 1.5', 136),
+(186, 'MG3 1.0', 137),
+(187, 'Glory 580 1.5', 138),
+(188, 'Fengon 580 1.5', 139),
+(189, 'Tank 300 2.0', 140),
+(190, 'Poer 2.0 Diesel', 141),
+(191, 'Tank 500 3.0', 142);
+
+/* Additional fuel type for plug-in hybrids */
+INSERT INTO `TipoCombustivel` (`Id`, `Descricao`) VALUES
+(8, 'Plug-in Hybrid');
+
+/* EV / modern opcionais */
+INSERT INTO `Opcional` (`Id`, `Descricao`) VALUES
+(21, 'Carregador doméstico'),
+(22, 'Garantia de bateria'),
+(23, 'Carregamento rápido (CCS)'),
+(24, 'Assistente ADAS (piloto automático)'),
+(25, 'Atualizações OTA'),
+(26, 'Conector de carregamento portátil');
+
+/* EV / modern características */
+INSERT INTO `Caracteristica` (`Id`, `Descricao`) VALUES
+(21, 'Alta autonomia'),
+(22, 'Garantia de bateria estendida'),
+(23, 'Suporta carregamento rápido'),
+(24, 'Assistência remota'),
+(25, 'Veículo elétrico'),
+(26, 'Plug-in híbrido'),
+(27, 'Atualizações OTA'),
+(28, 'Assistência avançada ao condutor'),
+(29, 'Histórico digital de manutenção'),
+(30, 'Bateria com ciclo reduzido');
+
+-- End of expanded Chinese-market domain data
