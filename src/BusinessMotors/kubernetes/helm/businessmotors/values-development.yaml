@@ -4,6 +4,10 @@ api:
     repository: businessmotorsapi
     tag: latest
 
+  autoscaling:
+    minReplicas: 5
+    maxReplicas: 15
+
 adminer:
   image:
     repository: adminer
