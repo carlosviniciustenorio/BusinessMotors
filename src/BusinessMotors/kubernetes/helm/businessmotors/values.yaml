@@ -1,0 +1,114 @@
+api:
+  replicaCount: 3
+  image:
+    repository: businessmotorsapi
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30080
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 256m
+    limits:
+      memory: 512Mi
+      cpu: 256m
+  livenessProbe:
+    path: /health
+    initialDelaySeconds: 15
+    periodSeconds: 20
+  readinessProbe:
+    path: /health
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  config:
+    ASPNETCORE_ENVIRONMENT: Development
+    ApiSettings__Cache__InstanceName: CManager
+    ApiSettings__Cache__Configuration: redis.development.svc.cluster.local:6379
+    ApiSettings__ElasticSearch__Endpoint: http://elasticsearch.development.svc.cluster.local:9200
+    ApiSettings__ElasticSearch__Index__0: cmanager
+    ApiSettings__ElasticSearch__Index__1: cars
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 70
+    behavior:
+      scaleUp:
+        stabilizationWindowSeconds: 30
+        policies:
+          - type: Percent
+            value: 50
+            periodSeconds: 15
+      scaleDown:
+        stabilizationWindowSeconds: 60
+        policies:
+          - type: Percent
+            value: 25
+            periodSeconds: 60
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - businessmotorsapi
+            topologyKey: kubernetes.io/hostname
+
+adminer:
+  enabled: true
+  image:
+    repository: adminer
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 30081
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 128m
+    limits:
+      memory: 512Mi
+      cpu: 256m
+
+mysql:
+  enabled: true
+  image:
+    repository: mysql
+    tag: latest
+    pullPolicy: IfNotPresent
+  persistence:
+    size: 5Gi
+    storageClassName: ""
+  auth:
+    createSecret: true
+    existingSecret: ""
+    # Development-only examples. Provide an external Secret for shared or production clusters.
+    rootPassword: secret
+    database: businessmotors
+    username: businessmotors
+    password: secret
+    connectionString: ""
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 250m
+
+ingress:
+  enabled: true
+  className: nginx
+  host: ""
+  apiPath: /businessmotorsapi(/|$)(.*)
+  adminerPath: /adminer

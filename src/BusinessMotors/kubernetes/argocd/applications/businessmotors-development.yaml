@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: businessmotors-development
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/carlosviniciustenorio/BusinessMotors.git
+    targetRevision: main
+    path: src/BusinessMotors/kubernetes/helm/businessmotors
+    helm:
+      releaseName: businessmotors
+      valueFiles:
+        - values.yaml
+        - values-development.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: development
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

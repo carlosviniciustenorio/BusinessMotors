@@ -1,0 +1,19 @@
+# Local Kind values. Change image tags to match images loaded into the cluster.
+api:
+  image:
+    repository: businessmotorsapi
+    tag: latest
+
+adminer:
+  image:
+    repository: adminer
+    tag: latest
+
+mysql:
+  image:
+    repository: mysql
+    tag: latest
+  auth:
+    # Replace these sample credentials before using a shared or production cluster.
+    rootPassword: secret
+    password: secret

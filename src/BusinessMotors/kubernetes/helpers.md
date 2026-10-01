@@ -11,53 +11,6 @@ O modo **Ingress** exige a instalacao do NGINX Ingress Controller, que depende d
 
 ## Antes de comecar
 
-### 1. Verifique se tem tudo instalado
-
-```bash
-docker --version
-kind version
-kubectl version --client
-```
-
-### 2. Defina o acesso a imagens Docker
-
-Voce precisa conseguir baixar imagens de:
-
-- Seu Docker local (API, Adminer, MySQL - as que voce ja tem).
-- `registry.k8s.io` (ingress-nginx e metrics-server).
-- `docker.io` ou outro registry (wrk, polinux/stress - opcional).
-
-Se estiver em rede corporativa com **Artifactory**, edite `kind-config.yaml` e preencha os `containerdConfigPatches` com os endpoints corretos.
-
-### 3. Ajuste as imagens nos manifests
-
-Edite os arquivos abaixo e troque as tags das imagens pelas que voce tem no Docker local:
-
-- `manifests/06-api-deployment.yaml` -> `businessmotorsapi:latest`
-- `manifests/08-adminer-deployment.yaml` -> `adminer:latest`
-- `manifests/04-mysql-statefulset.yaml` -> `mysql:latest`
-
-### 4. Preencha o Secret do MySQL antes de aplicar
-
-O arquivo `manifests/01-secrets.yaml` precisa ter valores validos para estas chaves:
-
-- `root-password`
-- `database`
-- `user`
-- `password`
-- `connection-string`
-
-Exemplo:
-
-```yaml
-stringData:
- root-password: secret
- database: businessmotors
- user: businessmotors
- password: secret
- connection-string: "Server=mysql.development.svc.cluster.local;Port=3306;Database=businessmotors;Uid=businessmotors;Pwd=secret"
-```
-
 Se voce ja criou o Secret no cluster sem valores ou com valores errados, reaplique o manifesto:
 
 ```bash
@@ -72,7 +25,7 @@ Se quiser recriar o Secret do zero:
 kubectl delete secret mysql-secret -n development
 kubectl apply -f manifests/01-secrets.yaml
 
-### 5. Garantir que o Ingress Controller esteja no node com portas mapeadas (Kind)
+### 00. Garantir que o Ingress Controller esteja no node com portas mapeadas (Kind)
 
 Em clusters Kind este repositório cria mapeamentos de portas (`extraPortMappings`) apenas no node `control-plane`. Se o `ingress-nginx` for agendado em um `worker`, `localhost:80` pode não alcançar o controller, causando falhas de conexão pelo Ingress.
 
@@ -85,7 +38,7 @@ kubectl apply -f manifests/00-ingress-node-selector.yaml
 Isso adiciona um `nodeSelector` a `ingress-nginx-controller` direcionando-o para o node com o label `ingress-ready=true`.
 ```
  
-### 6. Reescrita de caminho para a API (Ingress)
+### 001. Reescrita de caminho para a API (Ingress)
 
 O `Ingress` deste repositório remove o prefixo `/businessmotorsapi` antes de encaminhar para o serviço da API. Sem essa reescrita, o backend ASP.NET pode receber caminhos como `/businessmotorsapi/swagger/index.html` e retornar 404, porque a aplicação espera `/swagger/index.html`.
 
@@ -422,3 +375,33 @@ kubectl logs -n development -l app=businessmotorsapi --tail=50
 ```
 
 Se o probe `/health` nao existir na sua API, ajuste o path em `manifests/06-api-deployment.yaml`.
+
+---
+
+## Helm e Argo CD
+
+Os manifests Kubernetes existentes em `manifests/` continuam disponiveis para aplicacao direta. O chart Helm correspondente fica em `helm/businessmotors/`, e o `Application` do Argo CD fica em `argocd/applications/`.
+
+### Validar e instalar com Helm
+
+```bash
+helm lint helm/businessmotors -f helm/businessmotors/values-development.yaml
+helm template businessmotors helm/businessmotors -n development -f helm/businessmotors/values-development.yaml
+helm upgrade --install businessmotors helm/businessmotors \
+	--namespace development --create-namespace \
+	--values helm/businessmotors/values-development.yaml
+```
+
+### Sincronizar com Argo CD
+
+Instale/configure o Argo CD no cluster e aplique o `Application`:
+
+```bash
+kubectl apply -f argocd/applications/businessmotors-development.yaml
+```
+
+O `Application` acompanha a branch `main`, cria o namespace `development` e sincroniza automaticamente o chart. Para outro repositorio ou branch, ajuste `repoURL` e `targetRevision` no manifesto da aplicacao.
+
+### Segredos
+
+Os valores de `values.yaml` sao apenas para desenvolvimento local. Para clusters compartilhados ou producao, nao grave senhas no Git: crie o Secret `mysql-secret` no namespace de destino com as chaves `root-password`, `database`, `user`, `password` e `connection-string`, depois configure `mysql.auth.createSecret: false` e `mysql.auth.existingSecret: mysql-secret` nos values usados pelo Argo CD.
